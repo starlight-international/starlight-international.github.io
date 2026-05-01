@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meet Our Staff — Star Light Islamic Basic School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0a0f1e; color: #f4f1ea; font-family: 'Lato', sans-serif; overflow-x: hidden; }
+
+    :root {
+      --navy:#0a0f1e; --navy2:#0d1525; --card:#0f1a2e;
+      --gold:#c9a84c; --gold-l:#e6c76a; --white:#f4f1ea;
+      --text:#c8c2b4; --muted:#7a7565;
+      --green:#4ecca3; --red:#e06b6b; --blue:#88aaff;
+      --orange:#ff9f43; --purple:#cc88ff;
+    }
+
+    .st-container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .st-tag { display: inline-block; font-family: 'Cinzel', serif; font-size: 0.68rem; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+    .st-title { font-family: 'Cinzel', serif; font-size: clamp(1.4rem,3vw,2rem); font-weight: 700; color: var(--white); margin-bottom: 12px; line-height: 1.2; }
+    .st-title span { color: var(--gold-l); }
+    .st-line { width: 60px; height: 2px; background: linear-gradient(90deg,var(--gold),transparent); margin-bottom: 40px; }
+
+    /* ══ HERO ══ */
+    .st-hero { position: relative; min-height: 420px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 120px 20px 70px; }
+    .st-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.13) 0%, transparent 70%), linear-gradient(180deg,#0d1525 0%,#0a0f1e 100%); }
+    .st-hero-grid { position: absolute; inset: 0; background-image: repeating-linear-gradient(90deg,rgba(201,168,76,0.03) 0px,rgba(201,168,76,0.03) 1px,transparent 1px,transparent 80px), repeating-linear-gradient(0deg,rgba(201,168,76,0.03) 0px,rgba(201,168,76,0.03) 1px,transparent 1px,transparent 80px); }
+    .st-hero-content { position: relative; z-index: 1; text-align: center; max-width: 720px; }
+    .st-hero-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 30px; padding: 6px 22px; font-family: 'Cinzel', serif; font-size: 0.72rem; color: var(--gold-l); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px; animation: fadeDown 0.6s ease both; }
+    .st-hero-title { font-family: 'Cinzel', serif; font-size: clamp(2.2rem,6vw,4rem); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 14px; animation: fadeDown 0.7s 0.1s ease both; }
+    .st-hero-title span { color: var(--gold-l); }
+    .st-hero-sub { font-family: 'Amiri', serif; font-style: italic; font-size: 1.05rem; color: var(--text); line-height: 1.75; margin-bottom: 30px; animation: fadeDown 0.7s 0.15s ease both; }
+    .st-stats-row { display: inline-flex; align-items: center; gap: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2); border-radius: 12px; padding: 14px 28px; flex-wrap: wrap; justify-content: center; animation: fadeDown 0.7s 0.2s ease both; }
+    .st-stats-row span { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; color: var(--text); font-family: 'Cinzel', serif; }
+    .st-stats-row span i { color: var(--gold); }
+    .st-stats-row .div { width: 1px; height: 20px; background: rgba(255,255,255,0.1); }
+
+    /* ══ FILTER & SEARCH BAR ══ */
+    .filter-bar { padding: 32px 0; background: linear-gradient(180deg,rgba(13,21,37,0.9),rgba(10,15,30,0.95)); border-bottom: 1px solid rgba(201,168,76,0.1); position: sticky; top: 70px; z-index: 50; }
+    .filter-inner { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .search-wrap { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 10px 16px; min-width: 200px; max-width: 280px; flex: 1; transition: border-color 0.3s; }
+    .search-wrap:focus-within { border-color: rgba(201,168,76,0.35); }
+    .search-wrap i { color: var(--muted); font-size: 0.84rem; }
+    .search-wrap input { background: none; border: none; outline: none; color: var(--white); font-size: 0.84rem; font-family: 'Lato', sans-serif; width: 100%; }
+    .search-wrap input::placeholder { color: var(--muted); }
+    .dept-filters { display: flex; gap: 7px; flex-wrap: wrap; }
+    .dept-btn { display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 7px 15px; font-size: 0.75rem; color: var(--muted); cursor: pointer; transition: 0.3s; font-family: 'Cinzel', serif; letter-spacing: 0.5px; white-space: nowrap; }
+    .dept-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.18); }
+    .dept-btn.active { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.3); color: var(--gold-l); }
+    .staff-count-label { font-size: 0.78rem; color: var(--muted); margin-left: auto; font-family: 'Cinzel', serif; white-space: nowrap; }
+
+    /* ══ PRINCIPAL SPOTLIGHT ══ */
+    .principal-section { padding: 64px 0 0; }
+    .principal-card {
+      display: grid; grid-template-columns: 340px 1fr; gap: 0;
+      background: rgba(15,26,46,0.9); border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 24px; overflow: hidden; margin-bottom: 64px;
+      transition: all 0.4s;
+    }
+    .principal-card:hover { box-shadow: 0 24px 60px rgba(0,0,0,0.45); border-color: rgba(201,168,76,0.4); }
+    .principal-photo-col {
+      background: linear-gradient(160deg, rgba(201,168,76,0.12), rgba(10,15,30,0.95));
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 40px 32px; gap: 0;
+      border-right: 1px solid rgba(201,168,76,0.12); position: relative;
+    }
+    .principal-photo-col::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-l), transparent);
+    }
+    .principal-img-frame {
+      width: 180px; height: 180px; border-radius: 50%;
+      border: 3px solid var(--gold); padding: 4px;
+      background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(10,15,30,0.8));
+      margin-bottom: 18px; overflow: hidden; position: relative;
+    }
+    .principal-img-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .principal-img-placeholder { width: 100%; height: 100%; border-radius: 50%; background: rgba(201,168,76,0.08); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+    .principal-img-placeholder i { font-size: 3rem; color: rgba(201,168,76,0.25); }
+    .principal-img-placeholder span { font-size: 0.65rem; color: var(--muted); text-align: center; line-height: 1.4; }
+    .principal-name { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--white); margin-bottom: 4px; text-align: center; }
+    .principal-title-badge { background: linear-gradient(135deg,var(--gold),var(--gold-l)); color: #0a0f1e; font-family: 'Cinzel', serif; font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; margin-bottom: 14px; }
+    .principal-quals { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+    .principal-qual { display: flex; align-items: center; gap: 8px; font-size: 0.76rem; color: var(--muted); }
+    .principal-qual i { color: var(--gold); font-size: 0.7rem; width: 14px; text-align: center; }
+    .principal-social { display: flex; gap: 8px; margin-top: 16px; }
+    .p-social-btn { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--muted); cursor: pointer; transition: 0.3s; }
+    .p-social-btn:hover { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.3); color: var(--gold-l); }
+    .principal-info-col { padding: 44px 44px; display: flex; flex-direction: column; justify-content: center; }
+    .principal-label { font-family: 'Cinzel', serif; font-size: 0.65rem; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+    .principal-headline { font-family: 'Cinzel', serif; font-size: clamp(1.3rem,2.5vw,1.9rem); color: var(--white); line-height: 1.3; margin-bottom: 18px; }
+    .principal-headline span { color: var(--gold-l); }
+    .principal-message { font-family: 'Amiri', serif; font-style: italic; font-size: 1rem; color: var(--text); line-height: 1.9; margin-bottom: 22px; }
+    .principal-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+    .pmg-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 12px; }
+    .pmg-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+    .pmg-value { font-size: 0.84rem; color: var(--white); font-family: 'Cinzel', serif; }
+    .principal-quote { font-family: 'Amiri', serif; font-size: 1.05rem; color: var(--gold-l); font-style: italic; padding: 14px 20px; border-left: 3px solid var(--gold); background: rgba(201,168,76,0.05); border-radius: 0 8px 8px 0; }
+
+    /* ══ DEPARTMENT SECTIONS ══ */
+    .dept-section { padding: 56px 0; }
+    .dept-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+    .dept-icon { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .di-teach   { background: rgba(201,168,76,0.12); color: var(--gold-l); border: 1px solid rgba(201,168,76,0.2); }
+    .di-admin   { background: rgba(136,170,255,0.12); color: var(--blue); border: 1px solid rgba(136,170,255,0.2); }
+    .di-support { background: rgba(78,204,163,0.12); color: var(--green); border: 1px solid rgba(78,204,163,0.2); }
+    .di-pta     { background: rgba(255,159,67,0.12); color: var(--orange); border: 1px solid rgba(255,159,67,0.2); }
+    .dept-header-text h3 { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--white); margin-bottom: 3px; }
+    .dept-header-text p  { font-size: 0.8rem; color: var(--muted); }
+    .dept-divider { flex: 1; height: 1px; background: linear-gradient(90deg,rgba(201,168,76,0.2),transparent); }
+    .dept-count { font-family: 'Cinzel', serif; font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
+
+    /* ══ STAFF GRID ══ */
+    .staff-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; }
+    .staff-card {
+      background: rgba(15,26,46,0.85); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px; overflow: hidden; transition: all 0.4s;
+      cursor: pointer; display: flex; flex-direction: column;
+    }
+    .staff-card:hover { transform: translateY(-7px); border-color: rgba(201,168,76,0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    .staff-photo {
+      position: relative; height: 220px; overflow: hidden;
+      background: linear-gradient(135deg,rgba(201,168,76,0.1),rgba(10,15,30,0.9));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .staff-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s; }
+    .staff-card:hover .staff-photo img { transform: scale(1.06); }
+    .staff-photo-placeholder {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      color: rgba(201,168,76,0.2); text-align: center; padding: 16px;
+    }
+    .staff-photo-placeholder i { font-size: 3.5rem; }
+    .staff-photo-placeholder span { font-size: 0.65rem; color: var(--muted); line-height: 1.5; }
+    .staff-dept-tag {
+      position: absolute; top: 12px; left: 12px;
+      font-size: 0.6rem; font-family: 'Cinzel', serif; letter-spacing: 1px;
+      padding: 3px 10px; border-radius: 10px; text-transform: uppercase;
+    }
+    .staff-card-body { padding: 18px 18px 16px; flex: 1; display: flex; flex-direction: column; }
+    .staff-name { font-family: 'Cinzel', serif; font-size: 0.96rem; color: var(--white); margin-bottom: 3px; }
+    .staff-role { font-size: 0.76rem; color: var(--gold-l); margin-bottom: 10px; font-style: italic; }
+    .staff-subjects { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+    .subj-tag { font-size: 0.62rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 2px 8px; color: var(--text); }
+    .staff-bio-short { font-size: 0.78rem; color: var(--muted); line-height: 1.55; margin-bottom: 12px; flex: 1; }
+    .staff-card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.05); }
+    .staff-years { font-size: 0.7rem; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+    .staff-years i { color: var(--gold); font-size: 0.65rem; }
+    .view-profile-btn { font-size: 0.72rem; color: var(--gold-l); font-family: 'Cinzel', serif; display: flex; align-items: center; gap: 5px; transition: gap 0.3s; }
+    .staff-card:hover .view-profile-btn { gap: 8px; }
+
+    /* ══ STAFF MODAL ══ */
+    .staff-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; overflow-y: auto; backdrop-filter: blur(6px); }
+    .staff-overlay.open { display: flex; align-items: flex-start; justify-content: center; padding: 40px 20px; }
+    .staff-modal { background: var(--navy2); border: 1px solid rgba(201,168,76,0.2); border-radius: 24px; max-width: 780px; width: 100%; overflow: hidden; animation: modalIn 0.35s ease; }
+    @keyframes modalIn { from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);} }
+    .modal-close-bar { display: flex; justify-content: flex-end; padding: 14px 20px; background: rgba(13,21,37,0.98); border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; z-index: 10; }
+    .close-btn { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 16px; color: var(--text); font-size: 0.8rem; cursor: pointer; transition: 0.3s; font-family: 'Cinzel', serif; }
+    .close-btn:hover { background: rgba(224,107,107,0.12); border-color: rgba(224,107,107,0.3); color: var(--red); }
+    .modal-profile-top { display: grid; grid-template-columns: 200px 1fr; gap: 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .modal-photo-col {
+      background: linear-gradient(160deg,rgba(201,168,76,0.1),rgba(10,15,30,0.95));
+      display: flex; flex-direction: column; align-items: center;
+      padding: 32px 24px; gap: 14px;
+      border-right: 1px solid rgba(201,168,76,0.1);
+    }
+    .modal-photo-frame { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--gold); padding: 3px; overflow: hidden; background: rgba(201,168,76,0.08); }
+    .modal-photo-frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .modal-photo-placeholder { width: 100%; height: 100%; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
+    .modal-photo-placeholder i { font-size: 2.5rem; color: rgba(201,168,76,0.2); }
+    .modal-photo-placeholder small { font-size: 0.6rem; color: var(--muted); text-align: center; line-height: 1.4; padding: 0 8px; }
+    .modal-staff-name { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--white); text-align: center; }
+    .modal-staff-role { font-size: 0.76rem; color: var(--gold-l); font-style: italic; text-align: center; }
+    .modal-social { display: flex; gap: 8px; }
+    .modal-soc-btn { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 0.78rem; color: var(--muted); cursor: pointer; transition: 0.3s; }
+    .modal-soc-btn:hover { background: rgba(201,168,76,0.1); color: var(--gold-l); border-color: rgba(201,168,76,0.3); }
+    .modal-info-col { padding: 28px 32px; }
+    .modal-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+    .mig-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 10px 12px; }
+    .mig-label { font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+    .mig-value { font-size: 0.82rem; color: var(--white); }
+    .modal-subjects-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .modal-bio-section h5 { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--gold-l); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .modal-bio-section h5 i { color: var(--gold); }
+    .modal-bio-section p { font-size: 0.84rem; color: var(--text); line-height: 1.8; margin-bottom: 14px; }
+    .modal-achievements { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .modal-ach-item { display: flex; align-items: flex-start; gap: 10px; font-size: 0.8rem; color: var(--text); }
+    .modal-ach-item i { color: var(--gold); font-size: 0.72rem; margin-top: 3px; flex-shrink: 0; }
+    .modal-quote { font-family: 'Amiri', serif; font-size: 0.96rem; color: var(--gold-l); font-style: italic; padding: 14px 18px; border-left: 3px solid var(--gold); background: rgba(201,168,76,0.05); border-radius: 0 8px 8px 0; margin-top: 10px; }
+
+    /* ══ NO RESULTS ══ */
+    .no-results { text-align: center; padding: 60px 20px; color: var(--muted); }
+    .no-results i { font-size: 2.5rem; margin-bottom: 14px; display: block; opacity: 0.3; }
+
+    /* ══ HOW TO ADD PHOTOS NOTE ══ */
+    .add-photo-note { background: rgba(201,168,76,0.05); border: 1px dashed rgba(201,168,76,0.2); border-radius: 12px; padding: 18px 22px; margin-bottom: 40px; display: flex; align-items: flex-start; gap: 14px; }
+    .add-photo-note i { color: var(--gold); font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+    .add-photo-note p { font-size: 0.82rem; color: var(--text); line-height: 1.7; }
+    .add-photo-note p strong { color: var(--gold-l); }
+    .add-photo-note code { background: rgba(255,255,255,0.06); border-radius: 4px; padding: 1px 6px; font-size: 0.78rem; color: var(--green); }
+
+    /* ══ ANIMATIONS ══ */
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);} }
+    .reveal { opacity:0; transform:translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ══ FOOTER ══ */
+    .st-footer { background: rgba(13,21,37,0.95); border-top: 1px solid rgba(255,255,255,0.05); padding: 44px 0 24px; }
+    .st-footer-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 24px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .st-footer-logo { display: flex; align-items: center; gap: 12px; }
+    .st-footer-logo img { height: 46px; border-radius: 6px; }
+    .st-footer-name { font-family: 'Cinzel', serif; font-size: 0.96rem; color: var(--gold-l); display: block; }
+    .st-footer-sub  { font-size: 0.7rem; color: var(--muted); display: block; margin-top: 2px; }
+    .st-footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .st-footer-links a { font-size: 0.76rem; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    .st-footer-links a:hover { color: var(--gold-l); }
+    .st-footer-copy { text-align: center; font-size: 0.74rem; color: var(--muted); }
+
+    /* ══ RESPONSIVE ══ */
+    @media(max-width:1100px){ .staff-grid{grid-template-columns:repeat(3,1fr);} }
+    @media(max-width:1024px){ .principal-card{grid-template-columns:1fr;} .principal-photo-col{border-right:none;border-bottom:1px solid rgba(201,168,76,0.12);padding:32px;} .principal-meta-grid{grid-template-columns:repeat(4,1fr);} }
+    @media(max-width:820px) { .staff-grid{grid-template-columns:repeat(2,1fr);} .modal-profile-top{grid-template-columns:1fr;} .modal-photo-col{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);} .modal-info-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:600px) { .staff-grid{grid-template-columns:1fr 1fr;} .principal-meta-grid{grid-template-columns:1fr 1fr;} .filter-bar{position:relative;top:auto;} .modal-info-grid{grid-template-columns:1fr;} }
+    @media(max-width:420px) { .staff-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+
+  <canvas id="starsCanvas"></canvas>
+  <div id="preloader">
+    <div class="preloader-inner">
+      <img src="logo.png" alt="Star Light Logo" class="preloader-logo-img" />
+      <div class="preloader-bar"><div class="preloader-fill"></div></div>
+      <p class="preloader-text">Loading Our Staff...</p>
+    </div>
+  </div>
+
+  <!-- NAVBAR --> 
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Star Light Islamic Basic School" class="nav-logo-img" />
+        <div><span class="nav-logo-name">Star Light</span><span class="nav-logo-sub">Islamic Basic School</span></div>
+      </a>
+            <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#academics">Academics</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="gallery.html"><i class="fas fa-images" style="font-size:0.75rem;margin-right:4px;"></i>Gallery</a></li>
+        <li><a href="blog.html"><i class="fas fa-blog" style="font-size:0.75rem;margin-right:4px;"></i>Blog</a></li>
+        <li><a href="results.html"><i class="fas fa-trophy" style="font-size:0.75rem;margin-right:4px;"></i>Results</a></li>
+        <li><a href="teachers.html" class="active-link"><i class="fas fa-chalkboard-teacher" style="font-size:0.75rem;margin-right:4px;"></i>Staff</a></li>
+        <li><a href="career.html"><i class="fas fa-briefcase" style="font-size:0.75rem;margin-right:4px;"></i>Careers</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="index.html#admissions" class="btn-portal"><i class="fas fa-user-graduate"></i> Apply Now</a>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+        <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#academics">Academics</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="gallery.html"><i class="fas fa-images" style="margin-right:6px;"></i>Photo Gallery</a></li>
+        <li><a href="index.html#admissions">Admissions</a></li>
+        <li><a href="teachers.html"><i class="fas fa-chalkboard-teacher" style="margin-right:6px;"></i>Meet Our Staff</a></li>
+        <li><a href="blog.html"><i class="fas fa-blog" style="margin-right:6px;"></i>Blog</a></li>
+        <li><a href="results.html"><i class="fas fa-trophy" style="margin-right:6px;"></i>Results &amp; Achievements</a></li>
+        <li><a href="career.html"><i class="fas fa-briefcase" style="margin-right:6px;"></i>Careers</a></li>
+        <li><a href="portal.html"><i class="fas fa-user-shield" style="margin-right:6px;"></i>Parent Portal</a></li>
+        <li><a href="calendar.html"><i class="fas fa-calendar-alt" style="margin-right:6px;"></i>School Calendar</a></li>
+        <li><a href="newsletter.html"><i class="fas fa-envelope-open-text" style="margin-right:6px;"></i>Newsletter</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="st-hero">
+    <div class="st-hero-bg"></div>
+    <div class="st-hero-grid"></div>
+    <div class="st-hero-content">
+      <div class="st-hero-badge"><i class="fas fa-users"></i> Star Light Islamic Basic School <i class="fas fa-users"></i></div>
+      <h1 class="st-hero-title">Meet Our <span>Staff</span></h1>
+      <p class="st-hero-sub">The dedicated team of educators, administrators and community leaders behind every child's success at Star Light.</p>
+      <div class="st-stats-row">
+        <span><i class="fas fa-chalkboard-teacher"></i> Teaching Staff</span>
+        <div class="div"></div>
+        <span><i class="fas fa-briefcase"></i> Administration</span>
+        <div class="div"></div>
+        <span><i class="fas fa-hands-helping"></i> Support Staff</span>
+        <div class="div"></div>
+        <span><i class="fas fa-star"></i> PTA & Leadership</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="st-container">
+      <div class="filter-inner">
+        <div class="search-wrap">
+          <i class="fas fa-search"></i>
+          <input type="text" id="staffSearch" placeholder="Search staff..." />
+        </div>
+        <div class="dept-filters">
+          <button class="dept-btn active" data-dept="all"><i class="fas fa-th"></i> All Staff</button>
+          <button class="dept-btn" data-dept="leadership"><i class="fas fa-star"></i> Leadership</button>
+          <button class="dept-btn" data-dept="teaching"><i class="fas fa-chalkboard-teacher"></i> Teachers</button>
+          <button class="dept-btn" data-dept="admin"><i class="fas fa-briefcase"></i> Admin</button>
+          <button class="dept-btn" data-dept="support"><i class="fas fa-hands-helping"></i> Support</button>
+          <button class="dept-btn" data-dept="pta"><i class="fas fa-people-carry"></i> PTA</button>
+        </div>
+        <div class="staff-count-label" id="staffCountLabel">All Staff</div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="st-container">
+
+      <!-- PRINCIPAL SPOTLIGHT -->
+      <section class="principal-section" id="principalSection">
+        <div style="margin-bottom:28px;">
+          <p class="st-tag"><i class="fas fa-star" style="margin-right:8px;"></i>School Leadership</p>
+          <h2 class="st-title">Our <span>Principal</span></h2>
+          <div class="st-line" style="margin-bottom:0;"></div>
+        </div>
+
+        <div class="principal-card">
+          <div class="principal-photo-col">
+            <div class="principal-img-frame">
+              <!--
+                TO ADD PRINCIPAL'S PHOTO:
+                Replace the placeholder div below with:
+                <img src="principal.jpg" alt="Principal" />
+              -->
+              <div class="principal-img-placeholder">
+                <i class="fas fa-user-circle"></i>
+                <span>Add photo:<br>principal.jpg</span>
+              </div>
+            </div>
+            <div class="principal-name"> Mr. Mogira isaq osuman </div>
+            <div class="principal-title-badge"><i class="fas fa-star" style="margin-right:6px;"></i> Principal</div>
+            <div class="principal-quals">
+              <div class="principal-qual"><i class="fas fa-graduation-cap"></i> B.Ed — University of Education</div>
+              <div class="principal-qual"><i class="fas fa-award"></i> M.Ed — Educational Leadership</div>
+              <div class="principal-qual"><i class="fas fa-calendar"></i> 15+ Years in Education</div>
+              <div class="principal-qual"><i class="fas fa-map-marker-alt"></i> Kasoa, Ghana</div>
+            </div>
+            <div class="principal-social">
+              <div class="p-social-btn" title="WhatsApp"><i class="0558448280"></i></div>
+              <div class="p-social-btn" title="Email"><i class="fas fa-envelope"></i></div>
+            </div>
+          </div>
+          <div class="principal-info-col">
+            <p class="principal-label"><i class="fas fa-feather-alt" style="margin-right:8px;"></i>A Message from Our Principal</p>
+            <h3 class="principal-headline">Building <span>Character</span> Through Knowledge</h3>
+            <p class="principal-message">
+              "Welcome to Star Light Islamic Basic School — a place where every child is valued, nurtured and given the very best opportunity to grow. Our school is built on three pillars: academic excellence, strong moral character and genuine love for every student who walks through our doors.
+              <br><br>
+              We believe that education is not only about passing examinations. It is about building human beings who are confident, compassionate, and ready to contribute to their families, communities and nation. Every member of our staff shares this vision and brings it to life in their classroom every single day."
+            </p>
+            <div class="principal-meta-grid">
+              <div class="pmg-item"><div class="pmg-label">Position</div><div class="pmg-value">Principal</div></div>
+              <div class="pmg-item"><div class="pmg-label">Years at SLIBS</div><div class="pmg-value">Founding Principal</div></div>
+              <div class="pmg-item"><div class="pmg-label">Specialisation</div><div class="pmg-value">Educational Leadership</div></div>
+              <div class="pmg-item"><div class="pmg-label">Contact</div><div class="pmg-value">0558448280</div></div>
+            </div>
+            <div class="principal-quote">"Knowledge without character is a sword in the hands of a madman. At Star Light, we build both."</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW TO ADD PHOTOS NOTE -->
+      <div class="add-photo-note" id="photoNote">
+        <i class="fas fa-info-circle"></i>
+        <p>
+          <strong>How to add staff photos:</strong> Create an <code>images/staff/</code> folder in your project.
+          Name each photo after the staff member e.g. <code>mr-asante.jpg</code>, <code>ms-amoah.jpg</code>.
+          Then in the <code>STAFF</code> data below, update the <code>photo</code> field to <code>"images/staff/mr-asante.jpg"</code>.
+          Photo will automatically appear in the card and profile modal! 😊
+        </p>
+      </div>
+
+      <!-- DYNAMIC SECTIONS -->
+      <div id="staffSections"></div>
+
+    </div>
+  </main>
+
+  <!-- STAFF PROFILE MODAL -->
+  <div class="staff-overlay" id="staffOverlay">
+    <div class="staff-modal" id="staffModal">
+      <div class="modal-close-bar">
+        <button class="close-btn" onclick="closeProfile()"><i class="fas fa-times"></i> Close Profile</button>
+      </div>
+      <div id="profileContent"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="st-footer">
+    <div class="st-container">
+      <div class="st-footer-top">
+        <div class="st-footer-logo">
+          <img src="logo.png" alt="Star Light Islamic Basic School" />
+          <div><span class="st-footer-name">Star Light Islamic Basic School</span><span class="st-footer-sub">Kasoa Nyanyano Fetteh Road, Ghana</span></div>
+        </div>
+        <div class="st-footer-links">
+          <a href="index.html">Home</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#admissions">Admissions</a> 
+          <a href="newsletter.html">Newsletter</a>
+          <a href="calendar.html">Calendar</a>
+          <a href="portal.html">Portal</a>
+          <a href="blog.html">Blog</a>
+          <a href="results.html">Results</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div class="st-footer-copy">
+        <p>&copy; 2026 Star Light Islamic Basic School. All rights reserved.</p>
+        <p style="margin-top:4px;font-style:italic;color:rgba(122,117,101,0.6);">"Knowledge is the Light of the World"</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+  /* ══════════════════════════════════════════════════════════
+     STAFF DATA
+     To add a new staff member — copy one object and fill it in.
+     To add a photo — put the image in images/staff/ folder
+     and update the "photo" field e.g. "images/staff/mr-asante.jpg"
+  ══════════════════════════════════════════════════════════ */
+  const STAFF = [
+
+    // ── TEACHING STAFF ──────────────────────────────────────
+    {
+      id: 1,
+      name: "Mr. Christopher Mawusi Agbeti",
+      role: "Senior Teacher & Form Teacher — JHS 2B",
+      dept: "teaching",
+      deptLabel: "Teaching Staff",
+      photo: "images/staff/christopher.jpg", 
+      subjects: ["Mathematics", "English", "Litrature", "Spanish"],
+      qualification: "Classroom Pedagogy — University of Education, Winneba",
+      experience: "8 Years",
+      joined: "2023",
+      email: "calvinagbeti8@gmail.com",
+      bio: "Mr. Christopher is one of Star Light's most experienced and beloved teachers. He brings energy, passion and a deep commitment to his students in every lesson he teaches. He is known for making Social Studies come alive through storytelling and real-world examples.",
+      achievements: [
+        "Best Teacher Award — Star Light 2023",
+        "Organised the school's first Model UN event",
+        "Mentored 3 students who went on to win district competitions"
+      ],
+      quote: "Every child is a gift. My job is simply to help them unwrap themselves."
+    },
+    {
+      id: 2,
+      name: "Mr.Abdul Hakeem",
+      role: "English Language Teacher — Basic 4 to JHS 3",
+      dept: "teaching",
+      deptLabel: "Teaching Staff",
+      photo: "",
+      subjects: ["Science", "Computing"],
+      qualification: "B.A English — University of Ghana",
+      experience: "6 Years",
+      joined: "2020",
+      email: "slibs.admissions@gmail.com",
+      bio: "Ms. Osei has a gift for inspiring a love of reading and writing in her students. Her lessons are creative, engaging and always encourage students to express themselves confidently. She runs the school's reading club every Wednesday.",
+      achievements: [
+        "Founded the Star Light Reading Club (2021)",
+        "3 students published in the Regional Youth Writing Competition",
+        "Introduced drama-based learning for English comprehension"
+      ],
+      quote: "Language is power. A child who can read and write well can conquer any subject."
+    },
+    {
+      id: 3,
+      name: "Mr. Yaw Mensah",
+      role: "Mathematics Teacher — Basic 5 to JHS 3",
+      dept: "teaching",
+      deptLabel: "Teaching Staff",
+      photo: "",
+      subjects: ["Mathematics", "Elective Maths"],
+      qualification: "B.Sc Mathematics — KNUST",
+      experience: "10 Years",
+      joined: "2016",
+      email: "slibs.admissions@gmail.com",
+      bio: "Mr. Mensah is the backbone of the Mathematics department. With a decade of experience, he has a proven track record of turning students who fear maths into students who love it. His results speak for themselves — consistently among the highest in the region.",
+      achievements: [
+        "Regional Mathematics Olympiad Coach — Gold 2026",
+        "BECE Maths pass rate of 94% under his teaching",
+        "Introduced peer-tutoring system for struggling students"
+      ],
+      quote: "Mathematics is not about numbers. It is about thinking clearly and solving problems."
+    },
+    {
+      id: 4,
+      name: "Ms. Akosua Boateng",
+      role: "Integrated Science Teacher — Basic 4 to JHS 3",
+      dept: "teaching",
+      deptLabel: "Teaching Staff",
+      photo: "",
+      subjects: ["Integrated Science", "Environmental Studies"],
+      qualification: "B.Sc Biology — University of Cape Coast",
+      experience: "5 Years",
+      joined: "2021",
+      email: "slibs.admissions@gmail.com",
+      bio: "Ms. Boateng is passionate about making science hands-on and exciting. She runs regular lab experiments and has turned the school's small science room into a vibrant learning space. She believes every child is naturally curious — a great scientist just waiting to emerge.",
+      achievements: [
+        "Set up the school's first fully-equipped science lab corner",
+        "Organised Nature Day — an outdoor science exploration event",
+        "Highest BECE Science scores in school history (2025)"
+      ],
+      quote: "Science is everywhere. I just help my students see it."
+    },
+    {
+      id: 5,
+      name: "Mr. Emmanuel Darko",
+      role: "ICT Teacher — KG to JHS 3",
+      dept: "teaching",
+      deptLabel: "Teaching Staff",
+      photo: "",
+      subjects: ["ICT", "Basic Technology"],
+      qualification: "B.Sc Computer Science — University of Ghana",
+      experience: "4 Years",
+      joined: "2026",
+      email: "slibs.admissions@gmail.com",
+      bio: "Mr. Darko joined Star Light in January 2026 and has already made a huge impact. His lessons are lively, practical and always involve real computer use. He is on a mission to make sure every Star Light student is digitally literate and ready for the future.",
+      achievements: [
+        "Introduced coding basics to JHS 1 students",
+        "Set up computer maintenance schedule for the school lab",
+        "Student favourite — voted Most Energetic Teacher Term 1"
+      ],
+      quote: "Every child is a natural problem-solver. Technology is just the tool to express it."
+    },
+    {
+      id: 6,
+      name: "Madame Fatima Al-Hassan",
+      role: "French & Arabic Teacher — JHS 1 to JHS 3",
+      dept: "teaching",
+      deptLabel: "Teaching Staff",
+      photo: "",
+      subjects: ["French", "Arabic", "R.M.E"],
+      qualification: "B.A French & Arabic — University for Development Studies",
+      experience: "7 Years",
+      joined: "2019",
+      email: "slibs.admissions@gmail.com",
+      bio: "Madame Al-Hassan brings a multicultural energy to every lesson. Fluent in four languages, she teaches French and Arabic with equal passion and brings cultural richness into the classroom through songs, films and conversation practice.",
+      achievements: [
+        "Highest French BECE scores in school — 2024 & 2025",
+        "Introduced Arabic calligraphy as an extracurricular activity",
+        "Led cultural exchange programme with a school in Accra"
+      ],
+      quote: "To speak another language is to live another life. I am giving my students extra lives."
+    },
+    {
+      id: 7,
+      name: "Mr. Kofi Amponsah",
+      role: "Physical Education & Sports Teacher",
+      dept: "teaching",
+      deptLabel: "Teaching Staff",
+      photo: "",
+      subjects: ["Physical Education", "Creative Arts"],
+      qualification: "B.Sc Sports Science — University of Education",
+      experience: "9 Years",
+      joined: "2017",
+      email: "slibs.admissions@gmail.com",
+      bio: "Mr. Amponsah is the heart and soul of sports at Star Light. He organises inter-house competitions, trains school teams and believes strongly that physical activity is inseparable from academic performance. Under his leadership, sports participation has doubled.",
+      achievements: [
+        "Organiser of Inter-House Sports Day for 6 consecutive years",
+        "School football team — District League runners-up 2025",
+        "Introduced daily morning exercise programme"
+      ],
+      quote: "A healthy body feeds a sharp mind. Sport is not a break from learning — it is part of it."
+    },
+    {
+      id: 8,
+      name: "Ms. Ama Asare",
+      role: "KG & Lower Primary Class Teacher",
+      dept: "teaching",
+      deptLabel: "Teaching Staff",
+      photo: "",
+      subjects: ["All KG Subjects", "Numeracy", "Literacy"],
+      qualification: "Diploma in Early Childhood Education — Offinso College",
+      experience: "11 Years",
+      joined: "2015",
+      email: "slibs.admissions@gmail.com",
+      bio: "Ms. Asare has dedicated her entire career to early childhood education. Her classroom is a warm, colourful and safe space where our youngest students build the foundation for everything that follows. Parents consistently praise her patience, creativity and dedication.",
+      achievements: [
+        "Longest-serving teacher at Star Light",
+        "Designed the school's first phonics and numeracy programme",
+        "Zero dropout rate from her KG classes since 2018"
+      ],
+      quote: "The first years of school are the most important. I hold those years with the greatest care."
+    },
+
+    // ── ADMINISTRATION ──────────────────────────────────────
+    {
+      id: 9,
+      name: "Mrs. Adwoa Mensah",
+      role: "School Secretary & Administrative Officer",
+      dept: "admin",
+      deptLabel: "Administration",
+      photo: "",
+      subjects: [],
+      qualification: "HND Secretaryship & Management — Accra Polytechnic",
+      experience: "7 Years",
+      joined: "2019",
+      email: "slibs.admissions@gmail.com",
+      bio: "Mrs. Mensah is the organisational engine of Star Light. She manages admissions, correspondence, school records and the day-to-day administration of the school with efficiency and warmth. She is usually the first point of contact for parents visiting the school.",
+      achievements: [
+        "Implemented the digital student records system",
+        "Manages all BECE registration and documentation",
+        "Outstanding Administrative Staff Award — 2024"
+      ],
+      quote: "A well-run school gives teachers and students the freedom to focus on what matters most."
+    },
+    {
+      id: 10,
+      name: "Mr. Isaac Frimpong",
+      role: "Accounts Officer",
+      dept: "admin",
+      deptLabel: "Administration",
+      photo: "",
+      subjects: [],
+      qualification: "B.Com Accounting — University of Professional Studies",
+      experience: "5 Years",
+      joined: "2021",
+      email: "slibs.admissions@gmail.com",
+      bio: "Mr. Frimpong manages the school's financial records, fee collections, budgeting and expenditure reporting. He ensures that all financial processes are transparent, accurate and run smoothly — providing peace of mind to parents and management alike.",
+      achievements: [
+        "Introduced the digital fee payment tracking system",
+        "Clean audit report for 3 consecutive years",
+        "Streamlined the school fee reminder process"
+      ],
+      quote: "Good financial management means more resources go directly to students."
+    },
+    {
+      id: 11,
+      name: "Ms. Efua Asante",
+      role: "Guidance & Counselling Officer",
+      dept: "admin",
+      deptLabel: "Administration",
+      photo: "",
+      subjects: [],
+      qualification: "B.A Psychology & Counselling — University of Ghana",
+      experience: "4 Years",
+      joined: "2022",
+      email: "slibs.admissions@gmail.com",
+      bio: "Ms. Asante provides vital emotional and academic support to students at Star Light. She conducts counselling sessions, supports students through personal challenges and plays a key role in BECE preparation — helping students manage anxiety and build confidence.",
+      achievements: [
+        "Introduced the school's first mental wellness programme",
+        "Runs weekly group counselling sessions for JHS 3",
+        "Supported 100% of referred students back to stable school attendance"
+      ],
+      quote: "Every child deserves to feel safe, heard and supported. That is what I am here for."
+    },
+
+    // ── SUPPORT STAFF ──────────────────────────────────────
+    {
+      id: 12,
+      name: "Mr. Daniel Owusu",
+      role: "School Librarian",
+      dept: "support",
+      deptLabel: "Support Staff",
+      photo: "",
+      subjects: [],
+      qualification: "Certificate in Library & Information Studies",
+      experience: "6 Years",
+      joined: "2020",
+      email: "slibs.admissions@gmail.com",
+      bio: "Mr. Owusu keeps the heart of the school — the library — running smoothly. He has catalogued and expanded the school's book collection, introduced a reading log system and works closely with the English department to encourage reading among all students.",
+      achievements: [
+        "Doubled the school library book collection (2020–2025)",
+        "Launched the 'Read 10 Books This Term' challenge",
+        "Organises National Reading Day celebrations annually"
+      ],
+      quote: "A child who reads will grow up to be an adult who thinks."
+    },
+    {
+      id: 13,
+      name: "Mr. Nana Agyei",
+      role: "School Security Officer",
+      dept: "support",
+      deptLabel: "Support Staff",
+      photo: "",
+      subjects: [],
+      qualification: "Certificate in Security Management",
+      experience: "8 Years",
+      joined: "2018",
+      email: "slibs.admissions@gmail.com",
+      bio: "Mr. Agyei ensures the safety and security of every student, staff member and visitor at Star Light. His calm, professional presence at the school gate every morning and afternoon is a reassurance to parents and students alike.",
+      achievements: [
+        "Zero security incidents since joining in 2018",
+        "Introduced the visitor sign-in system",
+        "Organises fire drill safety exercises termly"
+      ],
+      quote: "When children feel safe, they learn better. Safety is not just my job — it is my calling."
+    },
+    {
+      id: 14,
+      name: "Mrs. Akua Boateng",
+      role: "School Canteen Supervisor",
+      dept: "support",
+      deptLabel: "Support Staff",
+      photo: "",
+      subjects: [],
+      qualification: "Certificate in Food & Nutrition",
+      experience: "9 Years",
+      joined: "2017",
+      email: "slibs.admissions@gmail.com",
+      bio: "Mrs. Boateng runs the school canteen with love and dedication. She ensures that every student gets a nutritious, balanced and affordable meal during break and lunch. Her food is legendary among Star Light students and parents!",
+      achievements: [
+        "Introduced healthy meal options to the school menu",
+        "Zero food safety incidents since joining",
+        "Most popular non-teaching staff member — student vote 2025"
+      ],
+      quote: "A child who eats well learns well. I feed bodies so teachers can feed minds."
+    },
+
+    // ── PTA ──────────────────────────────────────
+    {
+      id: 15,
+      name: "Mr. Yaw Boateng",
+      role: "PTA Chairman",
+      dept: "pta",
+      deptLabel: "PTA & Community",
+      photo: "",
+      subjects: [],
+      qualification: "B.Sc Business Administration — KNUST",
+      experience: "3 Years as PTA Chair",
+      joined: "2023",
+      email: "slibs.admissions@gmail.com",
+      bio: "Mr. Boateng is a respected community leader and businessman who has served as PTA Chairman since 2023. He works closely with the school's management to advocate for parents, raise funds for school improvements and ensure the voice of every parent is heard.",
+      achievements: [
+        "Led fundraising drive that built the school's new classroom block",
+        "Organised first PTA Sports Day family event",
+        "Established the Star Light Parent Support Fund for needy students"
+      ],
+      quote: "Our children's school is our community's most important investment. We must all take ownership of it."
+    },
+    {
+      id: 16,
+      name: "Mrs. Grace Owusu",
+      role: "PTA Vice Chairperson",
+      dept: "pta",
+      deptLabel: "PTA & Community",
+      photo: "",
+      subjects: [],
+      qualification: "B.Ed Home Economics — University of Education",
+      experience: "2 Years as PTA Vice",
+      joined: "2024",
+      email: "slibs.admissions@gmail.com",
+      bio: "Mrs. Owusu is a passionate advocate for parental involvement in education. She organises parent-teacher meetings, runs the PTA WhatsApp communication channels and ensures that all parents are kept informed and involved in school life.",
+      achievements: [
+        "Increased PTA meeting attendance from 40% to 85%",
+        "Set up the PTA parent communication WhatsApp group",
+        "Coordinated school uniform donation drive (2024)"
+      ],
+      quote: "When parents and teachers work together, there is nothing a child cannot achieve."
+    },
+    {
+      id: 17,
+      name: "Mr. Kwabena Asante",
+      role: "PTA Secretary",
+      dept: "pta",
+      deptLabel: "PTA & Community",
+      photo: "",
+      subjects: [],
+      qualification: "HND Business Studies",
+      experience: "2 Years",
+      joined: "2024",
+      email: "slibs.admissions@gmail.com",
+      bio: "Mr. Asante handles all PTA correspondence, keeps minutes of meetings and ensures the smooth running of PTA administrative functions. His attention to detail and dedication has brought new efficiency to the PTA's operations.",
+      achievements: [
+        "Digitised all PTA meeting minutes and records",
+        "Created the PTA termly parent newsletter",
+        "Coordinated successful Book Donation Drive 2025"
+      ],
+      quote: "Organisation and transparency build trust between parents and the school."
+    }
+  ];
+
+  /* ══ DEPARTMENT METADATA ══ */
+  const DEPTS = {
+    leadership: { label: 'School Leadership', desc: 'Principal and senior management', icon: 'fas fa-star', iconClass: 'di-teach', color: 'var(--gold-l)', tagBg: 'rgba(201,168,76,0.12)', tagColor: 'var(--gold-l)' },
+    teaching:   { label: 'Teaching Staff', desc: 'Our dedicated classroom teachers', icon: 'fas fa-chalkboard-teacher', iconClass: 'di-teach', color: 'var(--gold-l)', tagBg: 'rgba(201,168,76,0.12)', tagColor: 'var(--gold-l)' },
+    admin:      { label: 'Administration', desc: 'Keeping the school running smoothly', icon: 'fas fa-briefcase', iconClass: 'di-admin', color: 'var(--blue)', tagBg: 'rgba(136,170,255,0.12)', tagColor: 'var(--blue)' },
+    support:    { label: 'Support Staff', desc: 'The backbone of our daily school life', icon: 'fas fa-hands-helping', iconClass: 'di-support', color: 'var(--green)', tagBg: 'rgba(78,204,163,0.12)', tagColor: 'var(--green)' },
+    pta:        { label: 'PTA & Community Leaders', desc: 'Parent & community representatives', icon: 'fas fa-people-carry', iconClass: 'di-pta', color: 'var(--orange)', tagBg: 'rgba(255,159,67,0.12)', tagColor: 'var(--orange)' }
+  };
+
+  /* ══ RENDER STAFF ══ */
+  function renderStaff(filterDept, search) {
+    const container = document.getElementById('staffSections');
+    const principalSection = document.getElementById('principalSection');
+    const photoNote = document.getElementById('photoNote');
+
+    // Determine which departments to show
+    let deptKeys = filterDept === 'all' ? Object.keys(DEPTS) : [filterDept];
+
+    let totalCount = 0;
+    let html = '';
+
+    deptKeys.forEach(dept => {
+      let members = STAFF.filter(s => s.dept === dept);
+      if(search) {
+        const q = search.toLowerCase();
+        members = members.filter(s =>
+          s.name.toLowerCase().includes(q) ||
+          s.role.toLowerCase().includes(q) ||
+          s.subjects.some(sub => sub.toLowerCase().includes(q))
+        );
+      }
+      if(members.length === 0) return;
+      totalCount += members.length;
+      const d = DEPTS[dept];
+
+      html += `
+        <section class="dept-section" id="dept-${dept}">
+          <div class="dept-header">
+            <div class="dept-icon ${d.iconClass}"><i class="${d.icon}"></i></div>
+            <div class="dept-header-text">
+              <h3>${d.label}</h3>
+              <p>${d.desc}</p>
+            </div>
+            <div class="dept-divider"></div>
+            <div class="dept-count">${members.length} member${members.length!==1?'s':''}</div>
+          </div>
+          <div class="staff-grid">
+            ${members.map((s,i) => `
+              <div class="staff-card reveal" onclick="openProfile(${s.id})" style="animation-delay:${i*0.06}s">
+                <div class="staff-photo">
+                  ${s.photo
+                    ? `<img src="${s.photo}" alt="${s.name}" />`
+                    : `<div class="staff-photo-placeholder">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Add photo:<br>images/staff/${s.name.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'')}.jpg</span>
+                       </div>`}
+                  <span class="staff-dept-tag" style="background:${d.tagBg};color:${d.tagColor};border:1px solid ${d.tagColor}33;">${d.label}</span>
+                </div>
+                <div class="staff-card-body">
+                  <div class="staff-name">${s.name}</div>
+                  <div class="staff-role">${s.role}</div>
+                  ${s.subjects.length > 0 ? `<div class="staff-subjects">${s.subjects.map(sub=>`<span class="subj-tag">${sub}</span>`).join('')}</div>` : ''}
+                  <p class="staff-bio-short">${s.bio.substring(0,110)}...</p>
+                  <div class="staff-card-footer">
+                    <div class="staff-years"><i class="fas fa-calendar"></i> Since ${s.joined}</div>
+                    <div class="view-profile-btn">Profile <i class="fas fa-arrow-right"></i></div>
+                  </div>
+                </div>
+              </div>`).join('')}
+          </div>
+        </section>`;
+    });
+
+    // Show principal spotlight only when "all" or "leadership"
+    const showPrincipal = filterDept === 'all' || filterDept === 'leadership';
+    principalSection.style.display = showPrincipal ? '' : 'none';
+    photoNote.style.display = showPrincipal ? '' : 'none';
+
+    if(!html && totalCount === 0) {
+      container.innerHTML = `<div class="no-results"><i class="fas fa-search"></i><h4 style="font-family:'Cinzel',serif;color:var(--muted);margin-bottom:8px;">No staff found</h4><p>Try a different search or category.</p></div>`;
+    } else {
+      container.innerHTML = html;
+      setTimeout(() => {
+        document.querySelectorAll('.staff-card.reveal').forEach(el => el.classList.add('visible'));
+      }, 100);
+    }
+
+    // Count label (include principal if shown)
+    const total = totalCount + (showPrincipal ? 1 : 0);
+    document.getElementById('staffCountLabel').textContent = `${total} staff member${total!==1?'s':''}`;
+  }
+
+  /* ══ PROFILE MODAL ══ */
+  function openProfile(id) {
+    const s = STAFF.find(m => m.id === id);
+    if(!s) return;
+    const d = DEPTS[s.dept];
+
+    document.getElementById('profileContent').innerHTML = `
+      <div class="modal-profile-top">
+        <div class="modal-photo-col">
+          <div class="modal-photo-frame">
+            ${s.photo
+              ? `<img src="${s.photo}" alt="${s.name}" />`
+              : `<div class="modal-photo-placeholder">
+                  <i class="fas fa-user-circle"></i>
+                  <small>Add photo:<br>images/staff/<br>${s.name.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'')}.jpg</small>
+                 </div>`}
+          </div>
+          <div class="modal-staff-name">${s.name}</div>
+          <div class="modal-staff-role" style="color:${d.color};">${s.role}</div>
+          <div class="modal-social">
+            <div class="modal-soc-btn" title="WhatsApp"><i class="fab fa-whatsapp"></i></div>
+            <div class="modal-soc-btn" title="Email"><i class="fas fa-envelope"></i></div>
+          </div>
+        </div>
+        <div class="modal-info-col">
+          <div class="modal-info-grid">
+            <div class="mig-item"><div class="mig-label">Department</div><div class="mig-value">${d.label}</div></div>
+            <div class="mig-item"><div class="mig-label">Experience</div><div class="mig-value">${s.experience}</div></div>
+            <div class="mig-item"><div class="mig-label">Joined SLIBS</div><div class="mig-value">${s.joined}</div></div>
+            <div class="mig-item"><div class="mig-label">Qualification</div><div class="mig-value" style="font-size:0.74rem;">${s.qualification}</div></div>
+          </div>
+          ${s.subjects.length > 0 ? `
+          <div style="margin-bottom:14px;">
+            <div style="font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;">Subjects Taught</div>
+            <div class="modal-subjects-row">${s.subjects.map(sub=>`<span class="subj-tag">${sub}</span>`).join('')}</div>
+          </div>` : ''}
+          <div class="modal-bio-section">
+            <h5><i class="fas fa-user"></i> About ${s.name.split(' ')[0]}</h5>
+            <p>${s.bio}</p>
+            ${s.achievements.length > 0 ? `
+            <h5><i class="fas fa-trophy"></i> Highlights & Achievements</h5>
+            <div class="modal-achievements">
+              ${s.achievements.map(a=>`<div class="modal-ach-item"><i class="fas fa-check-circle"></i>${a}</div>`).join('')}
+            </div>` : ''}
+            <div class="modal-quote">"${s.quote}"</div>
+          </div>
+        </div>
+      </div>`;
+
+    document.getElementById('staffOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeProfile() {
+    document.getElementById('staffOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ══ FILTERS ══ */
+  let currentDept = 'all';
+  let currentSearch = '';
+
+  document.querySelectorAll('.dept-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.dept-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDept = btn.dataset.dept;
+      renderStaff(currentDept, currentSearch);
+    });
+  });
+
+  document.getElementById('staffSearch').addEventListener('input', e => {
+    currentSearch = e.target.value.trim();
+    renderStaff(currentDept, currentSearch);
+  });
+
+  document.getElementById('staffOverlay').addEventListener('click', e => {
+    if(e.target === document.getElementById('staffOverlay')) closeProfile();
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') closeProfile();
+  });
+
+  // Initial render
+  renderStaff('all', '');
+  </script>
+
+</body>
+</html>

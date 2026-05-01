@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletter — Star Light International School</title>
+  <meta name="description" content="The Star Light Gazette — official school newsletter." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--navy, #0a0f1e); color: var(--white, #f4f1ea); font-family: 'Lato', sans-serif; overflow-x: hidden; }
+    .nl-container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .nl-section-tag { display: inline-block; font-family: 'Cinzel', serif; font-size: 0.68rem; color: var(--gold, #c9a84c); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+    .nl-section-title { font-family: 'Cinzel', serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; color: var(--white, #f4f1ea); margin-bottom: 12px; line-height: 1.2; }
+    .nl-section-title span { color: #e6c76a; }
+    .nl-section-line { width: 60px; height: 2px; background: linear-gradient(90deg, var(--gold,#c9a84c), transparent); margin-bottom: 40px; }
+    .cat { font-size: 0.66rem; font-family: 'Cinzel', serif; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 10px; flex-shrink: 0; }
+    .cat-events  { background: rgba(78,204,163,0.12); color: #4ecca3; border: 1px solid rgba(78,204,163,0.2); }
+    .cat-exams   { background: rgba(224,107,107,0.12); color: #e06b6b; border: 1px solid rgba(224,107,107,0.2); }
+    .cat-head    { background: rgba(201,168,76,0.12); color: #e6c76a; border: 1px solid rgba(201,168,76,0.2); }
+    .cat-achieve { background: rgba(100,150,255,0.12); color: #88aaff; border: 1px solid rgba(100,150,255,0.2); }
+    .cat-academic{ background: rgba(78,204,163,0.10); color: #4ecca3; border: 1px solid rgba(78,204,163,0.18); }
+    .cat-announce{ background: rgba(224,107,107,0.10); color: #e06b6b; border: 1px solid rgba(224,107,107,0.18); }
+
+    /* ══════════════════════════════════════
+       HERO SLIDER
+       ──────────────────────────────────────
+       ADD PHOTOS:
+         images/newsletter/slide1.jpg  (school building / students)
+         images/newsletter/slide2.jpg  (classroom / learning)
+         images/newsletter/slide3.jpg  (events / achievements)
+       Recommended: 1400x700px landscape each
+
+       TO ADD A 4TH SLIDE:
+         1. Add a new .nl-slide div in Section 2 (copy any existing one)
+         2. Add it to the nth-of-type list below: .nl-slide:nth-of-type(4)
+         3. Add a new dot button in the .nl-slider-dots div 
+    ══════════════════════════════════════ */
+    .nl-hero {
+      position: relative;
+      width: 100%;
+      height: 600px;
+      overflow: hidden;
+    }
+
+    /* Individual slide */
+    .nl-slide {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+      pointer-events: none;
+      z-index: 1;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .nl-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    /* Photo paths — edit these to match your image files */
+    .nl-slide:nth-of-type(1) {
+      /* ADD PHOTO: images/newsletter/slide1.jpg */
+      background-image: url('images/newsletter/slide1.jpg');
+      background-color: #0d1525;
+    }
+    .nl-slide:nth-of-type(2) {
+      /* ADD PHOTO: images/newsletter/slide2.jpg */
+      background-image: url('images/newsletter/slide2.jpg');
+      background-color: #111c30;
+    }
+    .nl-slide:nth-of-type(3) {
+      /* ADD PHOTO: images/newsletter/slide3.jpg */
+      background-image: url('images/newsletter/slide3.jpg');
+      background-color: #0a1020;
+    }
+
+    /* Dark overlay on each slide — navy top, deeper navy bottom */
+    .nl-slide::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(10,15,30,0.65) 0%,
+        rgba(10,15,30,0.52) 40%,
+        rgba(10,15,30,0.78) 100%
+      );
+      z-index: 0;
+    }
+
+    /* Gold grid pattern — same as original but now lives on overlay */
+    .nl-slide::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(201,168,76,0.03) 0px, rgba(201,168,76,0.03) 1px, transparent 1px, transparent 80px),
+        repeating-linear-gradient(0deg,  rgba(201,168,76,0.03) 0px, rgba(201,168,76,0.03) 1px, transparent 1px, transparent 80px);
+      z-index: 0;
+    }
+
+    /* Gazette content sits above both overlays */
+    .nl-hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 780px;
+      padding: 120px 24px 80px;
+    }
+
+    /* Slider navigation — dots */
+    .nl-slider-dots {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 10;
+    }
+    .nl-slider-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      border: none; cursor: pointer; padding: 0;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .nl-slider-dot.active {
+      background: var(--gold, #c9a84c);
+      transform: scale(1.45);
+    }
+
+    /* Slider arrows */
+    .nl-slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: rgba(10,15,30,0.55);
+      border: 1px solid rgba(201,168,76,0.35);
+      color: var(--gold, #c9a84c);
+      font-size: 0.95rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: background 0.3s, border-color 0.3s;
+      backdrop-filter: blur(4px);
+    }
+    .nl-slider-arrow:hover {
+      background: rgba(201,168,76,0.18);
+      border-color: var(--gold, #c9a84c);
+    }
+    .nl-slider-arrow.nl-prev { left: 20px; }
+    .nl-slider-arrow.nl-next { right: 20px; }
+
+    /* Gold progress bar at bottom of hero */
+    .nl-slider-progress {
+      position: absolute;
+      bottom: 0; left: 0;
+      height: 3px;
+      background: var(--gold, #c9a84c);
+      width: 0%;
+      z-index: 10;
+      transition: width linear;
+    }
+
+    @media(max-width:768px) {
+      .nl-hero { height: 520px; }
+      .nl-slider-arrow { display: none; }
+    }
+    @media(max-width:480px) {
+      .nl-hero { height: 480px; }
+      .nl-hero-content { padding: 100px 20px 70px; }
+    }
+
+    /* Gazette text styles — UNCHANGED from original */
+    .gazette-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 30px; padding: 6px 22px; font-family: 'Cinzel', serif; font-size: 0.72rem; color: #e6c76a; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; animation: fadeDown 0.6s ease both; }
+    .gazette-label { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--gold,#c9a84c); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 14px; animation: fadeDown 0.65s 0.05s ease both; }
+    .gazette-title { font-family: 'Cinzel', serif; font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 900; line-height: 1.0; color: var(--white,#f4f1ea); margin-bottom: 6px; animation: fadeDown 0.7s 0.1s ease both; }
+    .gazette-title span { color: #e6c76a; }
+    .gazette-rule { display: flex; align-items: center; gap: 16px; justify-content: center; margin: 18px 0; animation: fadeDown 0.7s 0.15s ease both; }
+    .gazette-rule-line { flex: 1; max-width: 100px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold,#c9a84c), transparent); }
+    .gazette-subtitle { font-family: 'Amiri', serif; font-style: italic; font-size: 1.1rem; color: #c8c2b4; margin-bottom: 28px; line-height: 1.8; animation: fadeDown 0.7s 0.2s ease both; }
+    .edition-bar { display: inline-flex; align-items: center; gap: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px; padding: 12px 28px; flex-wrap: wrap; justify-content: center; animation: fadeDown 0.7s 0.25s ease both; }
+    .edition-bar span { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; color: #c8c2b4; font-family: 'Cinzel', serif; letter-spacing: 0.5px; }
+    .edition-bar span i { color: var(--gold,#c9a84c); }
+    .edition-bar .eb-div { width: 1px; height: 20px; background: rgba(255,255,255,0.1); }
+
+    /* FEATURED BAND — UNCHANGED */
+    .featured-band { background: linear-gradient(135deg, rgba(201,168,76,0.09), rgba(201,168,76,0.03)); border-top: 2px solid var(--gold,#c9a84c); border-bottom: 1px solid rgba(201,168,76,0.2); padding: 60px 0; }
+    .featured-grid { display: grid; grid-template-columns: 1fr 400px; gap: 56px; align-items: start; }
+    .feat-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--gold,#c9a84c); color: #0a0f1e; font-family: 'Cinzel', serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 4px 14px; border-radius: 4px; margin-bottom: 20px; }
+    .feat-vol { font-family: 'Cinzel', serif; font-size: 0.75rem; color: var(--gold,#c9a84c); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+    .feat-title { font-family: 'Cinzel', serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; color: var(--white,#f4f1ea); line-height: 1.25; margin-bottom: 18px; }
+    .feat-title span { color: #e6c76a; }
+    .feat-excerpt { font-family: 'Amiri', serif; font-style: italic; font-size: 1.05rem; color: #c8c2b4; line-height: 1.85; margin-bottom: 24px; }
+    .feat-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
+    .feat-meta span { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: #7a7565; }
+    .feat-meta span i { color: var(--gold,#c9a84c); }
+    .btn-subscribe { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--gold,#c9a84c), #e6c76a); color: #0a0f1e; font-family: 'Cinzel', serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 1px; padding: 13px 28px; border-radius: 8px; text-decoration: none; border: none; cursor: pointer; transition: 0.3s; box-shadow: 0 6px 24px rgba(201,168,76,0.3); }
+    .btn-subscribe:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(201,168,76,0.45); }
+    .feat-stories { display: flex; flex-direction: column; gap: 10px; }
+    .feat-story { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; transition: 0.3s; }
+    .feat-story:hover { background: rgba(201,168,76,0.07); border-color: rgba(201,168,76,0.25); }
+    .story-num { width: 28px; height: 28px; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--gold,#c9a84c); flex-shrink: 0; }
+    .story-text { flex: 1; }
+    .story-text h6 { font-size: 0.84rem; color: var(--white,#f4f1ea); margin-bottom: 2px; font-weight: 600; }
+    .story-text p { font-size: 0.74rem; color: #7a7565; }
+
+    /* PRINCIPAL — UNCHANGED */
+    .principal-section { padding: 72px 0; background: linear-gradient(180deg, rgba(13,21,37,0.6), rgba(10,15,30,0.9)); border-bottom: 1px solid rgba(201,168,76,0.1); }
+    .principal-card { background: linear-gradient(135deg, rgba(201,168,76,0.07), rgba(255,255,255,0.02)); border: 1px solid rgba(201,168,76,0.2); border-radius: 24px; overflow: hidden; }
+    .principal-inner { display: grid; grid-template-columns: 300px 1fr; gap: 0; }
+    .principal-photo-side { background: linear-gradient(160deg, rgba(201,168,76,0.12), rgba(10,15,30,0.95)); border-right: 1px solid rgba(201,168,76,0.15); padding: 44px 32px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .principal-photo-frame { width: 160px; height: 160px; border-radius: 50%; border: 3px solid var(--gold,#c9a84c); box-shadow: 0 0 0 6px rgba(201,168,76,0.1), 0 12px 40px rgba(0,0,0,0.4); overflow: hidden; margin-bottom: 20px; background: rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: center; }
+    .principal-photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+    .pp-placeholder { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .pp-placeholder i { font-size: 3.5rem; color: rgba(201,168,76,0.3); }
+    .pp-placeholder span { font-size: 0.7rem; color: #7a7565; letter-spacing: 1px; line-height: 1.5; }
+    .principal-name { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--white,#f4f1ea); margin-bottom: 6px; font-weight: 700; }
+    .principal-role { font-size: 0.76rem; color: var(--gold,#c9a84c); letter-spacing: 1.5px; text-transform: uppercase; font-family: 'Cinzel', serif; margin-bottom: 20px; }
+    .p-divider { width: 40px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold,#c9a84c), transparent); margin-bottom: 18px; }
+    .p-quote { font-family: 'Amiri', serif; font-style: italic; color: #c8c2b4; font-size: 0.9rem; line-height: 1.7; text-align: center; }
+    .principal-msg-side { padding: 44px 48px; }
+    .pm-title { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--white,#f4f1ea); margin-bottom: 6px; }
+    .pm-title span { color: #e6c76a; }
+    .pm-term { font-size: 0.8rem; color: #7a7565; margin-bottom: 28px; font-style: italic; }
+    .pm-body { font-family: 'Amiri', serif; font-size: 1.05rem; color: #c8c2b4; line-height: 1.9; }
+    .pm-body p { margin-bottom: 16px; }
+    .pm-sig { margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(201,168,76,0.15); display: flex; align-items: center; gap: 14px; }
+    .pm-sig-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(201,168,76,0.2), transparent); }
+    .pm-sig-name { font-family: 'Cinzel', serif; font-size: 0.82rem; color: #e6c76a; text-align: right; }
+    .pm-sig-name span { display: block; font-family: 'Lato', sans-serif; font-size: 0.72rem; color: #7a7565; margin-top: 2px; }
+
+    /* CONTENT GRID — UNCHANGED */
+    .content-section { padding: 72px 0; }
+    .content-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+    .content-card { background: rgba(15,26,46,0.8); border: 1px solid rgba(255,255,255,0.07); border-radius: 18px; overflow: hidden; transition: all 0.4s ease; display: flex; flex-direction: column; }
+    .content-card:hover { transform: translateY(-6px); border-color: rgba(201,168,76,0.3); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    .card-header { padding: 24px 24px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .card-icon-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .card-icon { width: 44px; height: 44px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--gold,#c9a84c); }
+    .card-section-label { font-family: 'Cinzel', serif; font-size: 0.62rem; color: #7a7565; letter-spacing: 2px; text-transform: uppercase; }
+    .card-title { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--white,#f4f1ea); line-height: 1.35; margin-bottom: 4px; }
+    .card-body { padding: 20px 24px; flex: 1; }
+    .card-footer { padding: 14px 24px; border-top: 1px solid rgba(255,255,255,0.05); }
+    .card-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.76rem; color: #e6c76a; font-family: 'Cinzel', serif; letter-spacing: 0.5px; text-decoration: none; transition: gap 0.3s; }
+    .content-card:hover .card-link { gap: 10px; }
+    .academic-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .academic-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .ai-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+    .ai-dot.green { background: #4ecca3; box-shadow: 0 0 6px rgba(78,204,163,0.4); }
+    .ai-dot.gold  { background: var(--gold,#c9a84c); box-shadow: 0 0 6px rgba(201,168,76,0.4); }
+    .ai-dot.blue  { background: #88aaff; box-shadow: 0 0 6px rgba(136,170,255,0.4); }
+    .ai-dot.red   { background: #e06b6b; box-shadow: 0 0 6px rgba(224,107,107,0.4); }
+    .ai-text h6 { font-size: 0.84rem; color: var(--white,#f4f1ea); margin-bottom: 3px; font-weight: 600; }
+    .ai-text p { font-size: 0.76rem; color: #7a7565; line-height: 1.5; }
+    .ai-date { font-size: 0.68rem; color: var(--gold,#c9a84c); margin-top: 3px; font-style: italic; }
+    .achieve-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .achieve-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .achieve-medal { width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+    .medal-gold   { background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3); color: #e6c76a; }
+    .medal-silver { background: rgba(180,180,180,0.1); border: 1px solid rgba(180,180,180,0.25); color: #c0c0c0; }
+    .medal-bronze { background: rgba(180,100,50,0.12); border: 1px solid rgba(180,100,50,0.25); color: #cd7f32; }
+    .medal-star   { background: rgba(136,170,255,0.12); border: 1px solid rgba(136,170,255,0.25); color: #88aaff; }
+    .achieve-text h6 { font-size: 0.84rem; color: var(--white,#f4f1ea); margin-bottom: 3px; font-weight: 600; }
+    .achieve-text p { font-size: 0.76rem; color: #7a7565; line-height: 1.5; }
+    .achieve-name { font-size: 0.72rem; color: #e6c76a; margin-top: 2px; }
+    .announce-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; margin-bottom: 10px; transition: 0.3s; }
+    .announce-item:last-child { margin-bottom: 0; }
+    .announce-item:hover { background: rgba(201,168,76,0.05); border-color: rgba(201,168,76,0.2); }
+    .ann-icon { width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+    .ann-urgent { background: rgba(224,107,107,0.12); color: #e06b6b; }
+    .ann-info   { background: rgba(201,168,76,0.12); color: #e6c76a; }
+    .ann-event  { background: rgba(78,204,163,0.12); color: #4ecca3; }
+    .ann-text h6 { font-size: 0.82rem; color: var(--white,#f4f1ea); margin-bottom: 3px; font-weight: 600; }
+    .ann-text p  { font-size: 0.74rem; color: #7a7565; line-height: 1.5; }
+    .ann-badge { display: inline-block; font-size: 0.62rem; padding: 2px 8px; border-radius: 8px; margin-top: 4px; font-family: 'Cinzel', serif; }
+    .badge-urgent { background: rgba(224,107,107,0.12); color: #e06b6b; }
+    .badge-info   { background: rgba(201,168,76,0.12); color: #e6c76a; }
+    .badge-event  { background: rgba(78,204,163,0.12); color: #4ecca3; }
+
+    /* EVENTS STRIP — UNCHANGED */
+    .events-strip { background: linear-gradient(135deg, rgba(13,21,37,0.9), rgba(10,15,30,0.95)); border-top: 1px solid rgba(201,168,76,0.12); border-bottom: 1px solid rgba(201,168,76,0.12); padding: 56px 0; }
+    .events-strip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .event-strip-card { display: flex; align-items: center; gap: 18px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; padding: 18px 20px; transition: 0.3s; }
+    .event-strip-card:hover { border-color: rgba(201,168,76,0.3); background: rgba(201,168,76,0.05); }
+    .esc-date { text-align: center; flex-shrink: 0; background: linear-gradient(135deg, var(--gold,#c9a84c), #e6c76a); border-radius: 10px; padding: 10px 14px; color: #0a0f1e; min-width: 56px; }
+    .esc-day { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 900; line-height: 1; }
+    .esc-month { font-size: 0.62rem; font-family: 'Cinzel', serif; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+    .esc-body h5 { font-family: 'Cinzel', serif; font-size: 0.88rem; color: var(--white,#f4f1ea); margin-bottom: 4px; }
+    .esc-body p { font-size: 0.76rem; color: #7a7565; line-height: 1.4; }
+    .esc-tag { font-size: 0.66rem; color: var(--gold,#c9a84c); margin-top: 4px; font-style: italic; }
+
+    /* SUBSCRIBE — UNCHANGED */
+    .subscribe-section { padding: 80px 0; position: relative; }
+    .subscribe-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,0.05) 0%, transparent 70%); pointer-events: none; }
+    .subscribe-card { background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(255,255,255,0.02)); border: 1px solid rgba(201,168,76,0.25); border-radius: 28px; padding: 64px 56px; text-align: center; position: relative; overflow: hidden; }
+    .subscribe-card::before { content: ''; position: absolute; top: -80px; right: -80px; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.07), transparent 70%); }
+    .sub-icon { width: 76px; height: 76px; background: linear-gradient(135deg, var(--gold,#c9a84c), #e6c76a); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 1.9rem; color: #0a0f1e; box-shadow: 0 8px 32px rgba(201,168,76,0.35); position: relative; z-index: 1; }
+    .sub-label { font-family: 'Cinzel', serif; font-size: 0.72rem; color: var(--gold,#c9a84c); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; position: relative; z-index: 1; }
+    .sub-title { font-family: 'Cinzel', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: var(--white,#f4f1ea); line-height: 1.2; margin-bottom: 14px; position: relative; z-index: 1; }
+    .sub-title span { color: #e6c76a; }
+    .sub-desc { font-family: 'Amiri', serif; font-style: italic; color: #c8c2b4; font-size: 1.05rem; line-height: 1.8; max-width: 560px; margin: 0 auto 36px; position: relative; z-index: 1; }
+    .sub-benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 700px; margin: 0 auto 40px; position: relative; z-index: 1; }
+    .sub-benefit { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.12); border-radius: 10px; padding: 13px 14px; text-align: left; }
+    .sub-benefit i { color: var(--gold,#c9a84c); font-size: 1rem; flex-shrink: 0; }
+    .sub-benefit span { font-size: 0.8rem; color: #c8c2b4; line-height: 1.4; }
+    .mc-wrap { max-width: 540px; margin: 0 auto; position: relative; z-index: 1; }
+    .mc-form { display: flex; background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.3); border-radius: 12px; overflow: hidden; transition: border-color 0.3s; }
+    .mc-form:focus-within { border-color: var(--gold,#c9a84c); }
+    .mc-form input[type="email"] { flex: 1; background: transparent; border: none; padding: 16px 20px; color: var(--white,#f4f1ea); font-family: 'Lato', sans-serif; font-size: 0.92rem; outline: none; }
+    .mc-form input::placeholder { color: #7a7565; }
+    .mc-form button { background: linear-gradient(135deg, var(--gold,#c9a84c), #e6c76a); color: #0a0f1e; border: none; cursor: pointer; padding: 16px 28px; font-family: 'Cinzel', serif; font-size: 0.82rem; font-weight: 700; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; transition: 0.3s; white-space: nowrap; }
+    .mc-form button:hover { opacity: 0.9; }
+    .mc-note { font-size: 0.74rem; color: #7a7565; margin-top: 12px; line-height: 1.6; }
+    .mc-note i { color: var(--gold,#c9a84c); }
+    .sub-success { display: none; background: rgba(78,204,163,0.1); border: 1px solid rgba(78,204,163,0.3); border-radius: 12px; padding: 20px 24px; text-align: center; margin-top: 16px; }
+    .sub-success i { color: #4ecca3; font-size: 1.6rem; margin-bottom: 6px; display: block; }
+    .sub-success p { color: #c8c2b4; font-size: 0.88rem; }
+
+    /* ARCHIVE — UNCHANGED */
+    .archive-section { padding: 72px 0; }
+    .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .archive-card { background: rgba(15,26,46,0.8); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; overflow: hidden; transition: all 0.4s ease; }
+    .archive-card:hover { transform: translateY(-6px); border-color: rgba(201,168,76,0.3); box-shadow: 0 16px 48px rgba(0,0,0,0.35); }
+    .ac-header { padding: 26px 22px 18px; border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; }
+    .ac-vol { font-family: 'Cinzel', serif; font-size: 0.65rem; color: var(--gold,#c9a84c); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+    .ac-title { font-family: 'Cinzel', serif; font-size: 0.96rem; color: var(--white,#f4f1ea); line-height: 1.4; margin-bottom: 10px; }
+    .ac-date { display: flex; align-items: center; gap: 6px; font-size: 0.76rem; color: #7a7565; }
+    .ac-date i { color: var(--gold,#c9a84c); }
+    .ac-badge { position: absolute; top: 18px; right: 18px; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25); border-radius: 6px; padding: 3px 10px; font-family: 'Cinzel', serif; font-size: 0.6rem; color: #e6c76a; letter-spacing: 1px; }
+    .ac-body { padding: 18px 22px; }
+    .ac-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .ac-tag { font-size: 0.68rem; padding: 3px 10px; border-radius: 10px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: #7a7565; }
+    .ac-stats { display: flex; gap: 16px; }
+    .ac-stat { display: flex; align-items: center; gap: 5px; font-size: 0.74rem; color: #7a7565; }
+    .ac-stat i { color: var(--gold,#c9a84c); font-size: 0.68rem; }
+    .ac-footer { padding: 13px 22px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; }
+    .ac-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.76rem; color: #e6c76a; text-decoration: none; font-family: 'Cinzel', serif; letter-spacing: 0.5px; transition: gap 0.3s; }
+    .archive-card:hover .ac-link { gap: 10px; }
+    .ac-term { font-size: 0.7rem; color: #7a7565; }
+    .coming-card { border: 1px dashed rgba(201,168,76,0.18); background: rgba(201,168,76,0.02); }
+    .coming-inner { padding: 50px 24px; text-align: center; }
+    .coming-inner i { font-size: 2.2rem; color: rgba(201,168,76,0.18); margin-bottom: 14px; display: block; }
+    .coming-inner h5 { font-family: 'Cinzel', serif; color: #7a7565; font-size: 0.9rem; margin-bottom: 8px; }
+    .coming-inner p { font-size: 0.78rem; color: rgba(122,117,101,0.7); line-height: 1.6; }
+
+    /* SOCIAL STRIP — UNCHANGED */
+    .social-strip { background: linear-gradient(135deg, rgba(13,21,37,0.9), rgba(10,15,30,0.95)); border-top: 1px solid rgba(201,168,76,0.12); border-bottom: 1px solid rgba(201,168,76,0.12); padding: 48px 0; }
+    .social-inner { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; }
+    .social-text h4 { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--white,#f4f1ea); margin-bottom: 6px; }
+    .social-text p { font-size: 0.84rem; color: #7a7565; }
+    .social-links-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .social-btn { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 11px 18px; color: #c8c2b4; font-size: 0.82rem; text-decoration: none; transition: 0.3s; font-weight: 600; }
+    .social-btn:hover { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.3); color: #e6c76a; transform: translateY(-2px); }
+
+    /* FOOTER — UNCHANGED */
+    .nl-footer { background: rgba(13,21,37,0.95); border-top: 1px solid rgba(255,255,255,0.05); padding: 48px 0 28px; }
+    .nl-footer-top { display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; padding-bottom: 28px; margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .nl-footer-logo { display: flex; align-items: center; gap: 14px; }
+    .nl-footer-logo img { height: 50px; object-fit: contain; }
+    .nl-footer-name { font-family: 'Cinzel', serif; font-size: 1rem; color: #e6c76a; display: block; }
+    .nl-footer-sub  { font-size: 0.72rem; color: #7a7565; letter-spacing: 1px; display: block; margin-top: 2px; }
+    .nl-footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .nl-footer-links a { font-size: 0.78rem; color: #7a7565; text-decoration: none; transition: color 0.3s; }
+    .nl-footer-links a:hover { color: #e6c76a; }
+    .nl-footer-copy { text-align: center; font-size: 0.76rem; color: #7a7565; }
+    .nl-footer-copy p+p { margin-top: 4px; font-style: italic; color: rgba(122,117,101,0.6); }
+
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:translateY(0); } }
+
+    @media(max-width:1024px){ .content-grid{grid-template-columns:1fr 1fr;} .featured-grid{grid-template-columns:1fr;gap:36px;} }
+    @media(max-width:900px){ .principal-inner{grid-template-columns:1fr;} .principal-photo-side{border-right:none;border-bottom:1px solid rgba(201,168,76,0.15);} .archive-grid{grid-template-columns:repeat(2,1fr);} .events-strip-grid{grid-template-columns:1fr 1fr;} .sub-benefits{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:640px){ .content-grid{grid-template-columns:1fr;} .archive-grid{grid-template-columns:1fr;} .subscribe-card{padding:36px 22px;} .sub-benefits{grid-template-columns:1fr;} .mc-form{flex-direction:column;} .mc-form button{justify-content:center;} .social-inner{flex-direction:column;text-align:center;} .events-strip-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+
+  <canvas id="starsCanvas"></canvas>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <img src="logo.png" alt="Star Light Logo" class="preloader-logo-img" />
+      <div class="preloader-bar"><div class="preloader-fill"></div></div>
+      <p class="preloader-text">Loading Star Light Gazette...</p>
+    </div>
+  </div>
+
+  <!-- NAVBAR — UNCHANGED -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Star Light International School" class="nav-logo-img" />
+        <div><span class="nav-logo-name">Star Light</span><span class="nav-logo-sub">International School</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#academics">Academics</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="teachers.html">Staff</a></li>
+        <li><a href="career.html">Careers</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="admissions.html" class="btn-portal"><i class="fas fa-user-graduate"></i> Apply Now</a>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#academics">Academics</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="gallery.html">Photo Gallery</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="teachers.html">Meet Our Staff</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="results.html">Results &amp; Achievements</a></li>
+        <li><a href="career.html">Careers</a></li>
+        <li><a href="portal.html">Parent Portal</a></li>
+        <li><a href="calendar.html">School Calendar</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="nl-hero" id="nlHero">
+
+    <!-- SLIDE 1 — school / students -->
+    <div class="nl-slide active">
+      <div class="nl-hero-content">
+        <div class="gazette-badge"><i class="fas fa-star"></i> Star Light International School <i class="fas fa-star"></i></div>
+        <p class="gazette-label">Official School Publication</p>
+        <h1 class="gazette-title">The Star Light<br><span>Gazette</span></h1>
+        <div class="gazette-rule">
+          <div class="gazette-rule-line"></div>
+          <i class="fas fa-star" style="color:#c9a84c;font-size:0.9rem;"></i>
+          <div class="gazette-rule-line"></div>
+        </div>
+        <p class="gazette-subtitle">Your complete window into school life — news, events,<br>achievements and everything happening at Star Light.</p>
+        <div class="edition-bar">
+          <span><i class="fas fa-book-open"></i> <span id="edVolIssue">Vol. 1 · Issue 1</span></span>
+          <div class="eb-div"></div>
+          <span><i class="fas fa-calendar-alt"></i> <span id="edMonth">April 2026</span></span>
+          <div class="eb-div"></div>
+          <span><i class="fas fa-school"></i> <span id="edTerm">Term 3, 2026</span></span>
+          <div class="eb-div"></div>
+          <span><i class="fas fa-file-alt"></i> <span id="edCount">6</span> Stories</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 — classroom / learning -->
+    <div class="nl-slide">
+      <div class="nl-hero-content">
+        <div class="gazette-badge"><i class="fas fa-star"></i> Star Light International School <i class="fas fa-star"></i></div>
+        <p class="gazette-label">Official School Publication</p>
+        <h1 class="gazette-title">The Star Light<br><span>Gazette</span></h1>
+        <div class="gazette-rule">
+          <div class="gazette-rule-line"></div>
+          <i class="fas fa-star" style="color:#c9a84c;font-size:0.9rem;"></i>
+          <div class="gazette-rule-line"></div>
+        </div>
+        <p class="gazette-subtitle">Your complete window into school life — news, events,<br>achievements and everything happening at Star Light.</p>
+        <div class="edition-bar">
+          <span><i class="fas fa-book-open"></i> <span>Vol. 1 · Issue 1</span></span>
+          <div class="eb-div"></div>
+          <span><i class="fas fa-calendar-alt"></i> <span>April 2026</span></span>
+          <div class="eb-div"></div>
+          <span><i class="fas fa-school"></i> <span>Term 2, 2026</span></span>
+          <div class="eb-div"></div>
+          <span><i class="fas fa-file-alt"></i> <span>6</span> Stories</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 — events / achievements -->
+    <div class="nl-slide">
+      <div class="nl-hero-content">
+        <div class="gazette-badge"><i class="fas fa-star"></i> Star Light International School <i class="fas fa-star"></i></div>
+        <p class="gazette-label">Official School Publication</p>
+        <h1 class="gazette-title">The Star Light<br><span>Gazette</span></h1>
+        <div class="gazette-rule">
+          <div class="gazette-rule-line"></div>
+          <i class="fas fa-star" style="color:#c9a84c;font-size:0.9rem;"></i>
+          <div class="gazette-rule-line"></div>
+        </div>
+        <p class="gazette-subtitle">Your complete window into school life — news, events,<br>achievements and everything happening at Star Light.</p>
+        <div class="edition-bar">
+          <span><i class="fas fa-book-open"></i> <span>Vol. 1 · Issue 1</span></span>
+          <div class="eb-div"></div>
+          <span><i class="fas fa-calendar-alt"></i> <span>March 2026</span></span>
+          <div class="eb-div"></div>
+          <span><i class="fas fa-school"></i> <span>Term 3, 2026</span></span>
+          <div class="eb-div"></div>
+          <span><i class="fas fa-file-alt"></i> <span>6</span> Stories</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Arrow navigation -->
+    <button class="nl-slider-arrow nl-prev" id="nlPrev" aria-label="Previous slide">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="nl-slider-arrow nl-next" id="nlNext" aria-label="Next slide">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <!-- Dot navigation -->
+    <div class="nl-slider-dots">
+      <button class="nl-slider-dot active" data-index="0" aria-label="Slide 1"></button>
+      <button class="nl-slider-dot" data-index="1" aria-label="Slide 2"></button>
+      <button class="nl-slider-dot" data-index="2" aria-label="Slide 3"></button>
+    </div>
+
+    <!-- Gold progress bar -->
+    <div class="nl-slider-progress" id="nlProgress"></div>
+
+  </section>
+
+  <!-- ══ FEATURED EDITION — UNCHANGED ══ -->
+  <section class="featured-band">
+    <div class="nl-container">
+      <div class="featured-grid">
+        <div>
+          <div class="feat-eyebrow"><i class="fas fa-fire" style="margin-right:6px;"></i> Latest Edition</div>
+          <p class="feat-vol" id="featVol">Volume 1 &nbsp;&middot;&nbsp; Issue 1 &nbsp;&middot;&nbsp; Term 3, 2026</p>
+          <h2 class="feat-title" id="featTitle">March 2026 &mdash;<br><span>Rising Stars &amp; New Horizons</span></h2>
+          <p class="feat-excerpt" id="featExcerpt">In this edition: mid-term exam preparations are underway, our JHS 3 students push forward with remarkable dedication, and the upcoming Inter-House Sports Day promises to be our most exciting yet.</p>
+          <div class="feat-meta">
+            <span><i class="fas fa-calendar"></i> <span id="featDate">April 27, 2026</span></span>
+            <span><i class="fas fa-file-alt"></i> <span id="featCount">6</span> Stories</span>
+            <span><i class="fas fa-eye"></i> <span id="featTerm">Term 3 Edition</span></span>
+          </div>
+          <a href="#subscribe" class="btn-subscribe"><i class="fas fa-envelope-open-text"></i> Subscribe to Receive It</a>
+        </div>
+        <div class="feat-stories" id="featStories">
+          <div class="feat-story"><div class="story-num">1</div><div class="story-text"><h6>Principal's Welcome Message</h6><p>Vision, encouragement and goals for Term 2</p></div><span class="cat cat-head">Head</span></div>
+          <div class="feat-story"><div class="story-num">2</div><div class="story-text"><h6>Mid-Term Exams — Full Timetable</h6><p>KG through JHS 3 schedule, 15–19 March</p></div><span class="cat cat-exams">Exams</span></div>
+          <div class="feat-story"><div class="story-num">3</div><div class="story-text"><h6>Academic Updates — All Classes</h6><p>Curriculum highlights and class progress</p></div><span class="cat cat-academic">Academics</span></div>
+          <div class="feat-story"><div class="story-num">4</div><div class="story-text"><h6>Student Spotlight — Our Stars</h6><p>Celebrating outstanding student achievements</p></div><span class="cat cat-achieve">Stars</span></div>
+          <div class="feat-story"><div class="story-num">5</div><div class="story-text"><h6>Inter-House Sports Day Preview</h6><p>22 March 2026 — School Field</p></div><span class="cat cat-events">Event</span></div>
+          <div class="feat-story"><div class="story-num">6</div><div class="story-text"><h6>Important Announcements</h6><p>Holiday dates, admissions &amp; urgent notices</p></div><span class="cat cat-announce">Notice</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PRINCIPAL'S MESSAGE — UNCHANGED ══ -->
+  <section class="principal-section">
+    <div class="nl-container">
+      <div style="margin-bottom:36px;">
+        <p class="nl-section-tag"><i class="fas fa-user-tie" style="margin-right:8px;"></i>From the Desk</p>
+        <h2 class="nl-section-title">Principal's <span>Message</span></h2>
+        <div class="nl-section-line"></div>
+      </div>
+      <div class="principal-card">
+        <div class="principal-inner">
+          <div class="principal-photo-side">
+            <div class="principal-photo-frame">
+              <img
+                src="images/principal.jpg"
+                alt="Principal — Star Light International School"
+                style="width:100%;height:100%;object-fit:cover;"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+              />
+              <div class="pp-placeholder" style="display:none;">
+                <i class="fas fa-user-circle"></i>
+                <span>Add photo as<br>images/principal.jpg</span>
+              </div>
+            </div>
+            <p class="principal-name" id="principalName">The Principal</p>
+            <p class="principal-role" id="principalRole">Star Light International School</p>
+            <div class="p-divider"></div>
+            <p class="p-quote" id="principalQuote">"Knowledge without character is a sword in the hands of a madman. We build both."</p>
+          </div>
+          <div class="principal-msg-side">
+            <p class="nl-section-tag"><span id="principalTerm">Term 3 Message · March 2026</span></p>
+            <h3 class="pm-title">Dear Parents,<br>Guardians &amp; <span>Students</span></h3>
+            <p class="pm-term" id="principalTermLabel">Term 3, Academic Year 2025/2026</p>
+            <div class="pm-body" id="principalBody">
+              <p>It is with great joy and pride that I welcome you to another edition of The Star Light Gazette. Term 2 is well underway and the energy and dedication I see across all our classes is truly inspiring.</p>
+              <p>Our students continue to demonstrate the values we hold dear at Star Light — discipline, hard work, respect and a genuine love of learning. As we approach our mid-term examinations, I encourage every student to stay focused, seek help when needed and give their very best.</p>
+              <p>To our parents and guardians, your partnership in your child's education remains invaluable. Thank you for the trust you place in us every day. Together, we are raising the next generation of Ghana's leaders.</p>
+              <p>May this term be one of growth, breakthrough and achievement for every child at Star Light.</p>
+            </div>
+            <div class="pm-sig">
+              <div class="pm-sig-line"></div>
+              <div class="pm-sig-name" id="principalSig">The Principal<span>Star Light International School</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ACADEMIC UPDATES + ACHIEVEMENTS + ANNOUNCEMENTS — UNCHANGED ══ -->
+  <section class="content-section">
+    <div class="nl-container">
+      <div style="margin-bottom:40px;">
+        <p class="nl-section-tag"><i class="fas fa-newspaper" style="margin-right:8px;"></i>This Edition</p>
+        <h2 class="nl-section-title">Inside the <span>Gazette</span></h2>
+        <div class="nl-section-line"></div>
+      </div>
+      <div class="content-grid">
+
+        <!-- Academic Updates -->
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon-row"><div class="card-icon"><i class="fas fa-book-open"></i></div><span class="card-section-label">Section 03</span></div>
+            <h3 class="card-title">Academic Updates</h3>
+          </div>
+          <div class="card-body" id="academicsBody">
+            <div class="academic-item">
+              <div class="ai-dot green"></div>
+              <div class="ai-text"><h6>JHS 3 &mdash; BECE Preparation</h6><p>Mock exams begin this month. All JHS 3 students to report by 7:00 AM daily.</p><span class="ai-date"><i class="fas fa-calendar-alt" style="margin-right:4px;"></i>From March 10, 2026</span></div>
+            </div>
+            <div class="academic-item">
+              <div class="ai-dot gold"></div>
+              <div class="ai-text"><h6>Primary &mdash; New STEM Activities</h6><p>Basic 4&ndash;6 students now have weekly hands-on science and coding sessions.</p><span class="ai-date"><i class="fas fa-calendar-alt" style="margin-right:4px;"></i>Every Friday</span></div>
+            </div>
+            <div class="academic-item">
+              <div class="ai-dot blue"></div>
+              <div class="ai-text"><h6>KG &mdash; Reading Programme</h6><p>Our phonics and early reading initiative has shown excellent results across KG 1 &amp; 2.</p><span class="ai-date"><i class="fas fa-calendar-alt" style="margin-right:4px;"></i>Ongoing</span></div>
+            </div>
+            <div class="academic-item">
+              <div class="ai-dot red"></div>
+              <div class="ai-text"><h6>Mid-Term Exams</h6><p>All classes from KG through JHS 3. Timetables distributed to class teachers.</p><span class="ai-date"><i class="fas fa-calendar-alt" style="margin-right:4px;"></i>15&ndash;19 March 2026</span></div>
+            </div>
+          </div>
+          <div class="card-footer"><a href="calendar.html" class="card-link">View Full Calendar <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+
+        <!-- Student Achievements -->
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon-row"><div class="card-icon"><i class="fas fa-trophy"></i></div><span class="card-section-label">Section 04</span></div>
+            <h3 class="card-title">Student Achievements</h3>
+          </div>
+          <div class="card-body" id="achievementsBody">
+            <div class="achieve-item">
+              <div class="achieve-medal medal-gold"><i class="fas fa-trophy"></i></div>
+              <div class="achieve-text"><h6>Regional Mathematics Competition</h6><p>First place in the Central Region Mathematics Olympiad.</p><span class="achieve-name"><i class="fas fa-star" style="margin-right:4px;font-size:0.65rem;"></i>JHS 3 Student</span></div>
+            </div>
+            <div class="achieve-item">
+              <div class="achieve-medal medal-silver"><i class="fas fa-medal"></i></div>
+              <div class="achieve-text"><h6>District Science Quiz</h6><p>Second place in the inter-school science quiz representing Star Light.</p><span class="achieve-name"><i class="fas fa-star" style="margin-right:4px;font-size:0.65rem;"></i>JHS 2 Science Team</span></div>
+            </div>
+            <div class="achieve-item">
+              <div class="achieve-medal medal-star"><i class="fas fa-pen-nib"></i></div>
+              <div class="achieve-text"><h6>Essay Writing Award</h6><p>Outstanding performance in the National Essay Competition.</p><span class="achieve-name"><i class="fas fa-star" style="margin-right:4px;font-size:0.65rem;"></i>Basic 6 Student</span></div>
+            </div>
+            <div class="achieve-item">
+              <div class="achieve-medal medal-bronze"><i class="fas fa-running"></i></div>
+              <div class="achieve-text"><h6>District Athletics Championship</h6><p>Multiple podium finishes in the under-15 district athletics meet.</p><span class="achieve-name"><i class="fas fa-star" style="margin-right:4px;font-size:0.65rem;"></i>Star Light Athletics Team</span></div>
+            </div>
+          </div>
+          <div class="card-footer"><a href="results.html" class="card-link">All Results &amp; Achievements <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+
+        <!-- Important Announcements -->
+        <div class="content-card">
+          <div class="card-header">
+            <div class="card-icon-row"><div class="card-icon"><i class="fas fa-bullhorn"></i></div><span class="card-section-label">Section 06</span></div>
+            <h3 class="card-title">Important Announcements</h3>
+          </div>
+          <div class="card-body" id="announcementsBody">
+            <div class="announce-item">
+              <div class="ann-icon ann-urgent"><i class="fas fa-exclamation-circle"></i></div>
+              <div class="ann-text"><h6>School Fees &mdash; Term 2 Deadline</h6><p>All outstanding Term 3 fees must be settled by 14 may 2026.</p><span class="ann-badge badge-urgent">Urgent</span></div>
+            </div>
+            <div class="announce-item">
+              <div class="ann-icon ann-info"><i class="fas fa-door-open"></i></div>
+              <div class="ann-text"><h6>2026/2027 Admissions Now Open</h6><p>Limited spaces available for KG through JHS. Apply online via our website.</p><span class="ann-badge badge-info">Admissions</span></div>
+            </div>
+            <div class="announce-item">
+              <div class="ann-icon ann-event"><i class="fas fa-calendar-check"></i></div>
+              <div class="ann-text"><h6>Parents' Evening &mdash; 28 March</h6><p>All parents invited to meet class teachers from 3:00 PM.</p><span class="ann-badge badge-event">Event</span></div>
+            </div>
+            <div class="announce-item">
+              <div class="ann-icon ann-info"><i class="fas fa-sun"></i></div>
+              <div class="ann-text"><h6>End of Term 2 &mdash; o9 April 2026</h6><p>Term 3 resumes Monday 27 April 2026.</p><span class="ann-badge badge-info">Dates</span></div>
+            </div>
+          </div>
+          <div class="card-footer"><a href="index.html#contact" class="card-link">Contact School Office <i class="fas fa-arrow-right"></i></a></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ UPCOMING EVENTS — UNCHANGED ══ -->
+  <section class="events-strip">
+    <div class="nl-container">
+      <div style="margin-bottom:32px;">
+        <p class="nl-section-tag"><i class="fas fa-calendar-alt" style="margin-right:8px;"></i>What's Coming Up</p>
+        <h2 class="nl-section-title">Upcoming <span>Events</span></h2>
+        <div class="nl-section-line" style="margin-bottom:0;"></div>
+      </div>
+      <div class="events-strip-grid" id="eventsGrid">
+        <div class="event-strip-card"><div class="esc-date"><div class="esc-day">15</div><div class="esc-month">Mar</div></div><div class="esc-body"><h5>Mid-Term Examinations</h5><p>All classes from KG through JHS 3.</p><p class="esc-tag"><i class="fas fa-clock" style="margin-right:4px;"></i>7:30 AM &middot; All Classrooms</p></div></div>
+        <div class="event-strip-card"><div class="esc-date"><div class="esc-day">22</div><div class="esc-month">Mar</div></div><div class="esc-body"><h5>Inter-House Sports Day</h5><p>Annual athletics competition for all students.</p><p class="esc-tag"><i class="fas fa-map-marker-alt" style="margin-right:4px;"></i>8:00 AM &middot; School Field</p></div></div>
+        <div class="event-strip-card"><div class="esc-date"><div class="esc-day">28</div><div class="esc-month">Mar</div></div><div class="esc-body"><h5>Parents' Evening</h5><p>Meet your child's teachers and discuss progress.</p><p class="esc-tag"><i class="fas fa-map-marker-alt" style="margin-right:4px;"></i>3:00 PM &middot; School Hall</p></div></div>
+        <div class="event-strip-card"><div class="esc-date"><div class="esc-day">05</div><div class="esc-month">Apr</div></div><div class="esc-body"><h5>Prize Giving &amp; Cultural Day</h5><p>Celebration of achievement and cultural heritage.</p><p class="esc-tag"><i class="fas fa-map-marker-alt" style="margin-right:4px;"></i>9:00 AM &middot; School Hall</p></div></div>
+        <div class="event-strip-card"><div class="esc-date"><div class="esc-day">11</div><div class="esc-month">Apr</div></div><div class="esc-body"><h5>End of Term 2</h5><p>Last day of Term 2. Holiday begins.</p><p class="esc-tag"><i class="fas fa-calendar-check" style="margin-right:4px;"></i>Holiday Begins</p></div></div>
+        <div class="event-strip-card"><div class="esc-date"><div class="esc-day">28</div><div class="esc-month">Apr</div></div><div class="esc-body"><h5>Term 3 Begins</h5><p>All students return. School opens at 7:00 AM.</p><p class="esc-tag"><i class="fas fa-school" style="margin-right:4px;"></i>New Term</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SUBSCRIBE — UNCHANGED ══ -->
+  <section class="subscribe-section" id="subscribe">
+    <div class="nl-container">
+      <div class="subscribe-card">
+        <div class="sub-icon"><i class="fas fa-envelope-open-text"></i></div>
+        <p class="sub-label">Never Miss An Update</p>
+        <h2 class="sub-title">Subscribe to the<br><span>Star Light Gazette</span></h2>
+        <p class="sub-desc">Join hundreds of Star Light parents and receive every edition directly in your inbox &mdash; school news, exam timetables, events and achievements.</p>
+        <div class="sub-benefits">
+          <div class="sub-benefit"><i class="fas fa-calendar-check"></i><span>School events &amp; upcoming dates</span></div>
+          <div class="sub-benefit"><i class="fas fa-pen-nib"></i><span>Exam timetables &amp; results</span></div>
+          <div class="sub-benefit"><i class="fas fa-door-open"></i><span>Admission news &amp; deadlines</span></div>
+          <div class="sub-benefit"><i class="fas fa-user-tie"></i><span>Messages from the Principal</span></div>
+          <div class="sub-benefit"><i class="fas fa-award"></i><span>Student achievements &amp; awards</span></div>
+          <div class="sub-benefit"><i class="fas fa-umbrella-beach"></i><span>Holiday &amp; term dates</span></div>
+        </div>
+        <div class="mc-wrap">
+          <form action="https://YOUR-MAILCHIMP-FORM-URL-HERE" method="post" id="mc-embedded-subscribe-form" target="_blank" novalidate onsubmit="handleSubscribe(event)">
+            <div class="mc-form">
+              <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email address..." required />
+              <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="b_REPLACE_WITH_YOUR_CODE" tabindex="-1" value="" /></div>
+              <button type="submit" name="subscribe"><i class="fas fa-paper-plane"></i> Subscribe</button>
+            </div>
+          </form>
+          <p class="mc-note"><i class="fas fa-lock"></i> We respect your privacy. No spam &mdash; only Star Light school news. Unsubscribe anytime.</p>
+          <div class="sub-success" id="subSuccess">
+            <i class="fas fa-circle-check"></i>
+            <p>Welcome to the Star Light Gazette family! &#127881;<br>Check your inbox to confirm your subscription.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ARCHIVE — UNCHANGED ══ -->
+  <section class="archive-section">
+    <div class="nl-container">
+      <div style="margin-bottom:40px;">
+        <p class="nl-section-tag"><i class="fas fa-archive" style="margin-right:8px;"></i>Past Editions</p>
+        <h2 class="nl-section-title">Newsletter <span>Archive</span></h2>
+        <div class="nl-section-line"></div>
+      </div>
+      <div class="archive-grid">
+        <div class="archive-card">
+          <div class="ac-header">
+            <p class="ac-vol">Volume 1 &middot; Issue 1</p>
+            <h4 class="ac-title">Rising Stars &amp; New Horizons</h4>
+            <div class="ac-date"><i class="fas fa-calendar-alt"></i> March 2026 &mdash; Term 3</div>
+            <span class="ac-badge">Latest</span>
+          </div>
+          <div class="ac-body">
+            <div class="ac-tags"><span class="ac-tag">Exams</span><span class="ac-tag">Sports Day</span><span class="ac-tag">Admissions</span><span class="ac-tag">Achievements</span></div>
+            <div class="ac-stats"><span class="ac-stat"><i class="fas fa-newspaper"></i> 6 Stories</span><span class="ac-stat"><i class="fas fa-file-alt"></i> Term 2</span></div>
+          </div>
+          <div class="ac-footer"><a href="#subscribe" class="ac-link">Subscribe to Read <i class="fas fa-arrow-right"></i></a><span class="ac-term">March 2026</span></div>
+        </div>
+        <div class="archive-card coming-card"><div class="coming-inner"><i class="fas fa-clock"></i><h5>April 2026 Edition</h5><p>Coming soon &mdash; subscribe above to be the first to receive it.</p></div></div>
+        <div class="archive-card coming-card"><div class="coming-inner"><i class="fas fa-pen-nib"></i><h5>End of Term Edition</h5><p>A special edition celebrating term achievements, results and the holiday period.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SOCIAL STRIP — UNCHANGED ══ -->
+  <section class="social-strip">
+    <div class="nl-container">
+      <div class="social-inner">
+        <div class="social-text">
+          <h4><i class="fas fa-satellite-dish" style="color:#c9a84c;margin-right:10px;"></i>Stay Connected with Star Light</h4>
+          <p>Follow us on social media for daily updates, photos and announcements.</p>
+        </div>
+        <div class="social-links-row">
+          <a href="https://www.tiktok.com/@slibs_media?is_from_webapp=1&sender_device=pc" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i> TikTok</a>
+          <a href="https://youtube.com/@slibs_media?si=120ZNjRb0VP9E2wv" target="_blank" class="social-btn"><i class="fab fa-youtube"></i> YouTube</a>
+          <a href="https://wa.me/233558448280" target="_blank" class="social-btn"><i class="fab fa-whatsapp"></i> WhatsApp 1</a>
+          <a href="https://wa.me/233535062758" target="_blank" class="social-btn"><i class="fab fa-whatsapp"></i> WhatsApp 2</a>
+          <a href="mailto:slibs.admissions@gmail.com" class="social-btn"><i class="fas fa-envelope"></i> Email Us</a>
+          <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i> Facebook</a>
+          <a href="#" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER — UNCHANGED ══ -->
+  <footer class="nl-footer">
+    <div class="nl-container">
+      <div class="nl-footer-top">
+        <div class="nl-footer-logo">
+          <img src="logo.png" alt="Star Light International School" />
+          <div><span class="nl-footer-name">Star Light International School</span><span class="nl-footer-sub">Kasoa Nyanyano Fetteh Road, Ghana</span></div>
+        </div>
+        <div class="nl-footer-links">
+          <a href="index.html">Home</a>
+          <a href="index.html#about">About</a>
+          <a href="admissions.html">Admissions</a>
+          <a href="index.html#events">Events</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="portal.html">Parent Portal</a>
+          <a href="calendar.html">School Calendar</a>
+          <a href="results.html">Results</a>
+          <a href="blog.html">Blog</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div class="nl-footer-copy">
+        <p>&copy; 2026 Star Light International School. All rights reserved.</p>
+        <p>"Excellence Without Limits"</p>
+      </div>
+    </div>
+  </footer>
+
+ <!-- ════════════════════════════════════════
+       SECTION 3 — All JavaScript
+       Paste directly after Section 2 content.
+       Close the final file with </body></html>
+  ════════════════════════════════════════ -->
+
+  <script src="script.js"></script>
+  <script>
+
+    /* ════════════════════════════════════════════════════════════════
+       HERO SLIDER ENGINE
+       ────────────────────────────────────────────────────────────────
+       Slides auto-advance every 6 seconds.
+       Pauses when the user hovers over the hero.
+       Supports arrow buttons, dot buttons and touch swipe.
+
+       TO CHANGE THE SPEED:
+         Edit the number on this line:  var DURATION = 6000;
+         (6000 = 6 seconds, 8000 = 8 seconds, etc.)
+    ════════════════════════════════════════════════════════════════ */
+    (function () {
+      var hero     = document.getElementById('nlHero');
+      var slides   = document.querySelectorAll('.nl-slide');
+      var dots     = document.querySelectorAll('.nl-slider-dot');
+      var prevBtn  = document.getElementById('nlPrev');
+      var nextBtn  = document.getElementById('nlNext');
+      var progress = document.getElementById('nlProgress');
+      var DURATION = 6000;
+      var current  = 0;
+      var timer;
+
+      if (!hero || slides.length === 0) return;
+
+      function goTo(idx) {
+        // Remove active from current
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+
+        // Move to new index (wraps around)
+        current = (idx + slides.length) % slides.length;
+
+        // Activate new slide and dot
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+
+        startProgress();
+      }
+
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      function startProgress() {
+        clearTimeout(timer);
+
+        // Reset and run the gold bar
+        if (progress) {
+          progress.style.transition = 'none';
+          progress.style.width = '0%';
+          void progress.offsetWidth; // force reflow
+          progress.style.transition = 'width ' + DURATION + 'ms linear';
+          progress.style.width = '100%';
+        }
+
+        // Schedule the next auto-advance
+        timer = setTimeout(next, DURATION);
+      }
+
+      // Arrow buttons
+      if (nextBtn) nextBtn.addEventListener('click', next);
+      if (prevBtn) prevBtn.addEventListener('click', prev);
+
+      // Dot buttons
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          goTo(parseInt(dot.getAttribute('data-index'), 10));
+        });
+      });
+
+      // Pause on hover, resume on leave
+      hero.addEventListener('mouseenter', function () { clearTimeout(timer); });
+      hero.addEventListener('mouseleave', startProgress);
+
+      // Touch / swipe support
+      var touchStartX = 0;
+      hero.addEventListener('touchstart', function (e) {
+        touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+      hero.addEventListener('touchend', function (e) {
+        var diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+      });
+
+      // Start
+      startProgress();
+    })();
+
+    /* ════════════════════════════════════════════════════════════════
+       GOOGLE SHEETS LIVE INTEGRATION — UNCHANGED
+       All render functions and JSONP loader copied exactly
+       from the original newsletter.html
+    ════════════════════════════════════════════════════════════════ */
+    const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwchNRtZYeYIdgO0Q6nuk_d21KlWQJZ4_bW0LaOcnGSSKOIfCAGpCJiwQ4Tvq0mDpIyHw/exec';
+
+    /* ── Helpers ── */
+    function s(id) { return document.getElementById(id); }
+    function setText(id, val) { const el = s(id); if (el && val) el.textContent = val; }
+    function setHTML(id, val) { const el = s(id); if (el && val !== undefined) el.innerHTML = val; }
+
+    /* ── Medal icon map ── */
+    const MEDAL_ICON = { gold:'fa-trophy', silver:'fa-medal', bronze:'fa-running', star:'fa-pen-nib' };
+
+    /* ── Announcement icon map ── */
+    const ANN_ICON = { urgent:'fa-exclamation-circle', info:'fa-door-open', event:'fa-calendar-check' };
+
+    /* ══ RENDER FUNCTIONS ══════════════════════════════════════ */
+
+    function renderEdition(ed) {
+      setText('edVolIssue', 'Vol. ' + ed.volume + ' · Issue ' + ed.issue);
+      setText('edMonth', ed.month);
+      setText('edTerm', ed.term + ', ' + ed.year);
+      setText('edCount', ed.stories_count);
+      setText('featVol', 'Volume ' + ed.volume + ' · Issue ' + ed.issue + ' · ' + ed.term + ', ' + ed.year);
+      setText('featDate', ed.month);
+      setText('featCount', ed.stories_count);
+      setText('featTerm', ed.term + ' Edition');
+      if (ed.excerpt) setText('featExcerpt', ed.excerpt);
+      const ft = s('featTitle');
+      if (ft) ft.innerHTML = ed.month + ' &mdash;<br><span>' + (ed.edition_title || 'Latest Edition') + '</span>';
+    }
+
+    function renderPrincipal(pr) {
+      setText('principalName', pr.name);
+      setText('principalRole', pr.role);
+      if (pr.quote) setText('principalQuote', '\u201c' + pr.quote + '\u201d');
+      setText('principalTerm', ed_term_label || 'Term 2 Message');
+      if (pr.paragraphs && pr.paragraphs.length > 0) {
+        setHTML('principalBody', pr.paragraphs.map(p => '<p>' + p + '</p>').join(''));
+      }
+      const sig = s('principalSig');
+      if (sig) sig.innerHTML = pr.name + '<span>' + pr.role + '</span>';
+    }
+
+    function renderStories(stories) {
+      const el = s('featStories');
+      if (!el || !stories || !stories.length) return;
+      el.innerHTML = stories.map(st => `
+        <div class="feat-story">
+          <div class="story-num">${st.number}</div>
+          <div class="story-text">
+            <h6>${st.title}</h6>
+            <p>${st.subtitle}</p>
+          </div>
+          <span class="cat cat-${st.category}">${st.category.charAt(0).toUpperCase() + st.category.slice(1)}</span>
+        </div>`).join('');
+    }
+
+    function renderAcademics(items) {
+      const el = s('academicsBody');
+      if (!el || !items || !items.length) return;
+      el.innerHTML = items.map(item => `
+        <div class="academic-item">
+          <div class="ai-dot ${item.dot_colour}"></div>
+          <div class="ai-text">
+            <h6>${item.title}</h6>
+            <p>${item.description}</p>
+            <span class="ai-date"><i class="fas fa-calendar-alt" style="margin-right:4px;"></i>${item.date}</span>
+          </div>
+        </div>`).join('');
+    }
+
+    function renderAchievements(items) {
+      const el = s('achievementsBody');
+      if (!el || !items || !items.length) return;
+      el.innerHTML = items.map(item => {
+        const icon = MEDAL_ICON[item.medal] || 'fa-star';
+        return `
+        <div class="achieve-item">
+          <div class="achieve-medal medal-${item.medal}"><i class="fas ${icon}"></i></div>
+          <div class="achieve-text">
+            <h6>${item.title}</h6>
+            <p>${item.description}</p>
+            <span class="achieve-name"><i class="fas fa-star" style="margin-right:4px;font-size:0.65rem;"></i>${item.student}</span>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    function renderAnnouncements(items) {
+      const el = s('announcementsBody');
+      if (!el || !items || !items.length) return;
+      el.innerHTML = items.map(item => {
+        const icon = ANN_ICON[item.type] || 'fa-info-circle';
+        return `
+        <div class="announce-item">
+          <div class="ann-icon ann-${item.type}"><i class="fas ${icon}"></i></div>
+          <div class="ann-text">
+            <h6>${item.title}</h6>
+            <p>${item.description}</p>
+            <span class="ann-badge badge-${item.type}">${item.badge}</span>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    function renderEvents(items) {
+      const el = s('eventsGrid');
+      if (!el || !items || !items.length) return;
+      el.innerHTML = items.map(ev => `
+        <div class="event-strip-card">
+          <div class="esc-date">
+            <div class="esc-day">${ev.day}</div>
+            <div class="esc-month">${ev.month}</div>
+          </div>
+          <div class="esc-body">
+            <h5>${ev.title}</h5>
+            <p>${ev.description}</p>
+            <p class="esc-tag"><i class="fas fa-clock" style="margin-right:4px;"></i>${ev.time_location}</p>
+          </div>
+        </div>`).join('');
+    }
+
+    /* ══ FETCH FROM GOOGLE SHEETS via JSONP ══════════════════ */
+    let ed_term_label = '';
+
+    function loadNewsletter() {
+      const cbName = 'nlCallback_' + Date.now();
+
+      const timeout = setTimeout(function () {
+        delete window[cbName];
+        const old = document.getElementById('jsonpScript');
+        if (old) old.remove();
+        console.warn('Newsletter sheet timed out — showing default content.');
+      }, 10000);
+
+      window[cbName] = function (data) {
+        clearTimeout(timeout);
+        delete window[cbName];
+        const old = document.getElementById('jsonpScript');
+        if (old) old.remove();
+
+        if (data.error) {
+          console.warn('Sheet error:', data.error);
+          return;
+        }
+
+        if (data.edition)       { ed_term_label = data.edition.term + ' Message \u00b7 ' + data.edition.month; renderEdition(data.edition); }
+        if (data.principal)     renderPrincipal(data.principal);
+        if (data.stories)       renderStories(data.stories);
+        if (data.academics)     renderAcademics(data.academics);
+        if (data.achievements)  renderAchievements(data.achievements);
+        if (data.announcements) renderAnnouncements(data.announcements);
+        if (data.events)        renderEvents(data.events);
+
+        console.info('✅ Star Light Gazette loaded from Google Sheets');
+      };
+
+      const script   = document.createElement('script');
+      script.id      = 'jsonpScript';
+      script.src     = SHEET_URL + '?callback=' + cbName;
+      script.onerror = function () {
+        clearTimeout(timeout);
+        delete window[cbName];
+        console.warn('Could not reach Google Sheets — showing default content.');
+      };
+      document.head.appendChild(script);
+    }
+
+    loadNewsletter();
+
+    /* ── Subscribe smooth scroll ── */
+    document.querySelectorAll('a[href="#subscribe"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById('subscribe').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+
+    /* ── Subscribe form handler ── */
+    function handleSubscribe(e) {
+      const email = document.getElementById('mce-EMAIL').value.trim();
+      if (!email) return;
+      const action = e.target.action;
+      if (action && action.includes('list-manage')) {
+        setTimeout(() => {
+          document.getElementById('subSuccess').style.display = 'block';
+          document.getElementById('mce-EMAIL').value = '';
+        }, 1000);
+        return;
+      }
+      e.preventDefault();
+      document.getElementById('subSuccess').style.display = 'block';
+      document.getElementById('mce-EMAIL').value = '';
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>School Calendar 2025/2026 — Star Light International School</title>
+  <meta name="description" content="Star Light International School official academic calendar — term dates, holidays, exams, events and important dates for 2025/2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--navy,#0a0f1e); color: var(--white,#f4f1ea); font-family: 'Lato', sans-serif; overflow-x: hidden; }
+    .cl-container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+    .section-pad { padding: 72px 0; }
+
+    /* ── SECTION HEADERS ── */
+    .cl-tag { display: inline-block; font-family: 'Cinzel', serif; font-size: 0.68rem; color: var(--gold,#c9a84c); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+    .cl-title { font-family: 'Cinzel', serif; font-size: clamp(1.4rem,3vw,2rem); font-weight: 700; color: var(--white,#f4f1ea); margin-bottom: 12px; line-height: 1.2; }
+    .cl-title span { color: #e6c76a; }
+    .cl-line { width: 60px; height: 2px; background: linear-gradient(90deg,var(--gold,#c9a84c),transparent); margin-bottom: 40px; }
+
+    /* ── CATEGORY DOTS & BADGES ── */
+    .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .dot-term     { background: #e6c76a; }
+    .dot-exam     { background: #e06b6b; }
+    .dot-holiday  { background: #4ecca3; }
+    .dot-event    { background: #88aaff; }
+    .dot-sports   { background: #ff9f43; }
+    .dot-cultural { background: #cc88ff; }
+    .dot-meeting  { background: #a0c4ff; }
+
+    .badge { display: inline-flex; align-items: center; gap: 5px; font-size: 0.66rem; font-family: 'Cinzel', serif; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 10px; }
+    .badge-term     { background: rgba(230,199,106,0.12); color: #e6c76a; border: 1px solid rgba(230,199,106,0.25); }
+    .badge-exam     { background: rgba(224,107,107,0.12); color: #e06b6b; border: 1px solid rgba(224,107,107,0.25); }
+    .badge-holiday  { background: rgba(78,204,163,0.12); color: #4ecca3; border: 1px solid rgba(78,204,163,0.25); }
+    .badge-event    { background: rgba(136,170,255,0.12); color: #88aaff; border: 1px solid rgba(136,170,255,0.25); }
+    .badge-sports   { background: rgba(255,159,67,0.12); color: #ff9f43; border: 1px solid rgba(255,159,67,0.25); }
+    .badge-cultural { background: rgba(204,136,255,0.12); color: #cc88ff; border: 1px solid rgba(204,136,255,0.25); }
+    .badge-meeting  { background: rgba(160,196,255,0.12); color: #a0c4ff; border: 1px solid rgba(160,196,255,0.25); }
+    .badge-urgent   { background: rgba(224,107,107,0.12); color: #e06b6b; border: 1px solid rgba(224,107,107,0.25); }
+
+    /* ════════════════════════════════
+       HERO
+    ════════════════════════════════ */
+    .cal-hero { position: relative; min-height: 420px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 120px 20px 60px; }
+    .cal-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.13) 0%, transparent 70%), linear-gradient(180deg,#0d1525 0%,#0a0f1e 100%); }
+    .cal-hero-grid { position: absolute; inset: 0; background-image: repeating-linear-gradient(90deg,rgba(201,168,76,0.03) 0px,rgba(201,168,76,0.03) 1px,transparent 1px,transparent 80px), repeating-linear-gradient(0deg,rgba(201,168,76,0.03) 0px,rgba(201,168,76,0.03) 1px,transparent 1px,transparent 80px); }
+    .cal-hero-content { position: relative; z-index: 1; text-align: center; max-width: 750px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 30px; padding: 6px 22px; font-family: 'Cinzel', serif; font-size: 0.72rem; color: #e6c76a; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 22px; animation: fadeDown 0.6s ease both; }
+    .hero-title { font-family: 'Cinzel', serif; font-size: clamp(2.2rem,6vw,4rem); font-weight: 900; color: var(--white,#f4f1ea); line-height: 1.1; margin-bottom: 8px; animation: fadeDown 0.7s 0.1s ease both; }
+    .hero-title span { color: #e6c76a; }
+    .hero-sub { font-family: 'Amiri', serif; font-style: italic; font-size: 1.1rem; color: #c8c2b4; margin-bottom: 28px; line-height: 1.7; animation: fadeDown 0.7s 0.15s ease both; }
+    .hero-year-bar { display: inline-flex; align-items: center; gap: 24px; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px; padding: 12px 28px; flex-wrap: wrap; justify-content: center; animation: fadeDown 0.7s 0.2s ease both; }
+    .hero-year-bar span { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; color: #c8c2b4; font-family: 'Cinzel', serif; }
+    .hero-year-bar span i { color: var(--gold,#c9a84c); }
+    .hero-year-bar .div { width:1px; height:20px; background:rgba(255,255,255,0.1); }
+    .btn-print { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 8px; padding: 10px 20px; color: #e6c76a; font-family: 'Cinzel', serif; font-size: 0.76rem; letter-spacing: 1px; cursor: pointer; transition: 0.3s; margin-top: 20px; animation: fadeDown 0.7s 0.25s ease both; }
+    .btn-print:hover { background: rgba(201,168,76,0.18); transform: translateY(-2px); }
+
+    /* ════════════════════════════════
+       TERM OVERVIEW CARDS
+    ════════════════════════════════ */
+    .terms-section { padding: 56px 0; background: linear-gradient(135deg,rgba(13,21,37,0.8),rgba(10,15,30,0.9)); border-bottom: 1px solid rgba(201,168,76,0.1); }
+    .terms-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .term-card { background: rgba(15,26,46,0.9); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; overflow: hidden; transition: all 0.4s; }
+    .term-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    .term-card.active { border-color: rgba(201,168,76,0.4); box-shadow: 0 0 0 1px rgba(201,168,76,0.2); }
+    .term-card-header { padding: 24px 24px 18px; position: relative; }
+    .term-1-h { background: linear-gradient(135deg,rgba(230,199,106,0.12),rgba(201,168,76,0.05)); border-bottom: 2px solid #e6c76a; }
+    .term-2-h { background: linear-gradient(135deg,rgba(136,170,255,0.12),rgba(100,140,255,0.05)); border-bottom: 2px solid #88aaff; }
+    .term-3-h { background: linear-gradient(135deg,rgba(78,204,163,0.12),rgba(50,180,140,0.05)); border-bottom: 2px solid #4ecca3; }
+    .term-num { font-family: 'Cinzel', serif; font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+    .t1 { color: #e6c76a; } .t2 { color: #88aaff; } .t3 { color: #4ecca3; }
+    .term-name { font-family: 'Cinzel', serif; font-size: 1.15rem; color: var(--white,#f4f1ea); margin-bottom: 6px; }
+    .term-dates { font-size: 0.8rem; color: #c8c2b4; display: flex; align-items: center; gap: 6px; }
+    .term-dates i { color: var(--gold,#c9a84c); }
+    .current-tag { position: absolute; top: 16px; right: 16px; background: linear-gradient(135deg,var(--gold,#c9a84c),#e6c76a); color: #0a0f1e; font-family: 'Cinzel', serif; font-size: 0.6rem; font-weight: 700; letter-spacing: 1px; padding: 3px 10px; border-radius: 10px; }
+    .term-card-body { padding: 18px 24px 24px; }
+    .term-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    .term-stat { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 12px; text-align: center; }
+    .term-stat-val { font-family: 'Cinzel', serif; font-size: 1.4rem; font-weight: 700; color: var(--white,#f4f1ea); }
+    .term-stat-label { font-size: 0.68rem; color: #7a7565; margin-top: 2px; text-transform: uppercase; letter-spacing: 1px; }
+    .term-highlights { display: flex; flex-direction: column; gap: 8px; }
+    .term-highlight { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: #c8c2b4; }
+    .term-highlight i { color: var(--gold,#c9a84c); font-size: 0.75rem; width: 16px; text-align: center; }
+
+    /* ════════════════════════════════
+       VISUAL CALENDAR GRID
+    ════════════════════════════════ */
+    .calendar-section { padding: 72px 0; }
+    .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+    .cal-month-title { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--white,#f4f1ea); }
+    .cal-month-title span { color: #e6c76a; }
+    .cal-nav-btns { display: flex; gap: 8px; }
+    .cal-btn { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 8px 16px; color: #c8c2b4; cursor: pointer; font-family: 'Cinzel', serif; font-size: 0.76rem; transition: 0.3s; display: flex; align-items: center; gap: 6px; }
+    .cal-btn:hover { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.3); color: #e6c76a; }
+    .cal-btn.active-month { background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: #e6c76a; }
+    .month-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
+    .month-tab { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 7px 14px; color: #7a7565; cursor: pointer; font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.5px; transition: 0.3s; }
+    .month-tab:hover { color: #c8c2b4; border-color: rgba(255,255,255,0.15); }
+    .month-tab.active { background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: #e6c76a; }
+    .cal-grid-wrap { background: rgba(15,26,46,0.8); border: 1px solid rgba(255,255,255,0.07); border-radius: 20px; overflow: hidden; }
+    .cal-weekdays { display: grid; grid-template-columns: repeat(7,1fr); background: rgba(201,168,76,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .cal-weekday { padding: 12px 8px; text-align: center; font-family: 'Cinzel', serif; font-size: 0.68rem; color: var(--gold,#c9a84c); letter-spacing: 1.5px; text-transform: uppercase; }
+    .cal-days { display: grid; grid-template-columns: repeat(7,1fr); }
+    .cal-day { min-height: 90px; padding: 8px; border-right: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.3s; position: relative; }
+    .cal-day:hover { background: rgba(201,168,76,0.03); }
+    .cal-day.empty { background: rgba(0,0,0,0.15); }
+    .cal-day.today .day-num { background: linear-gradient(135deg,var(--gold,#c9a84c),#e6c76a); color: #0a0f1e; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+    .cal-day.weekend { background: rgba(0,0,0,0.08); }
+    .cal-day.holiday { background: rgba(78,204,163,0.04); }
+    .day-num { font-family: 'Cinzel', serif; font-size: 0.82rem; color: #c8c2b4; margin-bottom: 4px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; }
+    .cal-day.weekend .day-num { color: #7a7565; }
+    .day-events { display: flex; flex-direction: column; gap: 2px; }
+    .day-event { font-size: 0.62rem; padding: 2px 5px; border-radius: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; transition: opacity 0.2s; }
+    .day-event:hover { opacity: 0.8; }
+    .de-exam     { background: rgba(224,107,107,0.2); color: #e06b6b; border-left: 2px solid #e06b6b; }
+    .de-holiday  { background: rgba(78,204,163,0.2); color: #4ecca3; border-left: 2px solid #4ecca3; }
+    .de-event    { background: rgba(136,170,255,0.2); color: #88aaff; border-left: 2px solid #88aaff; }
+    .de-sports   { background: rgba(255,159,67,0.2); color: #ff9f43; border-left: 2px solid #ff9f43; }
+    .de-cultural { background: rgba(204,136,255,0.2); color: #cc88ff; border-left: 2px solid #cc88ff; }
+    .de-meeting  { background: rgba(160,196,255,0.2); color: #a0c4ff; border-left: 2px solid #a0c4ff; }
+    .de-term     { background: rgba(230,199,106,0.2); color: #e6c76a; border-left: 2px solid #e6c76a; }
+    .more-events { font-size: 0.6rem; color: #7a7565; padding: 1px 4px; }
+
+    /* ════════════════════════════════
+       EVENTS LIST WITH FILTERS
+    ════════════════════════════════ */
+    .events-section { padding: 72px 0; background: linear-gradient(180deg,rgba(13,21,37,0.5),rgba(10,15,30,0.8)); }
+    .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; }
+    .filter-btn { display: flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 7px 16px; font-size: 0.76rem; color: #7a7565; cursor: pointer; transition: 0.3s; }
+    .filter-btn:hover { color: #c8c2b4; border-color: rgba(255,255,255,0.15); }
+    .filter-btn.active { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.3); color: #e6c76a; }
+    .filter-btn .dot { width: 8px; height: 8px; }
+    .events-list { display: flex; flex-direction: column; gap: 0; }
+    .event-row { display: grid; grid-template-columns: 120px 1fr auto; gap: 20px; align-items: start; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+    .event-row:last-child { border-bottom: none; }
+    .event-row:hover { background: rgba(201,168,76,0.03); padding-left: 8px; border-radius: 8px; }
+    .event-date-col { text-align: center; }
+    .event-day-big { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 900; color: var(--white,#f4f1ea); line-height: 1; }
+    .event-month-sm { font-family: 'Cinzel', serif; font-size: 0.65rem; color: var(--gold,#c9a84c); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+    .event-year-sm { font-size: 0.65rem; color: #7a7565; margin-top: 1px; }
+    .event-content h4 { font-family: 'Cinzel', serif; font-size: 0.96rem; color: var(--white,#f4f1ea); margin-bottom: 6px; }
+    .event-content p { font-size: 0.82rem; color: #c8c2b4; line-height: 1.6; margin-bottom: 8px; }
+    .event-meta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .event-meta-item { display: flex; align-items: center; gap: 5px; font-size: 0.74rem; color: #7a7565; }
+    .event-meta-item i { color: var(--gold,#c9a84c); font-size: 0.7rem; }
+    .event-badge-col { padding-top: 4px; }
+
+    /* ════════════════════════════════
+       EXAM TIMETABLE
+    ════════════════════════════════ */
+    .exam-section { padding: 72px 0; }
+    .exam-tabs { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+    .exam-tab { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 9px 18px; font-family: 'Cinzel', serif; font-size: 0.74rem; color: #7a7565; cursor: pointer; transition: 0.3s; letter-spacing: 0.5px; }
+    .exam-tab:hover { color: #c8c2b4; border-color: rgba(255,255,255,0.15); }
+    .exam-tab.active { background: rgba(224,107,107,0.1); border-color: rgba(224,107,107,0.3); color: #e06b6b; }
+    .exam-table-wrap { background: rgba(15,26,46,0.8); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; overflow: hidden; }
+    .exam-table { width: 100%; border-collapse: collapse; }
+    .exam-table thead { background: rgba(224,107,107,0.08); border-bottom: 1px solid rgba(224,107,107,0.2); }
+    .exam-table th { padding: 14px 18px; text-align: left; font-family: 'Cinzel', serif; font-size: 0.7rem; color: #e06b6b; letter-spacing: 1.5px; text-transform: uppercase; }
+    .exam-table td { padding: 13px 18px; font-size: 0.84rem; color: #c8c2b4; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .exam-table tr:last-child td { border-bottom: none; }
+    .exam-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .exam-table .date-cell { font-family: 'Cinzel', serif; color: var(--white,#f4f1ea); font-size: 0.82rem; }
+    .exam-table .subject-cell { color: var(--white,#f4f1ea); font-weight: 600; }
+    .exam-table .class-cell { font-size: 0.76rem; }
+    .timetable-panels .exam-panel { display: none; }
+    .timetable-panels .exam-panel.active { display: block; }
+
+    /* ════════════════════════════════
+       HOLIDAYS & BREAKS
+    ════════════════════════════════ */
+    .holidays-section { padding: 72px 0; background: linear-gradient(180deg,rgba(13,21,37,0.5),rgba(10,15,30,0.8)); }
+    .holidays-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .holiday-card { background: rgba(15,26,46,0.8); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; overflow: hidden; transition: all 0.4s; }
+    .holiday-card:hover { transform: translateY(-5px); border-color: rgba(78,204,163,0.3); box-shadow: 0 14px 40px rgba(0,0,0,0.35); }
+    .holiday-card-header { padding: 20px 22px 16px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; align-items: center; gap: 14px; }
+    .holiday-icon { width: 42px; height: 42px; background: rgba(78,204,163,0.1); border: 1px solid rgba(78,204,163,0.25); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: #4ecca3; flex-shrink: 0; }
+    .holiday-card-header h4 { font-family: 'Cinzel', serif; font-size: 0.92rem; color: var(--white,#f4f1ea); margin-bottom: 3px; }
+    .holiday-card-header p { font-size: 0.76rem; color: #7a7565; }
+    .holiday-card-body { padding: 18px 22px; }
+    .holiday-date-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .holiday-date-row:last-child { border-bottom: none; }
+    .holiday-date-row span:first-child { font-size: 0.8rem; color: #c8c2b4; display: flex; align-items: center; gap: 7px; }
+    .holiday-date-row span:first-child i { color: var(--gold,#c9a84c); font-size: 0.7rem; }
+    .holiday-date-row span:last-child { font-family: 'Cinzel', serif; font-size: 0.75rem; color: #e6c76a; }
+    .holiday-duration { display: inline-block; margin-top: 12px; background: rgba(78,204,163,0.1); border: 1px solid rgba(78,204,163,0.2); border-radius: 20px; padding: 4px 12px; font-size: 0.72rem; color: #4ecca3; font-family: 'Cinzel', serif; }
+
+    /* ════════════════════════════════
+       KEY DATES QUICK REFERENCE
+    ════════════════════════════════ */
+    .keydate-section { padding: 72px 0; }
+    .keydate-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 28px; }
+    .keydate-card { background: rgba(15,26,46,0.8); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 28px; }
+    .keydate-card h4 { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--white,#f4f1ea); margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+    .keydate-card h4 i { color: var(--gold,#c9a84c); }
+    .keydate-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .keydate-item:last-child { border-bottom: none; }
+    .keydate-item-left { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: #c8c2b4; }
+    .keydate-item-right { font-family: 'Cinzel', serif; font-size: 0.76rem; color: #e6c76a; text-align: right; }
+    .keydate-item-right small { display: block; font-family: 'Lato', sans-serif; font-size: 0.68rem; color: #7a7565; margin-top: 1px; }
+
+    /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
+    .cl-footer { background: rgba(13,21,37,0.95); border-top: 1px solid rgba(255,255,255,0.05); padding: 44px 0 24px; }
+    .cl-footer-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 24px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .cl-footer-logo { display: flex; align-items: center; gap: 12px; }
+    .cl-footer-logo img { height: 46px; object-fit: contain; }
+    .cl-footer-name { font-family: 'Cinzel', serif; font-size: 0.96rem; color: #e6c76a; display: block; }
+    .cl-footer-sub { font-size: 0.7rem; color: #7a7565; display: block; margin-top: 2px; }
+    .cl-footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .cl-footer-links a { font-size: 0.76rem; color: #7a7565; text-decoration: none; transition: color 0.3s; }
+    .cl-footer-links a:hover { color: #e6c76a; }
+    .cl-footer-copy { text-align: center; font-size: 0.74rem; color: #7a7565; }
+    .cl-footer-copy p+p { margin-top: 4px; font-style: italic; color: rgba(122,117,101,0.6); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);} }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── LEGEND BOX ── */
+    .legend { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 20px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.76rem; color: #c8c2b4; }
+
+    /* ── PDF DOWNLOAD BUTTON ── */
+    .pdf-download-btn { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg,rgba(224,107,107,0.15),rgba(224,107,107,0.08)); border: 1px solid rgba(224,107,107,0.4); border-radius: 10px; padding: 14px 28px; color: #e06b6b; font-family: 'Cinzel', serif; font-size: 0.82rem; letter-spacing: 1px; text-decoration: none; transition: all 0.3s; }
+    .pdf-download-btn:hover { background: rgba(224,107,107,0.25); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(224,107,107,0.2); }
+    .pdf-download-btn i { font-size: 1rem; }
+
+    /* PRINT STYLES */
+    @media print {
+      .cal-hero, nav, #navbar, #preloader, #starsCanvas, .btn-print, .month-tabs, .cal-nav-btns, .filter-bar, .exam-tabs, .cl-footer { display: none !important; }
+      body { background: white !important; color: black !important; }
+      .cal-grid-wrap, .exam-table-wrap, .term-card, .holiday-card { border: 1px solid #ccc !important; }
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:1024px){ .terms-grid{grid-template-columns:1fr;} .holidays-grid{grid-template-columns:repeat(2,1fr);} .keydate-grid{grid-template-columns:1fr;} }
+    @media(max-width:768px){ .cal-day{min-height:60px;} .day-event{display:none;} .event-row{grid-template-columns:80px 1fr;} .event-badge-col{display:none;} .holidays-grid{grid-template-columns:1fr;} }
+    @media(max-width:520px){ .cal-weekday{font-size:0.58rem;padding:8px 4px;} .cal-day{min-height:44px;padding:4px;} .hero-year-bar{gap:12px;padding:10px 16px;} }
+  </style>
+</head>
+<body>
+
+  <canvas id="starsCanvas"></canvas>
+  <div id="preloader">
+    <div class="preloader-inner">
+      <img src="logo.png" alt="Star Light Logo" class="preloader-logo-img" />
+      <div class="preloader-bar"><div class="preloader-fill"></div></div>
+      <p class="preloader-text">Loading School Calendar...</p>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Star Light International School" class="nav-logo-img" />
+        <div><span class="nav-logo-name">Star Light</span><span class="nav-logo-sub">International School</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#academics">Academics</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+        <li><a href="portal.html">Portal</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="admissions.html" class="btn-portal"><i class="fas fa-user-graduate"></i> Apply Now</a>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#academics">Academics</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+        <li><a href="portal.html">Parent Portal</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="results.html">Results &amp; Achievements</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="cal-hero">
+    <div class="cal-hero-bg"></div>
+    <div class="cal-hero-grid"></div>
+    <div class="cal-hero-content">
+      <div class="hero-badge"><i class="fas fa-calendar-alt"></i> Star Light International School <i class="fas fa-calendar-alt"></i></div>
+      <h1 class="hero-title">Academic <span>Calendar</span></h1>
+      <p class="hero-sub">Official school calendar — term dates, holidays, exams, events and all important dates for the academic year.</p>
+      <div class="hero-year-bar">
+        <span><i class="fas fa-graduation-cap"></i> Academic Year 2025/2026</span>
+        <div class="div"></div>
+        <span><i class="fas fa-school"></i> 3 Terms</span>
+        <div class="div"></div>
+        <span><i class="fas fa-sun"></i> Currently: Term 2</span>
+        <div class="div"></div>
+        <span><i class="fas fa-map-marker-alt"></i> Kasoa, Ghana</span>
+      </div>
+      <button class="btn-print" onclick="window.print()">
+        <i class="fas fa-print"></i> Print / Save Calendar
+      </button>
+    </div>
+  </section>
+
+  <!-- GOOGLE CALENDAR STATUS BAR -->
+  <div id="gcal-status" style="background:#0d1525;border-bottom:1px solid rgba(201,168,76,0.15);padding:10px 24px;text-align:center;font-family:'Cinzel',serif;font-size:0.78rem;letter-spacing:1px;display:flex;align-items:center;justify-content:center;gap:10px;">
+    <span id="gcal-dot" style="width:10px;height:10px;border-radius:50%;background:#7a7565;display:inline-block;"></span>
+    <span id="gcal-msg" style="color:#7a7565;">Checking Google Calendar...</span>
+  </div>
+
+  <!-- TERM OVERVIEW -->
+  <section class="terms-section">
+    <div class="cl-container">
+      <div style="margin-bottom:32px;">
+        <p class="cl-tag"><i class="fas fa-calendar-check" style="margin-right:8px;"></i>Academic Year Overview</p>
+        <h2 class="cl-title">Term <span>Structure</span></h2>
+        <div class="cl-line" style="margin-bottom:0;"></div>
+      </div>
+      <div class="terms-grid">
+
+        <!-- TERM 1 -->
+        <div class="term-card reveal" id="term-card-1">
+          <div class="term-card-header term-1-h">
+            <p class="term-num t1" id="term-year-1">First Term &bull; 2025/2026</p>
+            <h3 class="term-name">Term One</h3>
+            <div class="term-dates" id="term-dates-1"><i class="fas fa-calendar"></i> 11 September 2025 &mdash; 12 December 2025</div>
+          </div>
+          <div class="term-card-body">
+            <div class="term-stat-row">
+              <div class="term-stat"><div class="term-stat-val">14</div><div class="term-stat-label">Weeks</div></div>
+              <div class="term-stat"><div class="term-stat-val">67</div><div class="term-stat-label">School Days</div></div>
+            </div>
+            <div class="term-highlights">
+              <div class="term-highlight"><i class="fas fa-calendar-day"></i> Opens: Thursday, 11 September 2025</div>
+              <div class="term-highlight"><i class="fas fa-pen-alt"></i> Mid-Term Exams: Oct 20&ndash;24, 2025</div>
+              <div class="term-highlight"><i class="fas fa-trophy"></i> Prize Giving Day: November 28, 2025</div>
+              <div class="term-highlight"><i class="fas fa-door-closed"></i> Closes: Friday, 12 December 2025</div>
+              <div class="term-highlight"><i class="fas fa-umbrella-beach"></i> Holiday: Dec 13 &mdash; Jan 4, 2026</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TERM 2 -->
+        <div class="term-card reveal" id="term-card-2">
+          <div class="term-card-header term-2-h">
+            <p class="term-num t2" id="term-year-2">Second Term &bull; 2025/2026</p>
+            <h3 class="term-name">Term Two</h3>
+            <div class="term-dates" id="term-dates-2"><i class="fas fa-calendar"></i> 5 January 2026 &mdash; 11 April 2026</div>
+          </div>
+          <div class="term-card-body">
+            <div class="term-stat-row">
+              <div class="term-stat"><div class="term-stat-val">14</div><div class="term-stat-label">Weeks</div></div>
+              <div class="term-stat"><div class="term-stat-val">66</div><div class="term-stat-label">School Days</div></div>
+            </div>
+            <div class="term-highlights">
+              <div class="term-highlight"><i class="fas fa-calendar-day"></i> Opens: Monday, 5 January 2026</div>
+              <div class="term-highlight"><i class="fas fa-pen-alt"></i> Mid-Term Exams: Mar 15&ndash;19, 2026</div>
+              <div class="term-highlight"><i class="fas fa-running"></i> Sports Day: March 22, 2026</div>
+              <div class="term-highlight"><i class="fas fa-users"></i> Parents' Evening: March 28, 2026</div>
+              <div class="term-highlight"><i class="fas fa-door-closed"></i> Closes: Friday, 11 April 2026</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TERM 3 -->
+        <div class="term-card reveal" id="term-card-3">
+          <div class="term-card-header term-3-h">
+            <p class="term-num t3" id="term-year-3">Third Term &bull; 2025/2026</p>
+            <h3 class="term-name">Term Three</h3>
+            <div class="term-dates" id="term-dates-3"><i class="fas fa-calendar"></i> 28 April 2026 &mdash; 25 July 2026</div>
+          </div>
+          <div class="term-card-body">
+            <div class="term-stat-row">
+              <div class="term-stat"><div class="term-stat-val">13</div><div class="term-stat-label">Weeks</div></div>
+              <div class="term-stat"><div class="term-stat-val">62</div><div class="term-stat-label">School Days</div></div>
+            </div>
+            <div class="term-highlights">
+              <div class="term-highlight"><i class="fas fa-calendar-day"></i> Opens: Tuesday, 28 April 2026</div>
+              <div class="term-highlight"><i class="fas fa-pen-alt"></i> End of Year Exams: Jul 6&ndash;17, 2026</div>
+              <div class="term-highlight"><i class="fas fa-graduation-cap"></i> JHS 3 BECE: June 2026</div>
+              <div class="term-highlight"><i class="fas fa-star"></i> Prize &amp; Graduation: July 24, 2026</div>
+              <div class="term-highlight"><i class="fas fa-door-closed"></i> Closes: Saturday, 25 July 2026</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VISUAL CALENDAR GRID -->
+  <section class="calendar-section">
+    <div class="cl-container">
+      <div style="margin-bottom:28px;">
+        <p class="cl-tag"><i class="fas fa-calendar" style="margin-right:8px;"></i>Monthly View</p>
+        <h2 class="cl-title">School <span>Calendar</span></h2>
+        <div class="cl-line" style="margin-bottom:16px;"></div>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="dot dot-term"></div> Term Start/End</div>
+        <div class="legend-item"><div class="dot dot-exam"></div> Exams</div>
+        <div class="legend-item"><div class="dot dot-holiday"></div> Holiday/Break</div>
+        <div class="legend-item"><div class="dot dot-event"></div> School Event</div>
+        <div class="legend-item"><div class="dot dot-sports"></div> Sports</div>
+        <div class="legend-item"><div class="dot dot-cultural"></div> Cultural</div>
+        <div class="legend-item"><div class="dot dot-meeting"></div> Meeting</div>
+      </div>
+      <div class="month-tabs" id="monthTabs">
+        <div class="month-tab" data-month="0">Jan</div>
+        <div class="month-tab" data-month="1">Feb</div>
+        <div class="month-tab active" data-month="2">Mar</div>
+        <div class="month-tab" data-month="3">Apr</div>
+        <div class="month-tab" data-month="4">May</div>
+        <div class="month-tab" data-month="5">Jun</div>
+        <div class="month-tab" data-month="6">Jul</div>
+        <div class="month-tab" data-month="7">Aug</div>
+        <div class="month-tab" data-month="8">Sep</div>
+        <div class="month-tab" data-month="9">Oct</div>
+        <div class="month-tab" data-month="10">Nov</div>
+        <div class="month-tab" data-month="11">Dec</div>
+      </div>
+      <div id="calMonthLabel" class="cal-month-title" style="margin-bottom:18px;">
+        <span id="calMonthName">March</span> 2026
+      </div>
+      <div class="cal-grid-wrap">
+        <div class="cal-weekdays">
+          <div class="cal-weekday">Sun</div><div class="cal-weekday">Mon</div><div class="cal-weekday">Tue</div>
+          <div class="cal-weekday">Wed</div><div class="cal-weekday">Thu</div><div class="cal-weekday">Fri</div>
+          <div class="cal-weekday">Sat</div>
+        </div>
+        <div class="cal-days" id="calDays"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL EVENTS LIST -->
+  <section class="events-section">
+    <div class="cl-container">
+      <div style="margin-bottom:28px;">
+        <p class="cl-tag"><i class="fas fa-list-alt" style="margin-right:8px;"></i>Full Schedule</p>
+        <h2 class="cl-title">All Events &amp; <span>Dates</span></h2>
+        <div class="cl-line" style="margin-bottom:0;"></div>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all"><i class="fas fa-th"></i> All Events</button>
+        <button class="filter-btn" data-filter="term"><div class="dot dot-term"></div> Term Dates</button>
+        <button class="filter-btn" data-filter="exam"><div class="dot dot-exam"></div> Exams</button>
+        <button class="filter-btn" data-filter="holiday"><div class="dot dot-holiday"></div> Holidays</button>
+        <button class="filter-btn" data-filter="event"><div class="dot dot-event"></div> Events</button>
+        <button class="filter-btn" data-filter="sports"><div class="dot dot-sports"></div> Sports</button>
+        <button class="filter-btn" data-filter="cultural"><div class="dot dot-cultural"></div> Cultural</button>
+        <button class="filter-btn" data-filter="meeting"><div class="dot dot-meeting"></div> Meetings</button>
+      </div>
+      <div class="events-list" id="eventsList"></div>
+    </div>
+  </section>
+
+  <!-- EXAM TIMETABLE -->
+  <section class="exam-section">
+    <div class="cl-container">
+      <div style="margin-bottom:28px;">
+        <p class="cl-tag"><i class="fas fa-pen-alt" style="margin-right:8px;"></i>Assessment Schedule</p>
+        <h2 class="cl-title">Exam <span>Timetables</span></h2>
+        <div class="cl-line" style="margin-bottom:0;"></div>
+      </div>
+      <div class="exam-tabs">
+        <button class="exam-tab active" data-exam="term1">Term 1 Timetable</button>
+        <button class="exam-tab" data-exam="term2">Term 2 Timetable</button>
+        <button class="exam-tab" data-exam="term3">Term 3 Timetable</button>
+      </div>
+      <div class="timetable-panels">
+        <div class="exam-panel active" id="panel-term1">
+          <div class="exam-table-wrap" style="padding:40px 32px;text-align:center;">
+            <i class="fas fa-file-pdf" style="font-size:3rem;color:#e06b6b;margin-bottom:16px;display:block;"></i>
+            <h3 style="font-family:'Cinzel',serif;color:var(--white,#f4f1ea);font-size:1.1rem;margin-bottom:8px;">Term 1 Exam Timetable</h3>
+            <p style="color:#7a7565;font-size:0.84rem;margin-bottom:24px;">Download the full Term 1 examination timetable including all subjects, dates and times.</p>
+            <a href="term1.pdf" download class="pdf-download-btn"><i class="fas fa-download"></i> Download Term 1 Timetable (PDF)</a>
+          </div>
+        </div>
+        <div class="exam-panel" id="panel-term2">
+          <div class="exam-table-wrap" style="padding:40px 32px;text-align:center;">
+            <i class="fas fa-file-pdf" style="font-size:3rem;color:#e06b6b;margin-bottom:16px;display:block;"></i>
+            <h3 style="font-family:'Cinzel',serif;color:var(--white,#f4f1ea);font-size:1.1rem;margin-bottom:8px;">Term 2 Exam Timetable</h3>
+            <p style="color:#7a7565;font-size:0.84rem;margin-bottom:24px;">Download the full Term 2 examination timetable including all subjects, dates and times.</p>
+            <a href="term2.pdf" download class="pdf-download-btn"><i class="fas fa-download"></i> Download Term 2 Timetable (PDF)</a>
+          </div>
+        </div>
+        <div class="exam-panel" id="panel-term3">
+          <div class="exam-table-wrap" style="padding:40px 32px;text-align:center;">
+            <i class="fas fa-file-pdf" style="font-size:3rem;color:#e06b6b;margin-bottom:16px;display:block;"></i>
+            <h3 style="font-family:'Cinzel',serif;color:var(--white,#f4f1ea);font-size:1.1rem;margin-bottom:8px;">Term 3 Exam Timetable</h3>
+            <p style="color:#7a7565;font-size:0.84rem;margin-bottom:24px;">Download the full Term 3 examination timetable including all subjects, dates and times.</p>
+            <a href="term3.pdf" download class="pdf-download-btn"><i class="fas fa-download"></i> Download Term 3 Timetable (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOLIDAYS & BREAKS -->
+  <section class="holidays-section">
+    <div class="cl-container">
+      <div style="margin-bottom:36px;">
+        <p class="cl-tag"><i class="fas fa-umbrella-beach" style="margin-right:8px;"></i>Breaks &amp; Public Holidays</p>
+        <h2 class="cl-title">Holiday <span>Schedule</span></h2>
+        <div class="cl-line"></div>
+      </div>
+      <div class="holidays-grid">
+
+        <div class="holiday-card reveal">
+          <div class="holiday-card-header">
+            <div class="holiday-icon"><i class="fas fa-snowflake"></i></div>
+            <div><h4>Christmas &amp; New Year Break</h4><p>End of Term 1 Holiday</p></div>
+          </div>
+          <div class="holiday-card-body">
+            <div class="holiday-date-row"><span><i class="fas fa-plane-departure"></i> School Closes</span><span>13 December 2025</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-star"></i> Christmas Day</span><span>25 December 2025</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-glass-cheers"></i> New Year's Day</span><span>1 January 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-plane-arrival"></i> School Reopens</span><span>5 January 2026</span></div>
+            <span class="holiday-duration"><i class="fas fa-moon" style="margin-right:4px;"></i> 3 Weeks Holiday</span>
+          </div>
+        </div>
+
+        <div class="holiday-card reveal">
+          <div class="holiday-card-header">
+            <div class="holiday-icon"><i class="fas fa-sun"></i></div>
+            <div><h4>Easter &amp; Mid-Year Break</h4><p>End of Term 2 Holiday</p></div>
+          </div>
+          <div class="holiday-card-body">
+            <div class="holiday-date-row"><span><i class="fas fa-plane-departure"></i> School Closes</span><span>11 April 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-cross"></i> Good Friday</span><span>3 April 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-church"></i> Easter Sunday</span><span>5 April 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-plane-arrival"></i> School Reopens</span><span>28 April 2026</span></div>
+            <span class="holiday-duration"><i class="fas fa-moon" style="margin-right:4px;"></i> 2.5 Weeks Holiday</span>
+          </div>
+        </div>
+
+        <div class="holiday-card reveal">
+          <div class="holiday-card-header">
+            <div class="holiday-icon"><i class="fas fa-star"></i></div>
+            <div><h4>Long Summer Holiday</h4><p>End of Academic Year</p></div>
+          </div>
+          <div class="holiday-card-body">
+            <div class="holiday-date-row"><span><i class="fas fa-plane-departure"></i> School Closes</span><span>25 July 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-graduation-cap"></i> Graduation Ceremony</span><span>24 July 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-book-open"></i> New Year Begins</span><span>September 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-plane-arrival"></i> Estimated Reopen</span><span>Sep 2026 (TBC)</span></div>
+            <span class="holiday-duration"><i class="fas fa-moon" style="margin-right:4px;"></i> ~6 Weeks Holiday</span>
+          </div>
+        </div>
+
+        <div class="holiday-card reveal">
+          <div class="holiday-card-header">
+            <div class="holiday-icon"><i class="fas fa-flag"></i></div>
+            <div><h4>Ghana Public Holidays</h4><p>National holidays observed</p></div>
+          </div>
+          <div class="holiday-card-body">
+            <div class="holiday-date-row"><span><i class="fas fa-star"></i> New Year's Day</span><span>1 Jan 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-fist-raised"></i> Constitution Day</span><span>7 Jan 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-cross"></i> Good Friday</span><span>3 Apr 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-flag"></i> Easter Monday</span><span>6 Apr 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-fist-raised"></i> Workers' Day</span><span>1 May 2026</span></div>
+            <span class="holiday-duration"><i class="fas fa-info-circle" style="margin-right:4px;"></i> School closed on all public holidays</span>
+          </div>
+        </div>
+
+        <div class="holiday-card reveal">
+          <div class="holiday-card-header">
+            <div class="holiday-icon"><i class="fas fa-church"></i></div>
+            <div><h4>Christian Observances</h4><p>Religious dates observed</p></div>
+          </div>
+          <div class="holiday-card-body">
+            <div class="holiday-date-row"><span><i class="fas fa-cross"></i> Good Friday</span><span>3 April 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-church"></i> Easter Sunday</span><span>5 April 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-church"></i> Easter Monday</span><span>6 April 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-star"></i> Christmas Day</span><span>25 December 2025</span></div>
+            <p style="font-size:0.72rem;color:#7a7565;font-style:italic;margin-top:10px;line-height:1.5;">Star Light embraces all students regardless of faith. All religious observances are respected equally.</p>
+          </div>
+        </div>
+
+        <div class="holiday-card reveal">
+          <div class="holiday-card-header">
+            <div class="holiday-icon"><i class="fas fa-users"></i></div>
+            <div><h4>Parents' Evenings</h4><p>Termly consultation dates</p></div>
+          </div>
+          <div class="holiday-card-body">
+            <div class="holiday-date-row"><span><i class="fas fa-calendar-check"></i> Term 1 Parents' Evening</span><span>14 Nov 2025</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-calendar-check"></i> Term 2 Parents' Evening</span><span>28 Mar 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-calendar-check"></i> Term 3 Parents' Evening</span><span>3 Jul 2026</span></div>
+            <div class="holiday-date-row"><span><i class="fas fa-clock"></i> All sessions start at</span><span>3:00 PM</span></div>
+            <p style="font-size:0.72rem;color:#7a7565;font-style:italic;margin-top:10px;line-height:1.5;">All parents and guardians are warmly encouraged to attend every term.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY DATES QUICK REFERENCE -->
+  <section class="keydate-section">
+    <div class="cl-container">
+      <div style="margin-bottom:36px;">
+        <p class="cl-tag"><i class="fas fa-bookmark" style="margin-right:8px;"></i>Quick Reference</p>
+        <h2 class="cl-title">Key Dates at a <span>Glance</span></h2>
+        <div class="cl-line"></div>
+      </div>
+      <div class="keydate-grid">
+
+        <div class="keydate-card reveal">
+          <h4><i class="fas fa-door-open"></i> Term Opening &amp; Closing Dates</h4>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-term"></div> Term 1 Opens</div><div class="keydate-item-right">11 Sep 2025<small>Thursday</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-term"></div> Term 1 Closes</div><div class="keydate-item-right">12 Dec 2025<small>Friday</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-term"></div> Term 2 Opens</div><div class="keydate-item-right">5 Jan 2026<small>Monday</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-term"></div> Term 2 Closes</div><div class="keydate-item-right">11 Apr 2026<small>Saturday</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-term"></div> Term 3 Opens</div><div class="keydate-item-right">28 Apr 2026<small>Tuesday</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-term"></div> Term 3 Closes</div><div class="keydate-item-right">25 Jul 2026<small>Saturday</small></div></div>
+        </div>
+
+        <div class="keydate-card reveal">
+          <h4><i class="fas fa-pen-alt"></i> Examination Dates</h4>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-exam"></div> Mid-Term 1</div><div class="keydate-item-right">20&ndash;24 Oct 2025<small>All Classes</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-exam"></div> End of Term 1</div><div class="keydate-item-right">1&ndash;5 Dec 2025<small>All Classes</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-exam"></div> Mid-Term 2</div><div class="keydate-item-right">15&ndash;19 Mar 2026<small>All Classes</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-exam"></div> End of Term 2</div><div class="keydate-item-right">6&ndash;10 Apr 2026<small>All Classes</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-exam"></div> BECE</div><div class="keydate-item-right">June 2026 (TBC)<small>JHS 3 Only</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-exam"></div> End of Year Exams</div><div class="keydate-item-right">6&ndash;17 Jul 2026<small>All Classes</small></div></div>
+        </div>
+
+        <div class="keydate-card reveal">
+          <h4><i class="fas fa-star"></i> Special School Events</h4>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-event"></div> Prize Giving Day (T1)</div><div class="keydate-item-right">28 Nov 2025<small>School Hall</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-sports"></div> Inter-House Sports Day</div><div class="keydate-item-right">22 Mar 2026<small>School Field</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-meeting"></div> Parents' Evening (T2)</div><div class="keydate-item-right">28 Mar 2026<small>3:00 PM</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-cultural"></div> Prize Giving &amp; Cultural Day</div><div class="keydate-item-right">5 Apr 2026<small>School Hall</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-event"></div> Career Day</div><div class="keydate-item-right">May 2026 (TBC)<small>School Grounds</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-cultural"></div> Graduation Ceremony</div><div class="keydate-item-right">24 Jul 2026<small>JHS 3</small></div></div>
+        </div>
+
+        <div class="keydate-card reveal">
+          <h4><i class="fas fa-users"></i> Parents &amp; Administrative Dates</h4>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-meeting"></div> Admissions Deadline (2026/27)</div><div class="keydate-item-right">30 Apr 2026<small>Online &amp; Office</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-meeting"></div> Parents' Evening (T1)</div><div class="keydate-item-right">Nov 14, 2025<small>3:00 PM</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-meeting"></div> Parents' Evening (T2)</div><div class="keydate-item-right">28 Mar 2026<small>3:00 PM</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-meeting"></div> Parents' Evening (T3)</div><div class="keydate-item-right">Jul 3, 2026<small>3:00 PM</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-urgent"></div> Term 2 Fees Deadline</div><div class="keydate-item-right">14 Mar 2026<small>School Office</small></div></div>
+          <div class="keydate-item"><div class="keydate-item-left"><div class="dot dot-urgent"></div> Report Card Collection</div><div class="keydate-item-right">End of Each Term<small>Class Teachers</small></div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="cl-footer">
+    <div class="cl-container">
+      <div class="cl-footer-top">
+        <div class="cl-footer-logo">
+          <img src="logo.png" alt="Star Light International School" />
+          <div><span class="cl-footer-name">Star Light International School</span><span class="cl-footer-sub">Kasoa Nyanyano Fetteh Road, Ghana</span></div>
+        </div>
+        <div class="cl-footer-links">
+          <a href="index.html">Home</a>
+          <a href="index.html#about">About</a>
+          <a href="admissions.html">Admissions</a>
+          <a href="newsletter.html">Newsletter</a>
+          <a href="portal.html">Parent Portal</a>
+          <a href="results.html">Results</a>
+          <a href="blog.html">Blog</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div class="cl-footer-copy">
+        <p>&copy; 2026 Star Light International School. All rights reserved.</p>
+        <p>"Excellence Without Limits"</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+  const TERM_CONFIG = {
+    academicYear: '2025/2026',
+    term1: {
+      opens:      '2025-09-11',
+      closes:     '2025-12-12',
+      weeks:      14,
+      schoolDays: 67,
+      highlights: [
+        { icon: 'fa-calendar-day',   text: 'Opens: Thursday, 11 September 2025' },
+        { icon: 'fa-pen-alt',        text: 'Mid-Term Exams: Oct 20\u201324, 2025' },
+        { icon: 'fa-trophy',         text: 'Prize Giving Day: November 28, 2025' },
+        { icon: 'fa-door-closed',    text: 'Closes: Friday, 12 December 2025' },
+        { icon: 'fa-umbrella-beach', text: 'Holiday: Dec 13 \u2014 Jan 4, 2026' },
+      ]
+    },
+    term2: {
+      opens:      '2026-01-05',
+      closes:     '2026-04-11',
+      weeks:      14,
+      schoolDays: 66,
+      highlights: [
+        { icon: 'fa-calendar-day', text: 'Opens: Monday, 5 January 2026' },
+        { icon: 'fa-pen-alt',      text: 'Mid-Term Exams: Mar 15\u201319, 2026' },
+        { icon: 'fa-running',      text: 'Sports Day: March 22, 2026' },
+        { icon: 'fa-users',        text: "Parents' Evening: March 28, 2026" },
+        { icon: 'fa-door-closed',  text: 'Closes: Friday, 11 April 2026' },
+      ]
+    },
+    term3: {
+      opens:      '2026-04-28',
+      closes:     '2026-07-25',
+      weeks:      13,
+      schoolDays: 62,
+      highlights: [
+        { icon: 'fa-calendar-day',   text: 'Opens: Tuesday, 28 April 2026' },
+        { icon: 'fa-pen-alt',        text: 'End of Year Exams: Jul 6\u201317, 2026' },
+        { icon: 'fa-graduation-cap', text: 'JHS 3 BECE: June 2026' },
+        { icon: 'fa-star',           text: 'Prize & Graduation: July 24, 2026' },
+        { icon: 'fa-door-closed',    text: 'Closes: Saturday, 25 July 2026' },
+      ]
+    }
+  };
+
+  const GCAL_API_KEY     = 'AIzaSyCQ6enzSBr3I3KwYTcxvgMZggw31j22Sc0';
+  const GCAL_CALENDAR_ID = 'slibs.admissions@gmail.com';
+
+  const FALLBACK_EVENTS = [
+    { date:'2026-01-05', title:'Term 2 Opens', desc:'All students return for Term 2. School opens at 7:00 AM.', type:'term', venue:'Whole School', time:'7:00 AM' },
+    { date:'2026-04-11', title:'Term 2 Closes', desc:'Last day of Term 2. Students collect report cards from class teachers.', type:'term', venue:'Whole School', time:'12:00 PM' },
+    { date:'2026-04-28', title:'Term 3 Opens', desc:'All students return for Term 3. School opens at 7:00 AM.', type:'term', venue:'Whole School', time:'7:00 AM' },
+    { date:'2026-07-25', title:'End of Academic Year', desc:'Last day of the 2025/2026 academic year.', type:'term', venue:'Whole School', time:'12:00 PM' },
+    { date:'2026-03-15', title:'Mid-Term Exams Begin', desc:'Mid-term examinations for all classes from KG through JHS 3.', type:'exam', venue:'All Classrooms', time:'7:30 AM' },
+    { date:'2026-03-16', title:'Mid-Term Exams — Day 2', desc:'Mathematics and Integrated Science papers.', type:'exam', venue:'All Classrooms', time:'7:30 AM' },
+    { date:'2026-03-17', title:'Mid-Term Exams — Day 3', desc:'Social Studies / RME and Creative Arts papers.', type:'exam', venue:'All Classrooms', time:'7:30 AM' },
+    { date:'2026-03-18', title:'Mid-Term Exams — Day 4', desc:'Ghanaian Language, French and Arabic papers.', type:'exam', venue:'All Classrooms', time:'7:30 AM' },
+    { date:'2026-03-19', title:'Mid-Term Exams — Day 5 (Final)', desc:'Oral and practical assessments for all classes.', type:'exam', venue:'All Classrooms', time:'7:30 AM' },
+    { date:'2026-04-06', title:'End of Term 2 Exams Begin', desc:'End of term examinations for all classes.', type:'exam', venue:'All Classrooms', time:'7:30 AM' },
+    { date:'2026-04-07', title:'End of Term 2 — Day 2', desc:'Mathematics papers — all classes.', type:'exam', venue:'All Classrooms', time:'7:30 AM' },
+    { date:'2026-04-08', title:'End of Term 2 — Day 3', desc:'Integrated Science / Environmental Studies.', type:'exam', venue:'All Classrooms', time:'7:30 AM' },
+    { date:'2026-04-09', title:'End of Term 2 — Day 4', desc:'Social Studies and RME.', type:'exam', venue:'All Classrooms', time:'7:30 AM' },
+    { date:'2026-04-10', title:'End of Term 2 — Day 5 (Final)', desc:'Ghanaian Language and French. Reports prepared after this.', type:'exam', venue:'All Classrooms', time:'7:30 AM' },
+    { date:'2026-01-01', title:"New Year's Day", desc:'Public holiday. School is closed.', type:'holiday', venue:'N/A', time:'All Day' },
+    { date:'2026-01-07', title:'Constitution Day', desc:'Ghana national public holiday. School is closed.', type:'holiday', venue:'N/A', time:'All Day' },
+    { date:'2026-04-03', title:'Good Friday', desc:'Public holiday. School is closed.', type:'holiday', venue:'N/A', time:'All Day' },
+    { date:'2026-04-06', title:'Easter Monday', desc:'Public holiday. School is closed.', type:'holiday', venue:'N/A', time:'All Day' },
+    { date:'2026-05-01', title:"Workers' Day / May Day", desc:'Ghana national public holiday. School is closed.', type:'holiday', venue:'N/A', time:'All Day' },
+    { date:'2026-03-22', title:'Inter-House Sports Day', desc:'Annual athletics and games competition. All students participate. Parents and guardians are warmly welcome.', type:'sports', venue:'School Field', time:'8:00 AM' },
+    { date:'2026-03-28', title:"Parents' Evening", desc:"Meet your child's teachers, review progress and ask questions.", type:'meeting', venue:'School Hall', time:'3:00 PM' },
+    { date:'2026-04-05', title:'Prize Giving & Cultural Day', desc:'Celebration of academic achievement, cultural heritage and outstanding student performance.', type:'cultural', venue:'School Hall', time:'9:00 AM' },
+    { date:'2026-05-15', title:'Career Day', desc:'Students explore different professions. Guest speakers from various career fields.', type:'event', venue:'School Grounds', time:'8:00 AM' },
+    { date:'2026-07-03', title:"Parents' Evening — Term 3", desc:'End of year parent-teacher consultation. Review full year progress.', type:'meeting', venue:'School Hall', time:'3:00 PM' },
+    { date:'2026-07-24', title:'Prize Giving & Graduation Ceremony', desc:'Graduation ceremony for JHS 3 leavers and annual prize giving for all outstanding students.', type:'cultural', venue:'School Hall', time:'9:00 AM' },
+  ];
+
+  const COLOR_TYPE_MAP = {
+    '11':'exam','6':'sports','5':'term','2':'holiday','9':'holiday',
+    '7':'event','8':'meeting','1':'cultural','4':'cultural','3':'cultural','10':'exam',
+  };
+
+  function parseDesc(rawDesc) {
+    if (!rawDesc) return { desc:'', venue:'School', time:'See calendar' };
+    const clean = rawDesc.replace(/<[^>]+>/g,'');
+    const venueMatch = clean.match(/Venue:\s*(.+)/i);
+    const timeMatch  = clean.match(/Time:\s*(.+)/i);
+    const desc = clean.replace(/Venue:\s*.+/gi,'').replace(/Time:\s*.+/gi,'').trim();
+    return { desc: desc||clean.trim(), venue: venueMatch?venueMatch[1].trim():'School', time: timeMatch?timeMatch[1].trim():'See calendar' };
+  }
+
+  function mapGoogleEvent(item) {
+    const isAllDay = !!item.start.date;
+    const dateStr  = isAllDay ? item.start.date : item.start.dateTime.slice(0,10);
+    let timeStr = 'All Day';
+    if (item.start.dateTime) {
+      const d = new Date(item.start.dateTime);
+      timeStr = d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    }
+    const type = COLOR_TYPE_MAP[item.colorId||'']||'event';
+    const {desc,venue,time} = parseDesc(item.description||'');
+    return { date:dateStr, title:item.summary||'(No title)', desc:desc||item.summary||'', type, venue, time:time!=='See calendar'?time:timeStr };
+  }
+
+  async function fetchGoogleCalendarEvents() {
+    if (GCAL_API_KEY==='YOUR_API_KEY_HERE'||GCAL_CALENDAR_ID==='YOUR_CALENDAR_ID_HERE') return null;
+    try {
+      const timeMin = encodeURIComponent(new Date('2025-09-01').toISOString());
+      const timeMax = encodeURIComponent(new Date('2026-08-31').toISOString());
+      const calId   = encodeURIComponent(GCAL_CALENDAR_ID);
+      const url = `https://www.googleapis.com/calendar/v3/calendars/${calId}/events?key=${GCAL_API_KEY}&timeMin=${timeMin}&timeMax=${timeMax}&singleEvents=true&orderBy=startTime&maxResults=500`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      if (data.error) throw new Error(data.error.message);
+      return (data.items||[]).map(mapGoogleEvent);
+    } catch(err) {
+      console.warn('Google Calendar fetch failed — using built-in events.',err);
+      return null;
+    }
+  }
+
+  let EVENTS = FALLBACK_EVENTS;
+  const MONTHS       = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const SHORT_MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const _today = new Date();
+  let currentMonth = _today.getMonth();
+  let currentYear  = _today.getFullYear();
+
+  function getEventsForDate(y,m,d) {
+    const ds = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    return EVENTS.filter(e=>e.date===ds);
+  }
+
+  function renderCalendar(month,year) {
+    const grid = document.getElementById('calDays');
+    document.getElementById('calMonthName').textContent = MONTHS[month]+' '+year;
+    grid.innerHTML='';
+    const firstDay=new Date(year,month,1).getDay();
+    const daysInMonth=new Date(year,month+1,0).getDate();
+    const today=new Date();
+    for(let i=0;i<firstDay;i++){const e=document.createElement('div');e.className='cal-day empty';grid.appendChild(e);}
+    for(let d=1;d<=daysInMonth;d++){
+      const cell=document.createElement('div');
+      const dow=(firstDay+d-1)%7;
+      let cls='cal-day';
+      if(dow===0||dow===6) cls+=' weekend';
+      if(d===today.getDate()&&month===today.getMonth()&&year===today.getFullYear()) cls+=' today';
+      const evs=getEventsForDate(year,month,d);
+      if(evs.some(e=>e.type==='holiday')) cls+=' holiday';
+      cell.className=cls;
+      const numDiv=document.createElement('div');numDiv.className='day-num';numDiv.textContent=d;cell.appendChild(numDiv);
+      const evDiv=document.createElement('div');evDiv.className='day-events';
+      evs.slice(0,2).forEach(ev=>{const e=document.createElement('div');e.className=`day-event de-${ev.type}`;e.textContent=ev.title;e.title=ev.title+(ev.desc?' — '+ev.desc:'');evDiv.appendChild(e);});
+      if(evs.length>2){const more=document.createElement('div');more.className='more-events';more.textContent=`+${evs.length-2} more`;evDiv.appendChild(more);}
+      cell.appendChild(evDiv);grid.appendChild(cell);
+    }
+  }
+
+  function renderEvents(filter) {
+    const list=document.getElementById('eventsList');list.innerHTML='';
+    const filtered=filter==='all'?EVENTS:EVENTS.filter(e=>e.type===filter);
+    const sorted=[...filtered].sort((a,b)=>new Date(a.date)-new Date(b.date));
+    if(sorted.length===0){list.innerHTML='<p style="color:#7a7565;font-size:0.84rem;padding:20px 0;">No events found for this category.</p>';return;}
+    sorted.forEach(ev=>{
+      const d=new Date(ev.date);const row=document.createElement('div');row.className='event-row';row.dataset.type=ev.type;
+      row.innerHTML=`<div class="event-date-col"><div class="event-day-big">${d.getDate()}</div><div class="event-month-sm">${SHORT_MONTHS[d.getMonth()]}</div><div class="event-year-sm">${d.getFullYear()}</div></div><div class="event-content"><h4>${ev.title}</h4><p>${ev.desc}</p><div class="event-meta-row"><span class="event-meta-item"><i class="fas fa-clock"></i>${ev.time}</span><span class="event-meta-item"><i class="fas fa-map-marker-alt"></i>${ev.venue}</span></div></div><div class="event-badge-col"><span class="badge badge-${ev.type}">${ev.type.charAt(0).toUpperCase()+ev.type.slice(1)}</span></div>`;
+      list.appendChild(row);
+    });
+  }
+
+  function setStatus(ok,msg) {
+    document.getElementById('gcal-dot').style.background=ok?'#4ecca3':'#e06b6b';
+    document.getElementById('gcal-msg').style.color=ok?'#4ecca3':'#e06b6b';
+    document.getElementById('gcal-msg').textContent=msg;
+  }
+
+  function renderTermCards() {
+    const today=new Date();today.setHours(0,0,0,0);
+    [1,2,3].forEach(n=>{
+      const cfg=TERM_CONFIG['term'+n];const card=document.getElementById('term-card-'+n);const header=card.querySelector('.term-card-header');
+      const start=new Date(cfg.opens);const end=new Date(cfg.closes);
+      const existingTag=card.querySelector('.current-tag');if(existingTag)existingTag.remove();
+      card.classList.remove('active');
+      if(today>=start&&today<=end){card.classList.add('active');const tag=document.createElement('span');tag.className='current-tag';tag.innerHTML='&#9679; Current Term';header.appendChild(tag);}
+      const datesEl=document.getElementById('term-dates-'+n);
+      if(datesEl){const fmtDate=d=>d.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});datesEl.innerHTML=`<i class="fas fa-calendar"></i> ${fmtDate(start)} &mdash; ${fmtDate(end)}`;}
+      const yearEl=document.getElementById('term-year-'+n);
+      if(yearEl){const labels=['First','Second','Third'];yearEl.textContent=`${labels[n-1]} Term \u2022 ${TERM_CONFIG.academicYear}`;}
+      card.querySelectorAll('.term-stat-val')[0]&&(card.querySelectorAll('.term-stat-val')[0].textContent=cfg.weeks);
+      card.querySelectorAll('.term-stat-val')[1]&&(card.querySelectorAll('.term-stat-val')[1].textContent=cfg.schoolDays);
+      const hl=card.querySelector('.term-highlights');
+      if(hl){hl.innerHTML=cfg.highlights.map(h=>`<div class="term-highlight"><i class="fas ${h.icon}"></i> ${h.text}</div>`).join('');}
+    });
+  }
+
+  async function init() {
+    renderTermCards();
+    const gcalEvents=await fetchGoogleCalendarEvents();
+    if(gcalEvents===null&&GCAL_API_KEY==='YOUR_API_KEY_HERE'){setStatus(false,'\u26a0 Google Calendar not configured \u2014 showing built-in events');}
+    else if(gcalEvents===null){setStatus(false,'\u26a0 Could not connect to Google Calendar \u2014 make sure your calendar is set to Public');}
+    else if(gcalEvents.length===0){setStatus(true,'\u2713 Connected to Google Calendar \u2014 no events added yet.');}
+    else{EVENTS=gcalEvents;setStatus(true,'\u2713 Live \u2014 '+gcalEvents.length+' events loaded from Google Calendar');}
+    document.querySelectorAll('.month-tab').forEach(tab=>{
+      tab.classList.toggle('active',parseInt(tab.dataset.month)===currentMonth);
+      tab.addEventListener('click',()=>{document.querySelectorAll('.month-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');currentMonth=parseInt(tab.dataset.month);renderCalendar(currentMonth,currentYear);});
+    });
+    renderCalendar(currentMonth,currentYear);
+    document.querySelectorAll('.filter-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderEvents(btn.dataset.filter);});
+    });
+    renderEvents('all');
+    document.querySelectorAll('.exam-tab').forEach(tab=>{
+      tab.addEventListener('click',()=>{document.querySelectorAll('.exam-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.exam-panel').forEach(p=>p.classList.remove('active'));document.getElementById('panel-'+tab.dataset.exam).classList.add('active');});
+    });
+  }
+
+  init();
+  </script>
+
+</body>
+</html>

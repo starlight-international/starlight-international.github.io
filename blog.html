@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog &amp; News — Star Light International School</title>
+  <meta name="description" content="Stories, advice, insights and updates from Star Light International School — Kasoa, Ghana." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ══════════════════════════════════════════════════
+       COLOUR SYSTEM — matches newsletter exactly
+    ══════════════════════════════════════════════════ */
+    :root {
+      --navy:    #0a0f1e;   /* main background */
+      --navy2:   #0d1525;   /* slightly lighter navy */
+      --navy3:   #111c30;   /* cards/panels */
+      --royal:   #1a3d8f;   /* royal blue accent */
+      --royal-l: #2251b8;   /* royal blue lighter */
+      --gold:    #c9a84c;
+      --gold-l:  #e6c76a;
+      --gold-p:  #f0dfa0;
+      --white:   #f4f1ea;
+      --text:    #c8c2b4;
+      --muted:   #7a7565;
+      --green:   #4ecca3;
+      --red:     #e06b6b;
+      --blue:    #88aaff;
+      --orange:  #ff9f43;
+      --purple:  #cc88ff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'Lato', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Shared container ── */
+    .bl-container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+    /* ── Reveal animation ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-18px);}to{opacity:1;transform:translateY(0);} }
+    @keyframes fadeUp   { from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);} }
+
+    /* ══════════════════════════════════════════════════
+       SECTION HEADERS
+    ══════════════════════════════════════════════════ */
+    .bl-tag {
+      display: inline-block; font-family: 'Cinzel', serif;
+      font-size: 0.68rem; color: var(--gold);
+      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px;
+    }
+    .bl-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 700; color: var(--white); margin-bottom: 12px; line-height: 1.2;
+    }
+    .bl-title span { color: var(--gold-l); }
+    .bl-rule {
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 40px;
+    }
+
+    /* ══════════════════════════════════════════════════
+       CATEGORY PILLS — exact newsletter match
+    ══════════════════════════════════════════════════ */
+    .cat-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.63rem; font-family: 'Cinzel', serif;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 4px 11px; border-radius: 20px; white-space: nowrap;
+    }
+    .cp-events       { background: rgba(136,170,255,0.12); color: #88aaff;  border: 1px solid rgba(136,170,255,0.22); }
+    .cp-achievements { background: rgba(201,168,76,0.12);  color: #e6c76a;  border: 1px solid rgba(201,168,76,0.22); }
+    .cp-learning     { background: rgba(78,204,163,0.12);  color: #4ecca3;  border: 1px solid rgba(78,204,163,0.22); }
+    .cp-student-life { background: rgba(255,159,67,0.12);  color: #ff9f43;  border: 1px solid rgba(255,159,67,0.22); }
+    .cp-parents      { background: rgba(204,136,255,0.12); color: #cc88ff;  border: 1px solid rgba(204,136,255,0.22); }
+    .cp-advice       { background: rgba(255,159,67,0.12);  color: #ff9f43;  border: 1px solid rgba(255,159,67,0.22); }
+    .cp-cultural     { background: rgba(204,136,255,0.12); color: #cc88ff;  border: 1px solid rgba(204,136,255,0.22); }
+    .cp-sports       { background: rgba(224,107,107,0.12); color: #e06b6b;  border: 1px solid rgba(224,107,107,0.22); }
+    .cp-news         { background: rgba(78,204,163,0.12);  color: #4ecca3;  border: 1px solid rgba(78,204,163,0.22); }
+    .cp-staff        { background: rgba(160,196,255,0.12); color: #a0c4ff;  border: 1px solid rgba(160,196,255,0.22); }
+
+    /* ══════════════════════════════════════════════════
+       HERO SLIDER
+    ══════════════════════════════════════════════════ */
+    .bl-hero {
+      position: relative;
+      height: 580px;
+      overflow: hidden;
+    }
+
+    /* Individual slides */
+    .bl-slide {
+      position: absolute; inset: 0;
+      display: flex; align-items: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 1s ease;
+      z-index: 1;
+    }
+    .bl-slide.active { opacity: 1; pointer-events: auto; z-index: 2; }
+
+    /* Slide background image */
+    .bl-slide-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+    }
+    /* Overlay — navy + royal blue gradient so it matches newsletter palette */
+    .bl-slide-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        120deg,
+        rgba(10,15,30,0.88) 0%,
+        rgba(26,61,143,0.55) 55%,
+        rgba(10,15,30,0.70) 100%
+      );
+    }
+    /* Fallback colour per slide when no image */
+    .bl-slide:nth-child(1) .bl-slide-bg { background-color: #0d1525; background-image: url('images/blog/slide1.jpg'); }
+    .bl-slide:nth-child(2) .bl-slide-bg { background-color: #0f1a2e; background-image: url('images/blog/slide2.jpg'); }
+    .bl-slide:nth-child(3) .bl-slide-bg { background-color: #0a1020; background-image: url('images/blog/slide3.jpg'); }
+
+    /* Slide content */
+    .bl-slide-content {
+      position: relative; z-index: 1;
+      max-width: 680px; padding: 0 28px;
+    }
+    .slide-cat {
+      margin-bottom: 16px;
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
+    }
+    .bl-slide.active .slide-cat { opacity: 1; transform: translateY(0); }
+
+    .slide-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 900; color: var(--white); line-height: 1.15;
+      margin-bottom: 16px;
+      text-shadow: 0 3px 24px rgba(0,0,0,0.5);
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.7s ease 0.35s, transform 0.7s ease 0.35s;
+    }
+    .bl-slide.active .slide-title { opacity: 1; transform: translateY(0); }
+    .slide-title .gold { color: var(--gold-l); }
+
+    .slide-excerpt {
+      font-family: 'Amiri', serif; font-style: italic;
+      font-size: 1.05rem; color: rgba(255,255,255,0.8);
+      line-height: 1.75; margin-bottom: 28px;
+      max-width: 540px;
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.7s ease 0.5s, transform 0.7s ease 0.5s;
+    }
+    .bl-slide.active .slide-excerpt { opacity: 1; transform: translateY(0); }
+
+    .slide-meta {
+      display: flex; align-items: center; gap: 18px;
+      font-size: 0.78rem; color: rgba(255,255,255,0.55);
+      margin-bottom: 28px;
+      opacity: 0; transition: opacity 0.6s ease 0.55s;
+    }
+    .bl-slide.active .slide-meta { opacity: 1; }
+    .slide-meta i { color: var(--gold); margin-right: 5px; }
+
+    .slide-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-l));
+      color: #0a0a0a; font-family: 'Cinzel', serif;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 13px 30px; border-radius: 3px;
+      border: none; cursor: pointer; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(201,168,76,0.35);
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.6s ease 0.65s, transform 0.6s ease 0.65s, box-shadow 0.3s;
+    }
+    .bl-slide.active .slide-btn { opacity: 1; transform: translateY(0); }
+    .slide-btn:hover { box-shadow: 0 12px 36px rgba(201,168,76,0.5); transform: translateY(-2px); }
+
+    /* Slider controls */
+    .slider-controls {
+      position: absolute; bottom: 28px; left: 28px;
+      display: flex; align-items: center; gap: 14px; z-index: 10;
+    }
+    .slider-dots { display: flex; gap: 8px; }
+    .slider-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.3); border: none;
+      cursor: pointer; transition: all 0.3s; padding: 0;
+    }
+    .slider-dot.active { background: var(--gold); transform: scale(1.4); }
+
+    .slider-arrows { position: absolute; top: 50%; right: 28px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 10px; z-index: 10; }
+    .slider-arrow {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold); font-size: 0.9rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.3s;
+    }
+    .slider-arrow:hover { background: rgba(201,168,76,0.18); }
+
+    /* Slider progress bar */
+    .slider-progress-bar {
+      position: absolute; bottom: 0; left: 0;
+      height: 3px; background: var(--gold);
+      width: 0%; z-index: 10; transition: width linear;
+    }
+
+    /* ══════════════════════════════════════════════════
+       FILTER / CATEGORY BAR
+    ══════════════════════════════════════════════════ */
+    .filter-bar {
+      background: linear-gradient(180deg, rgba(13,21,37,0.95), rgba(10,15,30,0.98));
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      border-top: 2px solid var(--royal);
+      padding: 0;
+      position: sticky; top: 0;
+      z-index: 50;
+    }
+    .filter-inner {
+      display: flex; align-items: center;
+      gap: 0; overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .filter-inner::-webkit-scrollbar { display: none; }
+
+    .filter-btn {
+      display: flex; align-items: center; gap: 7px;
+      padding: 16px 20px;
+      font-family: 'Cinzel', serif; font-size: 0.7rem;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      color: var(--muted); cursor: pointer;
+      background: none; border: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap; transition: all 0.25s;
+    }
+    .filter-btn:hover { color: var(--text); }
+    .filter-btn.active {
+      color: var(--gold-l);
+      border-bottom-color: var(--gold);
+      background: rgba(201,168,76,0.04);
+    }
+    .filter-btn i { font-size: 0.72rem; }
+
+    .filter-search {
+      margin-left: auto; padding: 10px 20px;
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.04);
+      border-left: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+    .filter-search i { color: var(--muted); font-size: 0.8rem; }
+    .filter-search input {
+      background: none; border: none; outline: none;
+      color: var(--white); font-size: 0.82rem;
+      font-family: 'Lato', sans-serif; width: 160px;
+    }
+    .filter-search input::placeholder { color: var(--muted); }
+
+    /* ══════════════════════════════════════════════════
+       CIS-STYLE POST CARDS
+       Image → Category → Title → Excerpt → READ MORE
+    ══════════════════════════════════════════════════ */
+    .posts-section { padding: 60px 0 80px; }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .post-card {
+      background: var(--navy3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .post-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(201,168,76,0.25);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+    }
+
+    /* Image area — top of card */
+    .pc-img {
+      width: 100%; height: 210px;
+      overflow: hidden; position: relative;
+      background: linear-gradient(135deg, var(--navy2), var(--royal));
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .pc-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .post-card:hover .pc-img img { transform: scale(1.05); }
+    .pc-img-placeholder {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px; color: rgba(201,168,76,0.2); padding: 20px;
+    }
+    .pc-img-placeholder i { font-size: 2.5rem; }
+    .pc-img-placeholder span { font-size: 0.66rem; color: var(--muted); text-align: center; line-height: 1.5; }
+
+    /* Royal blue category bar over image bottom */
+    .pc-cat-bar {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(90deg, rgba(26,61,143,0.92), rgba(10,15,30,0.7));
+      padding: 8px 14px;
+      display: flex; align-items: center; gap: 8px;
+    }
+
+    /* Card body */
+    .pc-body {
+      padding: 22px 22px 0; flex: 1;
+      display: flex; flex-direction: column;
+    }
+    .pc-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--white); line-height: 1.45;
+      margin-bottom: 12px;
+    }
+    .pc-excerpt {
+      font-size: 0.86rem; color: var(--text);
+      line-height: 1.7; flex: 1; margin-bottom: 18px;
+    }
+    .pc-meta {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .pc-meta span {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; color: var(--muted);
+    }
+    .pc-meta i { color: var(--gold); font-size: 0.66rem; }
+
+    /* READ MORE — CIS style: full-width bottom strip */
+    .pc-read-more {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; padding: 14px 22px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-family: 'Cinzel', serif; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gold-l); font-weight: 700;
+      transition: background 0.3s, color 0.3s;
+      margin-top: auto;
+    }
+    .post-card:hover .pc-read-more {
+      background: var(--royal);
+      color: var(--white);
+      border-top-color: var(--royal);
+    }
+    .pc-read-more i { font-size: 0.7rem; transition: transform 0.3s; }
+    .post-card:hover .pc-read-more i { transform: translateX(4px); }
+
+    /* ══════════════════════════════════════════════════
+       POST COUNT + SORT BAR
+    ══════════════════════════════════════════════════ */
+    .posts-topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 32px; flex-wrap: wrap; gap: 12px;
+    }
+    .posts-count {
+      font-family: 'Cinzel', serif; font-size: 0.72rem;
+      color: var(--muted); letter-spacing: 1px;
+    }
+    .posts-count span { color: var(--gold-l); font-weight: 700; }
+
+    /* ══════════════════════════════════════════════════
+       FULL PAGE POST VIEW
+       Opens as a completely new full-screen page —
+       no more centred panel, fills the entire screen.
+    ══════════════════════════════════════════════════ */
+    .post-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: var(--navy);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+    .post-overlay.open { display: block; }
+
+    /* The "modal" is now a full-width page layout */
+    .post-modal {
+      background: var(--navy);
+      width: 100%;
+      min-height: 100vh;
+      animation: fadeUp 0.4s ease;
+    }
+
+    /* Sticky top bar — back button + breadcrumb */
+    .modal-topbar {
+      position: sticky; top: 0; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 32px;
+      background: rgba(10,15,30,0.97);
+      border-bottom: 2px solid var(--royal);
+      backdrop-filter: blur(10px);
+    }
+    .modal-topbar-left {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Cinzel', serif; font-size: 0.68rem;
+      color: var(--gold); letter-spacing: 2px; text-transform: uppercase;
+    }
+    .modal-topbar-left::before {
+      content: ''; display: block;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold);
+    }
+    .modal-close-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(26,61,143,0.3);
+      border: 1px solid rgba(26,61,143,0.6);
+      border-radius: 6px; padding: 8px 18px;
+      color: var(--white); font-size: 0.76rem;
+      cursor: pointer; font-family: 'Cinzel', serif;
+      letter-spacing: 0.5px; transition: 0.3s;
+    }
+    .modal-close-btn:hover {
+      background: rgba(201,168,76,0.12);
+      border-color: rgba(201,168,76,0.4);
+      color: var(--gold-l);
+    }
+
+    /* Hero cover — full width, tall, cinematic */
+    .modal-cover {
+      width: 100%; height: 70vh; min-height: 400px; max-height: 640px;
+      overflow: hidden; position: relative;
+      background: linear-gradient(135deg, var(--navy2), var(--royal));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-cover img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.82);
+    }
+    .modal-cover-placeholder {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 12px; color: rgba(201,168,76,0.15);
+    }
+    .modal-cover-placeholder i { font-size: 5rem; }
+
+    /* Royal blue category strip at bottom of cover */
+    .modal-cat-strip {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 16px 40px 20px;
+      background: linear-gradient(0deg, rgba(10,15,30,0.92) 0%, transparent 100%);
+    }
+
+    /* Body — centred readable column, generous whitespace */
+    .modal-body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 52px 32px 80px;
+    }
+
+    .modal-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+      font-weight: 900; color: var(--white);
+      line-height: 1.2; margin-bottom: 20px;
+    }
+
+    .modal-info-row {
+      display: flex; gap: 22px; flex-wrap: wrap;
+      padding-bottom: 22px; margin-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .modal-info-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 0.8rem; color: var(--muted);
+    }
+    .modal-info-item i { color: var(--gold); font-size: 0.72rem; }
+
+    .modal-author-line {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 36px;
+      padding: 18px 20px;
+      background: rgba(26,61,143,0.12);
+      border: 1px solid rgba(26,61,143,0.25);
+      border-left: 3px solid var(--royal);
+      border-radius: 0 6px 6px 0;
+    }
+    .modal-author-avatar {
+      width: 46px; height: 46px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--royal), var(--royal-l));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cinzel', serif; font-size: 0.88rem;
+      color: var(--white); font-weight: 700; flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(26,61,143,0.4);
+    }
+    .modal-author-info .author-name {
+      font-size: 0.9rem; color: var(--white); font-weight: 700;
+    }
+    .modal-author-info .author-role {
+      font-size: 0.74rem; color: var(--muted); margin-top: 3px;
+    }
+
+    /* Article body text — comfortable reading width */
+    .modal-content {
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem; color: var(--text);
+      line-height: 2.0;
+    }
+    .modal-content p { margin-bottom: 20px; }
+    .modal-content p:last-child { margin-bottom: 0; }
+    .modal-content h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--gold-l);
+      margin: 36px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      letter-spacing: 0.5px;
+    }
+
+    /* Photo gallery inside modal */
+    .modal-gallery { margin: 28px 0; }
+    .gallery-heading {
+      font-family: 'Cinzel', serif; font-size: 0.78rem;
+      color: var(--gold-l); letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+    }
+    .gallery-heading::after { content:''; flex:1; height:1px; background: linear-gradient(90deg,rgba(201,168,76,0.3),transparent); }
+    .modal-gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .modal-gallery-grid.two-col { grid-template-columns: repeat(2,1fr); }
+    .modal-gallery-grid.four-col { grid-template-columns: repeat(4,1fr); }
+    .gallery-item {
+      aspect-ratio: 4/3; border-radius: 4px; overflow: hidden;
+      cursor: pointer; position: relative;
+      background: rgba(255,255,255,0.03); border: 1px dashed rgba(201,168,76,0.18);
+    }
+    .gallery-item img { width:100%; height:100%; object-fit:cover; transition: transform 0.4s; }
+    .gallery-item:hover img { transform: scale(1.07); }
+    .gallery-ph { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; }
+    .gallery-ph i { font-size:1.4rem; color:rgba(201,168,76,0.2); }
+    .gallery-ph span { font-size:0.62rem; color:var(--muted); text-align:center; padding:0 8px; }
+
+    /* Share row */
+    .modal-share {
+      display: flex; align-items: center; gap: 12px;
+      padding-top: 24px; margin-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      flex-wrap: wrap;
+    }
+    .share-label { font-family: 'Cinzel', serif; font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; }
+    .share-btn {
+      display: flex; align-items: center; gap: 7px;
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 6px; padding: 7px 14px; font-size: 0.76rem;
+      color: var(--text); cursor: pointer; transition: 0.3s;
+    }
+    .share-btn:hover { border-color: rgba(201,168,76,0.3); color: var(--gold-l); }
+
+    /* Fullscreen image viewer */
+    .img-viewer { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.96); z-index:2000; align-items:center; justify-content:center; }
+    .img-viewer.open { display:flex; }
+    .img-viewer img { max-width:90vw; max-height:88vh; border-radius:4px; object-fit:contain; }
+    .iv-close { position:fixed; top:20px; right:24px; background:rgba(255,255,255,0.1); border:none; color:#fff; font-size:1.4rem; cursor:pointer; border-radius:50%; width:40px; height:40px; display:flex; align-items:center; justify-content:center; }
+    .iv-caption { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(0,0,0,0.7); border:1px solid rgba(255,255,255,0.1); border-radius:20px; padding:8px 20px; font-size:0.82rem; color:#fff; max-width:500px; text-align:center; }
+
+    /* ══════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════ */
+    .bl-footer {
+      background: rgba(13,21,37,0.98);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 48px 0 28px;
+    }
+    .bl-footer-top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 28px; flex-wrap: wrap;
+      padding-bottom: 28px; margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .bl-footer-logo { display: flex; align-items: center; gap: 14px; }
+    .bl-footer-logo img { height: 48px; object-fit: contain; }
+    .bl-footer-name { font-family: 'Cinzel', serif; font-size: 0.96rem; color: var(--gold-l); display: block; }
+    .bl-footer-sub  { font-size: 0.7rem; color: var(--muted); display: block; margin-top: 2px; }
+    .bl-footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .bl-footer-links a { font-size: 0.76rem; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    .bl-footer-links a:hover { color: var(--gold-l); }
+    .bl-footer-copy { text-align: center; font-size: 0.74rem; color: var(--muted); }
+    .bl-footer-copy p+p { margin-top: 4px; font-style: italic; color: rgba(122,117,101,0.6); }
+
+    /* ══════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════ */
+    @media(max-width:1024px) {
+      .posts-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media(max-width:768px) {
+      .bl-hero { height: 480px; }
+      .slider-arrows { display: none; }
+      .posts-grid { grid-template-columns: repeat(2,1fr); }
+      .modal-body { padding: 24px 20px; }
+      .modal-gallery-grid.four-col { grid-template-columns: repeat(2,1fr); }
+    }
+    @media(max-width:520px) {
+      .posts-grid { grid-template-columns: 1fr; }
+      .bl-hero { height: 420px; }
+      .filter-search { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="starsCanvas"></canvas>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <img src="logo.png" alt="Star Light Logo" class="preloader-logo-img" />
+      <div class="preloader-bar"><div class="preloader-fill"></div></div>
+      <p class="preloader-text">Loading Star Light Blog...</p>
+    </div>
+  </div>
+
+  <!-- ══ NAVBAR ══ -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Star Light International School" class="nav-logo-img" />
+        <div>
+          <span class="nav-logo-name">Star Light</span>
+          <span class="nav-logo-sub">International School</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#academics">Academics</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="portal.html">Portal</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="admissions.html" class="btn-portal"><i class="fas fa-user-graduate"></i> Apply Now</a>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#academics">Academics</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="portal.html">Parent Portal</a></li>
+        <li><a href="blog.html">Blog &amp; News</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="teachers.html">Teachers</a></li>
+        <li><a href="career.html">Careers</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+        <li><a href="calendar.html">Calendar</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ══ HERO SLIDER ══ -->
+  <section class="bl-hero" id="heroSlider">
+
+    <!-- Slide 1 -->
+    <div class="bl-slide active" id="slide-0">
+      <div class="bl-slide-bg"></div>
+      <div class="bl-container">
+        <div class="bl-slide-content">
+          <div class="slide-cat">
+            <span class="cat-pill cp-parents"><i class="fas fa-heart"></i> Parents</span>
+          </div>
+          <h1 class="slide-title">The Role of Parenting<br>in <span class="gold">Education</span></h1>
+          <p class="slide-excerpt">A child's first and most important teacher is not in a classroom. Discover how involved parenting shapes confidence, curiosity and academic success.</p>
+          <div class="slide-meta">
+            <span><i class="fas fa-user"></i> Christopher Mawusi Agbeti</span>
+            <span><i class="fas fa-clock"></i> 6 min read</span>
+          </div>
+          <button class="slide-btn" onclick="openPostBySlug('parenting-education')">
+            <i class="fas fa-book-open"></i> Read Full Article
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="bl-slide" id="slide-1">
+      <div class="bl-slide-bg"></div>
+      <div class="bl-container">
+        <div class="bl-slide-content">
+          <div class="slide-cat">
+            <span class="cat-pill cp-advice"><i class="fas fa-lightbulb"></i> Advice</span>
+          </div>
+          <h2 class="slide-title">How to Prepare<br>for <span class="gold">BECE</span></h2>
+          <p class="slide-excerpt">The BECE is not a barrier — it is a doorway. Here is everything every JHS 3 student and parent needs to know to walk through it with confidence.</p>
+          <div class="slide-meta">
+            <span><i class="fas fa-user"></i> Christopher Mawusi Agbeti</span>
+            <span><i class="fas fa-clock"></i> 7 min read</span>
+          </div>
+          <button class="slide-btn" onclick="openPostBySlug('bece-preparation')">
+            <i class="fas fa-book-open"></i> Read Full Article
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="bl-slide" id="slide-2">
+      <div class="bl-slide-bg"></div>
+      <div class="bl-container">
+        <div class="bl-slide-content">
+          <div class="slide-cat">
+            <span class="cat-pill cp-learning"><i class="fas fa-brain"></i> Learning</span>
+          </div>
+          <h2 class="slide-title">The Science of<br><span class="gold">Learning to Learn</span></h2>
+          <p class="slide-excerpt">What if studying smarter was a skill that could be taught? Neuroscience has the answer — and every student, parent and teacher needs to know it.</p>
+          <div class="slide-meta">
+            <span><i class="fas fa-user"></i> Christopher Mawusi Agbeti</span>
+            <span><i class="fas fa-clock"></i> 8 min read</span>
+          </div>
+          <button class="slide-btn" onclick="openPostBySlug('science-of-learning')">
+            <i class="fas fa-book-open"></i> Read Full Article
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dot navigation -->
+    <div class="slider-controls">
+      <div class="slider-dots">
+        <button class="slider-dot active" data-index="0"></button>
+        <button class="slider-dot" data-index="1"></button>
+        <button class="slider-dot" data-index="2"></button>
+      </div>
+    </div>
+
+    <!-- Arrow navigation -->
+    <div class="slider-arrows">
+      <button class="slider-arrow" id="heroPrev" aria-label="Previous"><i class="fas fa-chevron-up"></i></button>
+      <button class="slider-arrow" id="heroNext" aria-label="Next"><i class="fas fa-chevron-down"></i></button>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="slider-progress-bar" id="heroProgress"></div>
+  </section>
+  <!-- ═══════════════════════════════════════════════
+       END OF SECTION 1
+       Continue with blog_section2.html
+  ═══════════════════════════════════════════════ -->
+</body>
+</html>
+<!-- ═══════════════════════════════════════════════
+       SECTION 2 — Filter Bar, Posts Grid, Modal, Footer
+       Paste this immediately after the hero slider
+       (replace the END OF SECTION 1 comment block)
+  ═══════════════════════════════════════════════ -->
+
+  <!-- ══ FILTER / CATEGORY BAR ══ -->
+  <nav class="filter-bar">
+    <div class="bl-container">
+      <div class="filter-inner">
+        <button class="filter-btn active" data-cat="all">
+          <i class="fas fa-th"></i> All Posts
+        </button>
+        <button class="filter-btn" data-cat="events">
+          <i class="fas fa-calendar-star"></i> Events
+        </button>
+        <button class="filter-btn" data-cat="achievements">
+          <i class="fas fa-trophy"></i> Achievements
+        </button>
+        <button class="filter-btn" data-cat="learning">
+          <i class="fas fa-book-open"></i> Learning
+        </button>
+        <button class="filter-btn" data-cat="student-life">
+          <i class="fas fa-users"></i> Student Life
+        </button>
+        <button class="filter-btn" data-cat="parents">
+          <i class="fas fa-heart"></i> Parents
+        </button>
+        <button class="filter-btn" data-cat="advice">
+          <i class="fas fa-lightbulb"></i> Advice
+        </button>
+        <button class="filter-btn" data-cat="cultural">
+          <i class="fas fa-drum"></i> Cultural
+        </button>
+        <button class="filter-btn" data-cat="sports">
+          <i class="fas fa-running"></i> Sports
+        </button>
+        <div class="filter-search">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Search articles..." />
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══ POSTS SECTION ══ -->
+  <main>
+    <section class="posts-section">
+      <div class="bl-container">
+
+        <!-- Top bar: count -->
+        <div class="posts-topbar">
+          <div class="posts-count">
+            Showing <span id="postsCountNum">0</span> articles
+          </div>
+        </div>
+
+        <!-- Posts grid — rendered by JS -->
+        <div class="posts-grid" id="postsGrid"></div>
+
+        <!-- Empty state -->
+        <div id="emptyState" style="display:none; text-align:center; padding:80px 20px; color:var(--muted);">
+          <i class="fas fa-search" style="font-size:2.5rem;margin-bottom:16px;display:block;color:rgba(201,168,76,0.2);"></i>
+          <p style="font-family:'Cinzel',serif;font-size:0.9rem;margin-bottom:8px;color:var(--text);">No articles found</p>
+          <p style="font-size:0.82rem;">Try a different category or search term.</p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ══ FULL POST MODAL ══ -->
+  <div class="post-overlay" id="postOverlay">
+    <div class="post-modal" id="postModal">
+      <div class="modal-topbar">
+        <span class="modal-topbar-left">
+          <i class="fas fa-newspaper" style="margin-right:8px;"></i>Star Light Blog
+        </span>
+        <button class="modal-close-btn" onclick="closePost()">
+          <i class="fas fa-times"></i> Close
+        </button>
+      </div>
+      <div id="postContent"></div>
+    </div>
+  </div>
+
+  <!-- ══ FULLSCREEN IMAGE VIEWER ══ -->
+  <div class="img-viewer" id="imgViewer" onclick="closeViewer()">
+    <button class="iv-close" onclick="event.stopPropagation();closeViewer()">
+      <i class="fas fa-times"></i>
+    </button>
+    <img id="viewerImg" src="" alt="" onclick="event.stopPropagation()" />
+    <div class="iv-caption" id="viewerCaption"></div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="bl-footer">
+    <div class="bl-container">
+      <div class="bl-footer-top">
+        <div class="bl-footer-logo">
+          <img src="logo.png" alt="Star Light International School" />
+          <div>
+            <span class="bl-footer-name">Star Light International School</span>
+            <span class="bl-footer-sub">Kasoa Nyanyano Fetteh Road, Ghana</span>
+          </div>
+        </div>
+        <div class="bl-footer-links">
+          <a href="index.html">Home</a>
+          <a href="index.html#about">About</a>
+          <a href="admissions.html">Admissions</a>
+          <a href="newsletter.html">Newsletter</a>
+          <a href="calendar.html">Calendar</a>
+          <a href="portal.html">Parent Portal</a>
+          <a href="results.html">Results</a>
+          <a href="teachers.html">Teachers</a>
+          <a href="career.html">Careers</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div class="bl-footer-copy">
+        <p>&copy; 2026 Star Light International School. All rights reserved.</p>
+        <p>"Excellence Without Limits"</p>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+  /* ════════════════════════════════════════════════════════════════
+     STAR LIGHT BLOG — POSTS DATA
+     ────────────────────────────────────────────────────────────────
+     HOW TO ADD A NEW POST — simply copy the template below and
+     paste it at the TOP of the POSTS array (so it appears first).
+
+     TEMPLATE:
+     {
+       slug:     'unique-url-name',          // no spaces, use hyphens
+       title:    'Your Post Title Here',
+       category: 'events',                  // see categories list below
+       catLabel: 'Events',
+       catClass: 'cp-events',
+       catIcon:  'fa-calendar-star',
+       date:     '1 January 2026',
+       author:   'Author Full Name',
+       role:     'Their Role / Department',
+       readTime: '5 min read',
+       excerpt:  'One or two sentence summary shown on the card.',
+       cover:    'images/blog/your-image.jpg',   // card + modal cover
+       content: [
+         'First paragraph of your article.',
+         'Second paragraph.',
+         'h3:Optional Subheading',            // prefix with h3: for a heading
+         'Paragraph under that heading.',
+       ],
+       photos:   ['images/blog/photo1.jpg', 'images/blog/photo2.jpg'],
+       captions: ['Caption for photo 1.',    'Caption for photo 2.'],
+       photoColumns: 3   // 2, 3 or 4
+     },
+
+     CATEGORIES:
+       events | achievements | learning | student-life |
+       parents | advice | cultural | sports | news | staff
+
+     IMAGES:
+       Put your photos in:  images/blog/
+       Cover image:         images/blog/slug-cover.jpg
+       Post photos:         images/blog/slug-1.jpg, slug-2.jpg ...
+  ════════════════════════════════════════════════════════════════ */
+
+  const POSTS = [
+
+    /* ── 1. DYSLEXIA — Sir Abdul Hakeem ─────────────────────────── */
+    {
+      slug:     'dyslexia-parents-teachers',
+      title:    'Dyslexia: How Parents and Teachers Can Help Every Child Shine',
+      category: 'learning',
+      catLabel: 'Learning',
+      catClass: 'cp-learning',
+      catIcon:  'fa-book-open',
+      date:     '5 April 2026',
+      author:   'Sir Abdul Hakeem',
+      role:     'Special Needs & Inclusive Education, Star Light International School',
+      readTime: '8 min read',
+      excerpt:  'Dyslexia is not a measure of intelligence — it is a different way of processing language. With the right support from parents and teachers, every dyslexic child can flourish.',
+      cover:    'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=80',
+      content: [
+        'Every year, thousands of children across Ghana sit in classrooms feeling confused, frustrated and convinced they are not smart enough. Many of them are not struggling because they lack intelligence — they are struggling because they have dyslexia, and nobody has recognised it yet.',
+        'h3:What Is Dyslexia?',
+        'Dyslexia is a specific learning difficulty that affects the way the brain processes written and spoken language. Children with dyslexia may find it hard to decode words, spell correctly, read fluently, or remember sequences. Crucially, dyslexia has nothing to do with intelligence. Some of the world\'s greatest thinkers — Albert Einstein, Leonardo da Vinci, and Agatha Christie — were dyslexic.',
+        'Dyslexia is not laziness. It is not poor parenting. It is not a phase a child will simply "grow out of." It is a neurological difference that, with proper identification and support, can be managed so effectively that a child can thrive academically and in life.',
+        'h3:Signs to Watch For',
+        'Parents and teachers should be alert to the following signs, particularly in children aged 5–10: difficulty learning the alphabet or remembering letter sounds; reading much more slowly than peers; frequent reversal of letters (writing "b" instead of "d", for example); poor spelling despite effort; difficulty following multi-step instructions; and frustration or avoidance of reading and writing tasks.',
+        'It is important to note that struggling with reading in early primary school is normal. Dyslexia is indicated when these difficulties persist beyond what is expected for a child\'s age, despite good teaching and effort.',
+        'h3:What Teachers Can Do',
+        'At Star Light International School, we believe inclusive education starts with the classroom. Teachers can make a profound difference by: breaking instructions into small, clear steps; allowing extra time for reading and writing tasks; using multi-sensory teaching methods — colour, movement, audio — to support learning; never putting a struggling reader on the spot in front of the class; and celebrating every small improvement loudly and sincerely.',
+        'Seating a dyslexic child near the front, providing written and verbal instructions simultaneously, and using lined or coloured paper can also make a surprising difference. Most importantly, teachers must protect these children\'s dignity. A child who feels safe and respected in the classroom will learn. A child who feels embarrassed will shut down.',
+        'h3:What Parents Can Do',
+        'At home, parents are the single most powerful force in a dyslexic child\'s life. Here is what you can do right now: Read aloud together every night — even when your child can read independently. Use audiobooks. Play word games, rhyming games and storytelling games. Never compare your child to siblings or classmates.',
+        'Most importantly: tell your child, regularly and specifically, that you are proud of them. Not for their grades — for their effort, their resilience, and the courage it takes to try again after struggling. A child who knows their parent believes in them will climb mountains.',
+        'h3:Getting a Formal Assessment',
+        'If you suspect your child has dyslexia, speak to their class teacher first. Then request a referral to an educational psychologist who can conduct a formal assessment. A diagnosis is not a label — it is a key. It unlocks targeted support, accommodations in examinations, and a clearer understanding of how your child\'s mind works.',
+        'At Star Light, we are committed to working with every family to ensure that no child is left behind because of a learning difference. Dyslexia is not a dead end. In the right environment, with the right support, it can become the beginning of a remarkable story.'
+      ],
+      photos: [
+        'https://images.unsplash.com/photo-1588072432836-e10032774350?w=800&q=80',
+        'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80',
+        'https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&q=80'
+      ],
+      captions: [
+        'One-on-one support makes all the difference for children with dyslexia.',
+        'Multi-sensory teaching tools help dyslexic learners engage with language differently.',
+        'A patient, encouraging teacher can completely transform a struggling child\'s relationship with learning.'
+      ],
+      photoColumns: 3
+    },
+
+    /* ── 2. PARENTING IN EDUCATION — Christopher Mawusi Agbeti ──── */
+    {
+      slug:     'parenting-education',
+      title:    'The Role of Parenting in Education',
+      category: 'parents',
+      catLabel: 'Parents',
+      catClass: 'cp-parents',
+      catIcon:  'fa-heart',
+      date:     '28 March 2026',
+      author:   'Christopher Mawusi Agbeti',
+      role:     'Head of Academics, Star Light International School',
+      readTime: '6 min read',
+      excerpt:  'A child\'s first and most important teacher is not in a classroom. The home environment shapes the learner long before any school does — here is why that matters more than ever.',
+      cover:    'https://images.unsplash.com/photo-1491013516836-7db643ee125a?w=900&q=80',
+      content: [
+        'When we ask the question "what makes a great school?", we think of qualified teachers, modern facilities, strong curricula. All of these matter. But decades of educational research point to a factor that outweighs all of them combined: the involvement of parents in a child\'s learning journey.',
+        'h3:The Home Is the First Classroom',
+        'Before a child ever sets foot in school, they have already learned how to learn — or how not to. Children who grow up in homes where reading is normal, where questions are welcomed, and where adults demonstrate curiosity and discipline are statistically more likely to succeed in formal education. This is not about wealth or resources. It is about attitude, attention, and love.',
+        'In a study of over 200,000 students across 37 countries, researchers found that parental involvement in education was the most consistent predictor of academic achievement — above class size, school funding, and even teacher quality. That is a staggering finding. And it carries a deeply hopeful message: parents have more power than they realise.',
+        'h3:What "Involvement" Actually Means',
+        'Parental involvement does not mean doing your child\'s homework for them. It does not require a university degree or hours of free time. Involvement means: asking your child about their school day with genuine interest; creating a consistent time and space for homework and reading; attending Parents\' Evenings and engaging with teachers as partners; and communicating to your child — through words and actions — that education matters.',
+        'It also means being a model. Children do not listen to what we say nearly as much as they watch what we do. A parent who reads, who asks questions, who admits when they don\'t know something and then finds out — that parent is teaching their child something no classroom ever can.',
+        'h3:The Confidence Factor',
+        'Perhaps the most underestimated role a parent plays is in building their child\'s belief in themselves. Self-confidence is not something schools can manufacture. It comes from thousands of small interactions at home — a parent who listens without interrupting, who celebrates effort rather than just results, who says "I believe in you" and means it.',
+        'Research consistently shows that children with high self-efficacy — the belief that their actions can produce positive outcomes — outperform academically and cope better with failure. That belief is built at home, one conversation at a time.',
+        'h3:A Partnership, Not a Competition',
+        'The most successful educational outcomes happen when schools and parents work as genuine partners. At Star Light International School, we do not see parents as spectators. We see them as co-educators. Every Parents\' Evening, every school communication, every open-door conversation is an invitation to build that partnership.',
+        'Your child is at school for approximately six hours a day. They are with you for the remaining eighteen. What happens in those eighteen hours matters enormously. You are not just a parent — you are a teacher, a mentor, a mirror, and a foundation. Never underestimate the power of that role.'
+      ],
+      photos: [
+        'https://images.unsplash.com/photo-1536337005238-94b997371b40?w=800&q=80',
+        'https://images.unsplash.com/photo-1581726707445-75cbe4efc586?w=800&q=80',
+        'https://images.unsplash.com/photo-1555448248-2571daf6344b?w=800&q=80'
+      ],
+      captions: [
+        'A parent reading with their child — the simplest and most powerful educational act.',
+        'Family conversations about school create safe spaces for children to process learning.',
+        'Parents who attend school events build a bridge between home and the classroom.'
+      ],
+      photoColumns: 3
+    },
+
+    /* ── 3. BECE PREPARATION — Christopher Mawusi Agbeti ─────────── */
+    {
+      slug:     'bece-preparation',
+      title:    'How to Prepare for BECE: A Complete Guide',
+      category: 'advice',
+      catLabel: 'Advice',
+      catClass: 'cp-advice',
+      catIcon:  'fa-lightbulb',
+      date:     '15 March 2026',
+      author:   'Christopher Mawusi Agbeti',
+      role:     'Head of Academics, Star Light International School',
+      readTime: '7 min read',
+      excerpt:  'The BECE is not a barrier — it is a doorway. This complete guide gives every JHS 3 student and their parents the strategy, mindset and practical tools to walk through it with confidence.',
+      cover:    'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80',
+      content: [
+        'Every year, thousands of JHS 3 students across Ghana sit the Basic Education Certificate Examination. For many, it is the most significant academic moment of their young lives. It does not have to be frightening. With the right preparation — starting now — every Star Light student can perform at their best.',
+        'h3:Understand What the BECE Actually Tests',
+        'The BECE is not designed to trick you. It tests your understanding of the curriculum you have been taught since Basic 1. The subjects are: Mathematics, English Language, Integrated Science, Social Studies, Religious and Moral Education (RME), Ghanaian Language, French, and Creative Arts. Each paper tests reading comprehension, application of knowledge, and clear expression of ideas.',
+        'The single most important thing you can do is know the syllabus. Print a copy of the BECE syllabus for each subject and tick off each topic as you revise it. This turns a mountain into a checklist.',
+        'h3:Build a Revision Timetable',
+        'Random studying is the enemy of exam performance. A timetable makes revision feel manageable and ensures no subject is neglected. Here is how to build one that works: List all your subjects. Assign each subject two or three sessions per week. Give extra sessions to your weakest subjects. Study in 45-minute blocks with 10-minute breaks. Set a daily start and end time and stick to it.',
+        'Consistency beats intensity. One hour every day is far more effective than eight hours the night before an exam. Your brain needs sleep to consolidate what it learns.',
+        'h3:Past Questions Are Your Most Powerful Tool',
+        'BECE past questions from previous years are available from bookshops and online. Buy at least five years of past papers for every subject. Work through them under timed, exam conditions. Then mark your answers and study every question you got wrong — not to feel bad about it, but to understand why.',
+        'Past questions reveal patterns. Examiners revisit similar themes, question types and vocabulary year after year. A student who has practised 200 past questions walks into the exam with a familiarity that makes all the difference.',
+        'h3:Manage Exam Day Itself',
+        'The night before each paper: review your notes lightly, pack your bag with all required stationery, eat a proper evening meal, and sleep by 9:30 PM. Do not study past midnight — exhausted brains make avoidable errors.',
+        'On exam day: eat breakfast. Arrive at the examination room early. Read every question fully before you start. Attempt all questions — never leave a question blank. If you are stuck, move on and come back.',
+        'h3:A Word on Anxiety',
+        'It is completely normal to feel nervous about the BECE. Nerves mean you care, and caring is a good thing. But anxiety becomes a problem when it prevents clear thinking. If you feel overwhelmed: stop, breathe slowly for ten counts, and remind yourself of this fact — you have been preparing for this examination for nine years. Everything you need is already inside you.',
+        'Star Light International School believes in every single JHS 3 student. Your teachers have given you the knowledge. Your parents have given you the foundation. Now it is your turn to give yourself the belief. Go write that exam and make your family proud.'
+      ],
+      photos: [
+        'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80',
+        'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80',
+        'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80',
+        'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80'
+      ],
+      captions: [
+        'Focused revision at a desk — consistency every day beats cramming the night before.',
+        'Past questions are the closest thing to a crystal ball for BECE preparation.',
+        'Students who prepare well walk into the examination room with calm confidence.',
+        'Good sleep the night before an exam is worth more than two extra hours of studying.'
+      ],
+      photoColumns: 2
+    },
+
+    /* ── 4. SCIENCE OF LEARNING — Christopher Mawusi Agbeti ──────── */
+    {
+      slug:     'science-of-learning',
+      title:    'The Science of Learning to Learn',
+      category: 'learning',
+      catLabel: 'Learning',
+      catClass: 'cp-learning',
+      catIcon:  'fa-brain',
+      date:     '1 March 2026',
+      author:   'Christopher Mawusi Agbeti',
+      role:     'Head of Academics, Star Light International School',
+      readTime: '8 min read',
+      excerpt:  'What if studying smarter was a skill that could be taught? Neuroscience has the answer — and every student, parent and teacher in Ghana needs to know it.',
+      cover:    'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=900&q=80',
+      content: [
+        'For most of history, we assumed that intelligence was fixed — you were either born clever or you were not. Modern neuroscience has completely dismantled this idea. The brain is plastic, meaning it physically changes and grows in response to learning. Every time you study effectively, you are literally rewiring your brain.',
+        'The question, then, is not whether your child can learn. It is whether they are using the right strategies. Most students — and most adults — use learning techniques that feel productive but are actually remarkably ineffective. Understanding the science changes everything.',
+        'h3:Why Re-Reading Is Almost Useless',
+        'Ask any student how they revise, and the most common answer is: "I read through my notes again." Re-reading is comfortable because it feels familiar. But familiarity is not learning. Research published in the journal Psychological Science found that students who re-read scored no better on tests than students who had read the material once.',
+        'Re-reading creates a feeling of knowing without actual retention. The information slides off the surface of the mind like water off glass. If re-reading is your child\'s main study strategy, this is urgent news.',
+        'h3:The Power of Retrieval Practice',
+        'The most effective study technique — backed by decades of cognitive science research — is retrieval practice: actively recalling information from memory rather than passively reviewing it. In practical terms, this means closing the book, looking away, and trying to remember what you just studied.',
+        'Flashcards are a classic retrieval tool. So are self-testing, practice questions, and the simple act of explaining what you have learned out loud to someone else — or to a wall. Every time you retrieve a memory, you strengthen the neural pathway that holds it. The effort of retrieval is, paradoxically, what makes learning stick.',
+        'h3:Spaced Repetition: Study Less, Remember More',
+        'The second most powerful technique is spaced repetition — spreading study sessions over time rather than cramming everything into one long session. The brain consolidates memories during sleep. Studying something today, reviewing it three days later, then again a week later, produces dramatically better long-term retention than studying for three hours in one sitting.',
+        'This is why our teachers at Star Light recommend weekly review of previous topics, not just revision before exams. The students who perform best in June are rarely the ones who studied most in May — they are the ones who studied consistently all year.',
+        'h3:The Role of Sleep and Exercise',
+        'No discussion of learning science is complete without this: sleep is not a luxury for students — it is a biological requirement. The hippocampus, the part of the brain responsible for converting short-term memories into long-term ones, does the majority of its work during deep sleep. A student who studies until midnight and sleeps for five hours will retain less than a student who studied for two hours less and slept for eight.',
+        'Exercise also plays a remarkable role. Physical activity increases blood flow to the brain and triggers the release of BDNF — a protein that acts as a fertiliser for neurons. Just 20 minutes of brisk walking before a study session measurably improves focus, mood and memory consolidation.',
+        'h3:Teach These Skills to Your Children',
+        'As parents and teachers, we have an opportunity to give children something far more valuable than information: we can teach them how to learn. A child who understands retrieval practice, spaced repetition and the importance of sleep carries those tools into every exam, every challenge and every stage of their life.',
+        'At Star Light International School, we are committed to teaching not just what to learn, but how to learn it. The science is clear. The results speak for themselves.'
+      ],
+      photos: [
+        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80',
+        'https://images.unsplash.com/photo-1456406644174-8ddd4cd52a06?w=800&q=80',
+        'https://images.unsplash.com/photo-1549923746-c502d488b3ea?w=800&q=80'
+      ],
+      captions: [
+        'Retrieval practice — recalling from memory rather than re-reading — is the most effective study technique.',
+        'Sleep is not optional for students: the brain consolidates memories during deep sleep.',
+        'Physical activity before a study session measurably improves concentration and retention.'
+      ],
+      photoColumns: 3
+    },
+
+    /* ── 5. SPORTS DAY — Sports Department ───────────────────────── */
+    {
+      slug:     'sports-day-2026',
+      title:    'Inter-House Sports Day 2026 — A Day of Champions!',
+      category: 'sports',
+      catLabel: 'Sports',
+      catClass: 'cp-sports',
+      catIcon:  'fa-running',
+      date:     '22 March 2026',
+      author:   'Sports Department',
+      role:     'Star Light International School',
+      readTime: '5 min read',
+      excerpt:  'The school field came alive with colour and energy as students from all four houses competed in track, field and relay events — producing one of the most exciting Sports Days in school history.',
+      cover:    'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=900&q=80',
+      content: [
+        'The Star Light International School field was transformed into an arena of excellence on Saturday 22 March 2026, as students from KG through JHS 3 gathered for the school\'s annual Inter-House Sports Day.',
+        'Four houses competed across more than fifteen events including 100m sprints, long jump, relay races, tug-of-war, and team ball games. The atmosphere was electric from the opening ceremony to the final event.',
+        'The standout performance of the day came from a JHS 2 student who broke the school record in the 200m sprint. The moment the time was announced, the entire crowd rose to its feet. The young athlete dedicated the achievement to her coaches and her family.',
+        'In the overall standings, the competition was decided in the final relay — a dramatic finish that had parents and students on their feet. Every student who competed demonstrated the Star Light spirit: disciplined, determined, and joyful.',
+        'The Principal congratulated all students and reminded them that sport, like academics, rewards consistent preparation. "Today you showed Ghana what Star Light is made of," she said to sustained applause. We look forward to an even more spectacular Sports Day in 2027!'
+      ],
+      photos: [
+        'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80',
+        'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80',
+        'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=800&q=80',
+        'https://images.unsplash.com/photo-1567527891-8edb2b29c44f?w=800&q=80'
+      ],
+      captions: [
+        'Students preparing for the 100m sprint — focus and determination on every face.',
+        'The relay handover — teamwork at its finest.',
+        'JHS students competing in the long jump.',
+        'The winning house celebrating with the Sports Day trophy.'
+      ],
+      photoColumns: 2
+    },
+
+    /* ── 6. CULTURAL DAY — Cultural Committee ────────────────────── */
+    {
+      slug:     'cultural-day-2026',
+      title:    'Cultural Day 2026 — Our Diversity Is Our Strength',
+      category: 'cultural',
+      catLabel: 'Cultural',
+      catClass: 'cp-cultural',
+      catIcon:  'fa-drum',
+      date:     '28 February 2026',
+      author:   'Cultural Committee',
+      role:     'Star Light International School',
+      readTime: '4 min read',
+      excerpt:  'Students dressed in traditional attire from all regions of Ghana, performed cultural dances, showcased traditional foods and recited poetry — a spectacular celebration of identity and heritage.',
+      cover:    'https://images.unsplash.com/photo-1504805572947-34fad45aed93?w=900&q=80',
+      content: [
+        'Star Light International School\'s Cultural Day 2026 was one for the record books. Students arrived in the most beautiful traditional attire representing Ghana\'s diverse regions — kente from the Ashanti, smock from the north, kaba and slit from the Volta, and many more.',
+        'The event began with a grand procession where each class marched past the main stage, greeted by cheers from parents and fellow students. The air was filled with the sound of drums, laughter and pride.',
+        'Highlights included a traditional dance competition, a food fair showcasing dishes from different regions, a poetry recitation in Ghanaian languages, and an incredible drumming performance by our Basic 4 students that brought the entire crowd to their feet.',
+        'The Principal commended students and teachers for the beautiful organisation. "Our diversity is not a division," she said. "It is our greatest strength." Cultural Day is a reminder that at Star Light, every background, every language, every tradition is honoured and celebrated.'
+      ],
+      photos: [
+        'https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?w=800&q=80',
+        'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=800&q=80',
+        'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80'
+      ],
+      captions: [
+        'Students in stunning traditional attire representing Ghana\'s diverse regions.',
+        'The traditional dance competition — joy, talent and cultural pride on full display.',
+        'The food fair brought the entire school community together over shared culture.'
+      ],
+      photoColumns: 3
+    },
+
+    /* ── 7. STUDENT LIFE — Admin Office ──────────────────────────── */
+    {
+      slug:     'week-in-student-life',
+      title:    'A Week in the Life of a Star Light Student',
+      category: 'student-life',
+      catLabel: 'Student Life',
+      catClass: 'cp-student-life',
+      catIcon:  'fa-users',
+      date:     '10 February 2026',
+      author:   'Admin Office',
+      role:     'Star Light International School',
+      readTime: '4 min read',
+      excerpt:  'Ever wondered what a typical week looks like inside Star Light? From morning assembly to afternoon clubs, here is a glimpse into the rich, structured school life we build for every child.',
+      cover:    'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=900&q=80',
+      content: [
+        'A week at Star Light International School is carefully designed to develop the whole child — not just academically, but creatively, physically and socially. Here is what a typical week looks like.',
+        'Monday begins with school assembly: a moment of reflection, shared values and announcements. Classes start at 7:30 AM. Monday afternoons include ICT and Coding sessions for Basic 4 through JHS — one of the most popular parts of the week.',
+        'Tuesday and Wednesday are core academic days. Deep focus on Mathematics, English, Science and Social Studies. Teachers use a blend of class instruction, group work and individual exercises to keep learning engaging for every student.',
+        'Thursday is STEM activity day. Students engage in hands-on experiments, problem-solving challenges and creative projects. Ask any student what their favourite school day is and the most common answer is Thursday.',
+        'Friday wraps the week with Creative Arts, Physical Education and a weekly student review. JHS students have a dedicated study period to consolidate the week\'s learning. School closes at 3:30 PM. Beyond classes, students can join the Football Club, Drama Society, Reading Circle and the Student Prefect Council. Star Light is not just a school — it is a place where young people discover who they are.'
+      ],
+      photos: [
+        'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80',
+        'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80',
+        'https://images.unsplash.com/photo-1555431189-0fabf2179ef5?w=800&q=80'
+      ],
+      captions: [
+        'Morning assembly — a daily tradition that sets the tone for focused learning.',
+        'Students in a STEM session — Thursday is the day most students look forward to.',
+        'The after-school clubs give students space to develop talents beyond the classroom.'
+      ],
+      photoColumns: 3
+    },
+
+    /* ── 8. READING — English Department ─────────────────────────── */
+    {
+      slug:     'why-reading-changes-everything',
+      title:    'Why Reading Every Day Changes Everything',
+      category: 'learning',
+      catLabel: 'Learning',
+      catClass: 'cp-learning',
+      catIcon:  'fa-book-open',
+      date:     '20 January 2026',
+      author:   'Mrs. Abena Mensah',
+      role:     'Head of English Department, Star Light International School',
+      readTime: '5 min read',
+      excerpt:  'Research shows that just 20 minutes of daily reading transforms vocabulary, concentration, empathy and academic performance across every single subject — not just English.',
+      cover:    'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=900&q=80',
+      content: [
+        'At Star Light International School, we say reading is not just an English lesson — it is a life skill. And the research is overwhelming: students who read for pleasure consistently outperform their peers in every subject, not just English Language.',
+        'Here is why: when a child reads regularly, they build vocabulary without realising it. They learn how complex sentences are constructed. They develop the ability to understand long, detailed instructions — a skill that is absolutely critical in every BECE paper.',
+        'Reading also builds empathy. When a child reads about a character from a different background, they learn to understand perspectives other than their own. This makes them better communicators, better team members and better citizens.',
+        'h3:How Parents Can Help',
+        'The simplest thing you can do for your child\'s education is to have books in the house. It does not need to be expensive — the school library is free, and local markets sell affordable storybooks. Read together at bedtime even when your child is older than you think "needs" it. Reading aloud to a twelve-year-old is still powerful.',
+        'h3:A Message to Students',
+        'Start with 20 minutes a day. Choose any book you genuinely want to read — not one you feel you should read. Make it a habit. Within three months you will feel the difference in your writing, your reading speed and your confidence in every class. The best students at Star Light are, without exception, readers. That is not a coincidence.'
+      ],
+      photos: [
+        'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80',
+        'https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=800&q=80'
+      ],
+      captions: [
+        'A child who reads for 20 minutes a day is on a completely different academic trajectory.',
+        'The school library — a resource every Star Light student should use regularly.'
+      ],
+      photoColumns: 2
+    },
+
+    /* ── 9. CAREER DAY — Admin Office ────────────────────────────── */
+    {
+      slug:     'career-day-2026',
+      title:    'Career Day 2026 — Inspiring the Next Generation',
+      category: 'events',
+      catLabel: 'Events',
+      catClass: 'cp-events',
+      catIcon:  'fa-briefcase',
+      date:     '14 March 2026',
+      author:   'Admin Office',
+      role:     'Star Light International School',
+      readTime: '4 min read',
+      excerpt:  'Students met professionals from medicine, engineering, aviation, law and more — an electric day of inspiration that reminded every child: your future is real and it is within reach.',
+      cover:    'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&q=80',
+      content: [
+        'Star Light International School held its annual Career Day on Friday 14 March 2026, bringing together professionals from across Ghana to inspire our students about the world of work.',
+        'Students moved between stalls set up by doctors, engineers, lawyers, teachers, pilots, entrepreneurs and journalists. Each professional spoke directly with students and shared their personal journey from school to career.',
+        'The highlight was a panel discussion where JHS 3 students asked career questions to a group of five professionals. The energy in the room was extraordinary — students debating career choices and dreaming aloud about their futures.',
+        'One standout moment came when a past Star Light student — now training as an engineer — returned to speak. "I sat in the same chairs you are sitting in," he told the audience. "The only difference between then and now is that I refused to give up." The room fell completely silent.',
+        'The day closed with a vote of thanks from the Principal and a group photograph. Career Day is a reminder that every lesson, every examination and every day of effort is a step toward a life of purpose.'
+      ],
+      photos: [
+        'https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?w=800&q=80',
+        'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80',
+        'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80'
+      ],
+      captions: [
+        'Students engaged with professionals at the Career Day stalls.',
+        'The panel discussion — five professionals answering students\' real career questions.',
+        'Group photo at the end of a memorable and inspiring Career Day.'
+      ],
+      photoColumns: 3
+    }
+
+  ]; // ← END OF POSTS ARRAY — add new posts ABOVE this line
+
+  /* ════════════════════════════════════════════════════════════════
+     CATEGORY MAP
+  ════════════════════════════════════════════════════════════════ */
+  const CAT_MAP = {
+    events:       { label:'Events',       cls:'cp-events'      },
+    achievements: { label:'Achievement',  cls:'cp-achievements'},
+    learning:     { label:'Learning',     cls:'cp-learning'    },
+    'student-life':{ label:'Student Life',cls:'cp-student-life'},
+    parents:      { label:'Parents',      cls:'cp-parents'     },
+    advice:       { label:'Advice',       cls:'cp-advice'      },
+    cultural:     { label:'Cultural',     cls:'cp-cultural'    },
+    sports:       { label:'Sports',       cls:'cp-sports'      },
+    news:         { label:'News',         cls:'cp-news'        },
+    staff:        { label:'Staff',        cls:'cp-staff'       }
+  };
+
+  /* ════════════════════════════════════════════════════════════════
+     HERO SLIDER ENGINE
+  ════════════════════════════════════════════════════════════════ */
+  (function() {
+    const slides   = document.querySelectorAll('.bl-slide');
+    const dots     = document.querySelectorAll('.slider-dot');
+    const progress = document.getElementById('heroProgress');
+    const DURATION = 7000;
+    let current = 0, timer;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      startProgress();
+    }
+
+    function startProgress() {
+      clearTimeout(timer);
+      if (progress) {
+        progress.style.transition = 'none';
+        progress.style.width = '0%';
+        void progress.offsetWidth;
+        progress.style.transition = 'width ' + DURATION + 'ms linear';
+        progress.style.width = '100%';
+      }
+      timer = setTimeout(() => goTo(current + 1), DURATION);
+    }
+
+    document.getElementById('heroNext').addEventListener('click', () => goTo(current + 1));
+    document.getElementById('heroPrev').addEventListener('click', () => goTo(current - 1));
+    dots.forEach(d => d.addEventListener('click', () => goTo(parseInt(d.dataset.index))));
+
+    const hero = document.getElementById('heroSlider');
+    hero.addEventListener('mouseenter', () => clearTimeout(timer));
+    hero.addEventListener('mouseleave', startProgress);
+
+    let tx = 0;
+    hero.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+    hero.addEventListener('touchend',   e => {
+      const diff = tx - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+    });
+
+    startProgress();
+  })();
+
+  /* ════════════════════════════════════════════════════════════════
+     RENDER POST CARDS
+  ════════════════════════════════════════════════════════════════ */
+  let currentCat    = 'all';
+  let currentSearch = '';
+
+  function renderCards(posts) {
+    const grid  = document.getElementById('postsGrid');
+    const empty = document.getElementById('emptyState');
+    const count = document.getElementById('postsCountNum');
+
+    count.textContent = posts.length;
+
+    if (posts.length === 0) {
+      grid.innerHTML = '';
+      empty.style.display = 'block';
+      return;
+    }
+    empty.style.display = 'none';
+
+    grid.innerHTML = posts.map((p, i) => {
+      const cat = CAT_MAP[p.category] || { label: p.catLabel, cls: p.catClass };
+      return `
+      <div class="post-card reveal" data-slug="${p.slug}" style="animation-delay:${i * 0.06}s">
+        <div class="pc-img">
+          ${p.cover
+            ? `<img src="${p.cover}" alt="${p.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'pc-img-placeholder\\'><i class=\\'fas fa-image\\'></i><span>Add: images/blog/${p.slug}-cover.jpg</span></div>'" />`
+            : `<div class="pc-img-placeholder">
+                <i class="fas fa-image"></i>
+                <span>Add: images/blog/${p.slug}-cover.jpg</span>
+               </div>`}
+          <div class="pc-cat-bar">
+            <span class="cat-pill ${cat.cls}"><i class="fas ${p.catIcon}"></i> ${cat.label}</span>
+          </div>
+        </div>
+        <div class="pc-body">
+          <h3 class="pc-title">${p.title}</h3>
+          <p class="pc-excerpt">${p.excerpt}</p>
+          <div class="pc-meta">
+            <span><i class="fas fa-user"></i> ${p.author}</span>
+            <span><i class="fas fa-calendar"></i> ${p.date}</span>
+            <span><i class="fas fa-clock"></i> ${p.readTime}</span>
+          </div>
+        </div>
+        <div class="pc-read-more">
+          Read More <i class="fas fa-arrow-right"></i>
+        </div>
+      </div>`;
+    }).join('');
+
+    // Attach click handlers
+    document.querySelectorAll('.post-card').forEach(card => {
+      card.addEventListener('click', () => openPostBySlug(card.dataset.slug));
+    });
+
+    // Reveal animation
+    setTimeout(() => {
+      document.querySelectorAll('.post-card.reveal').forEach(el => el.classList.add('visible'));
+    }, 80);
+  }
+
+  function applyFilter() {
+    let filtered = POSTS;
+    if (currentCat !== 'all') filtered = filtered.filter(p => p.category === currentCat);
+    if (currentSearch) {
+      const q = currentSearch.toLowerCase();
+      filtered = filtered.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        p.excerpt.toLowerCase().includes(q) ||
+        p.author.toLowerCase().includes(q)
+      );
+    }
+    renderCards(filtered);
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     FILTER BUTTONS + SEARCH
+  ════════════════════════════════════════════════════════════════ */
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentCat = btn.dataset.cat;
+      applyFilter();
+    });
+  });
+
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', e => {
+      currentSearch = e.target.value.trim();
+      applyFilter();
+    });
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     OPEN / CLOSE POST MODAL
+  ════════════════════════════════════════════════════════════════ */
+  function openPostBySlug(slug) {
+    const p = POSTS.find(x => x.slug === slug);
+    if (!p) return;
+
+    const cat = CAT_MAP[p.category] || { label: p.catLabel, cls: p.catClass };
+
+    // Build content HTML — support h3: prefix for subheadings
+    const contentHTML = p.content.map(para =>
+      para.startsWith('h3:')
+        ? `<h3>${para.slice(3)}</h3>`
+        : `<p>${para}</p>`
+    ).join('');
+
+    // Build photo gallery
+    let galleryHTML = '';
+    if (p.photos && p.photos.length > 0) {
+      const colClass = p.photoColumns === 2 ? 'two-col' : p.photoColumns === 4 ? 'four-col' : '';
+      const items = p.photos.map((src, i) => `
+        <div class="gallery-item" onclick="openViewer('${src}','${(p.captions[i]||'').replace(/'/g,"\\'")}')">
+          ${src
+            ? `<img src="${src}" alt="${p.captions[i]||'Photo '+(i+1)}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'gallery-ph\\'><i class=\\'fas fa-image\\'></i><span>Photo ${i+1}</span></div>'" />`
+            : `<div class="gallery-ph"><i class="fas fa-image"></i><span>Photo ${i+1}</span></div>`}
+        </div>`).join('');
+
+      galleryHTML = `
+        <div class="modal-gallery">
+          <div class="gallery-heading"><i class="fas fa-images" style="margin-right:8px;color:var(--gold);"></i> Photo Gallery (${p.photos.length} Photos)</div>
+          <div class="modal-gallery-grid ${colClass}">${items}</div>
+        </div>`;
+    }
+
+    // Author initials
+    const initials = p.author.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+
+    document.getElementById('postContent').innerHTML = `
+      <div class="modal-cover">
+        ${p.cover
+          ? `<img src="${p.cover}" alt="${p.title}" onerror="this.parentElement.innerHTML='<div class=\\'modal-cover-placeholder\\'><i class=\\'fas fa-image\\'></i></div><div class=\\'modal-cat-strip\\'></div>'" />`
+          : `<div class="modal-cover-placeholder"><i class="fas fa-image"></i></div>`}
+        <div class="modal-cat-strip">
+          <span class="cat-pill ${cat.cls}"><i class="fas ${p.catIcon}"></i> ${cat.label}</span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <h2 class="modal-title">${p.title}</h2>
+        <div class="modal-info-row">
+          <span class="modal-info-item"><i class="fas fa-calendar"></i> ${p.date}</span>
+          <span class="modal-info-item"><i class="fas fa-clock"></i> ${p.readTime}</span>
+          ${p.photos&&p.photos.length>0?`<span class="modal-info-item"><i class="fas fa-images"></i> ${p.photos.length} photos</span>`:''}
+        </div>
+        <div class="modal-author-line">
+          <div class="modal-author-avatar">${initials}</div>
+          <div class="modal-author-info">
+            <div class="author-name">${p.author}</div>
+            <div class="author-role">${p.role||''}</div>
+          </div>
+        </div>
+        <div class="modal-content">${contentHTML}</div>
+        ${galleryHTML}
+        <div class="modal-share">
+          <span class="share-label">Share:</span>
+          <button class="share-btn" onclick="sharePost('whatsapp','${p.title.replace(/'/g,"\\'")}')">
+            <i class="fab fa-whatsapp" style="color:#25d366;"></i> WhatsApp
+          </button>
+          <button class="share-btn" onclick="sharePost('facebook','${p.title.replace(/'/g,"\\'")}')">
+            <i class="fab fa-facebook-f" style="color:#1877f2;"></i> Facebook
+          </button>
+          <button class="share-btn" onclick="copyLink()">
+            <i class="fas fa-link"></i> Copy Link
+          </button>
+        </div>
+      </div>`;
+
+    document.getElementById('postOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Scroll the overlay itself (now full page) to top
+    document.getElementById('postOverlay').scrollTop = 0;
+    // Also scroll window to top so navbar isn't visible above
+    window.scrollTo(0, 0);
+  }
+
+  function closePost() {
+    document.getElementById('postOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     IMAGE VIEWER
+  ════════════════════════════════════════════════════════════════ */
+  function openViewer(src, caption) {
+    if (!src) return;
+    document.getElementById('viewerImg').src = src;
+    document.getElementById('viewerCaption').textContent = caption || '';
+    document.getElementById('imgViewer').classList.add('open');
+  }
+  function closeViewer() {
+    document.getElementById('imgViewer').classList.remove('open');
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     SHARE
+  ════════════════════════════════════════════════════════════════ */
+  function sharePost(platform, title) {
+    const url  = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent('Read this from Star Light International School: ' + title);
+    if (platform === 'whatsapp') window.open(`https://wa.me/?text=${text}%20${url}`, '_blank');
+    if (platform === 'facebook') window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+  }
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => alert('Link copied to clipboard!'));
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     KEYBOARD + OVERLAY CLOSE
+  ════════════════════════════════════════════════════════════════ */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closePost(); closeViewer(); }
+  });
+  document.getElementById('postOverlay').addEventListener('click', e => {
+    if (e.target === document.getElementById('postOverlay')) closePost();
+  });
+
+  /* ════════════════════════════════════════════════════════════════
+     INITIAL RENDER
+  ════════════════════════════════════════════════════════════════ */
+  renderCards(POSTS);
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photo Gallery — Star Light International School</title>
+  <meta name="description" content="Browse the Star Light International School photo and video gallery — Sports Day, Cultural Day, Career Day, Prize Giving and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+
+    /* ══════════════════════════════════════════════
+       COLOUR TOKENS — matches newsletter and blog
+    ══════════════════════════════════════════════ */
+    :root {
+      --navy:   #0a0f1e;
+      --navy2:  #0d1525;
+      --navy3:  #083994;
+      --royal:  #1a3d8f;
+      --gold:   #c9a84c;
+      --gold-l: #e6c76a;
+      --white:  #f4f1ea;
+      --text:   #c8c2b4;
+      --muted:  #7a7565;
+    }
+
+    /* ══════════════════════════════════════════════
+       HERO SLIDER — 6 SLIDES
+       ──────────────────────────────────────────────
+       ADD PHOTOS — save to  images/gallery/hero/
+         hero1.jpg   Prize Giving / award ceremony
+         hero2.jpg   Sports Day / athletics
+         hero3.jpg   Cultural Day / traditional attire
+         hero4.jpg   Career Day / presentations
+         hero5.jpg   Classroom / learning scene
+         hero6.jpg   School campus / morning assembly
+
+       Recommended: 1400x700px landscape.
+       If a photo is missing the slide shows a
+       plain navy colour — nothing will break.
+
+       TO ADD A 7TH SLIDE:
+         1. Add  .gh-slide:nth-of-type(7)  below
+            with your photo path
+         2. Copy one .gh-slide block in Section 2
+            and paste before the arrows
+         3. Add one dot button in .gh-dots
+    ══════════════════════════════════════════════ */
+    .gallery-hero {
+      position: relative;
+      width: 100%;
+      height: 680px;
+      overflow: hidden;
+    }
+
+    .gh-slide {
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 1.1s ease;
+      pointer-events: none;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .gh-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Photo paths */
+    .gh-slide:nth-of-type(1) { background-image: url('images/gallery/hero/hero1.jpg'); background-color: #0d1525; }
+    .gh-slide:nth-of-type(2) { background-image: url('images/gallery/hero/hero2.jpg'); background-color: #0f1a2e; }
+    .gh-slide:nth-of-type(3) { background-image: url('images/gallery/hero/hero3.jpg'); background-color: #0a1020; }
+    .gh-slide:nth-of-type(4) { background-image: url('images/gallery/hero/hero4.jpg'); background-color: #0d1830; }
+    .gh-slide:nth-of-type(5) { background-image: url('images/gallery/hero/hero5.jpg'); background-color: #111528; }
+    .gh-slide:nth-of-type(6) { background-image: url('images/gallery/hero/hero6.jpg'); background-color: #0a1220; }
+
+    /* Dark overlay — navy from bottom so text is always readable */
+    .gh-slide::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        180deg,
+        rgba(10,15,30,0.52) 0%,
+        rgba(10,15,30,0.35) 35%,
+        rgba(10,15,30,0.68) 72%,
+        rgba(10,15,30,0.92) 100%
+      );
+    }
+
+    /* Subtle gold grid */
+    .gh-slide::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 2;
+      background-image:
+        repeating-linear-gradient(90deg, rgba(201,168,76,0.03) 0px, rgba(201,168,76,0.03) 1px, transparent 1px, transparent 80px),
+        repeating-linear-gradient(0deg,  rgba(201,168,76,0.03) 0px, rgba(201,168,76,0.03) 1px, transparent 1px, transparent 80px);
+    }
+
+    /* Hero content — sits above overlays */
+    .gallery-hero-content {
+      position: absolute; inset: 0; z-index: 3;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 140px 24px 100px;
+    }
+
+    /* Per-slide caption label — bottom left */
+    .gh-slide-label {
+      position: absolute; bottom: 76px; left: 36px; z-index: 4;
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Cinzel', serif; font-size: 0.68rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold-l);
+      background: rgba(26,61,143,0.75);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 6px 16px; border-radius: 2px;
+      backdrop-filter: blur(6px);
+      opacity: 0; transition: opacity 0.6s ease 0.4s;
+    }
+    .gh-slide.active .gh-slide-label { opacity: 1; }
+
+    /* Slide counter top-right */
+    .gh-counter {
+      position: absolute; top: 108px; right: 32px; z-index: 4;
+      font-family: 'Cinzel', serif; font-size: 0.78rem;
+      color: rgba(255,255,255,0.4); letter-spacing: 0.15em;
+    }
+    .gh-counter .gh-cur { color: var(--gold-l); font-size: 1.1rem; }
+
+    /* Dots */
+    .gh-dots {
+      position: absolute; bottom: 28px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 10px; z-index: 10;
+    }
+    .gh-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none; cursor: pointer; padding: 0;
+      transition: background 0.3s, transform 0.3s, width 0.3s;
+    }
+    .gh-dot.active {
+      background: var(--gold);
+      transform: scale(1.4);
+      width: 22px; border-radius: 4px;
+    }
+
+    /* Arrows */
+    .gh-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(10,15,30,0.5);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold); font-size: 0.95rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 10;
+      transition: background 0.3s, border-color 0.3s;
+      backdrop-filter: blur(4px);
+    }
+    .gh-arrow:hover { background: rgba(26,61,143,0.7); border-color: var(--gold); }
+    .gh-arrow.gh-prev { left: 20px; }
+    .gh-arrow.gh-next { right: 20px; }
+
+    /* Gold progress bar */
+    .gh-progress {
+      position: absolute; bottom: 0; left: 0;
+      height: 3px; background: var(--gold);
+      width: 0%; z-index: 10;
+      transition: width linear;
+    }
+
+    /* Hero text styles */
+    .gallery-hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-l); padding: 8px 22px; border-radius: 24px;
+      font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: ghFade 0.7s ease both;
+    }
+    .gallery-hero h1 {
+      font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3.6rem);
+      font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 16px;
+      animation: ghFade 0.8s 0.1s ease both;
+    }
+    .gallery-hero h1 span { color: var(--gold-l); }
+    .gallery-hero-content > p {
+      font-family: 'Amiri', serif; font-style: italic;
+      font-size: 1.1rem; color: rgba(255,255,255,0.72);
+      max-width: 560px; margin: 0 auto 32px;
+      animation: ghFade 0.8s 0.2s ease both;
+    }
+    .gallery-stats-row {
+      display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+      animation: ghFade 0.8s 0.3s ease both;
+    }
+    .gstat { text-align: center; }
+    .gstat-num { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold-l); display: block; }
+    .gstat-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1.5px; }
+
+    @keyframes ghFade { from{opacity:0;transform:translateY(-14px);}to{opacity:1;transform:translateY(0);} }
+
+    @media(max-width:768px) {
+      .gallery-hero { height: 520px; }
+      .gh-arrow { display: none; }
+      .gh-slide-label { display: none; }
+      .gallery-hero-content { padding: 120px 20px 80px; }
+    }
+    @media(max-width:480px) { .gallery-hero { height: 460px; } }
+
+    /* ══════════════════════════════════════════════
+       FILTER BAR
+    ══════════════════════════════════════════════ */
+    .filter-bar-wrap {
+      position: sticky; top: 80px; z-index: 100;
+      background: rgba(13,21,37,0.95); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201,168,76,0.15); padding: 16px 0;
+    }
+    .filter-bar {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      justify-content: center; align-items: center;
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    }
+    .filter-btn {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.7); padding: 8px 20px; border-radius: 24px;
+      font-family: 'Lato', sans-serif; font-size: 0.82rem;
+      cursor: pointer; transition: all 0.3s ease;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .filter-btn i { font-size: 0.75rem; }
+    .filter-btn:hover { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.4); color: var(--gold-l); }
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--gold), var(--gold-l));
+      border-color: transparent; color: #0d1b3e;
+      font-weight: 700; box-shadow: 0 4px 18px rgba(201,168,76,0.35);
+    }
+    .search-wrap {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px; padding: 7px 16px; margin-left: 8px;
+    }
+    .search-wrap i { color: rgba(201,168,76,0.6); font-size: 0.8rem; }
+    .search-wrap input {
+      background: none; border: none; outline: none;
+      color: #fff; font-size: 0.82rem; font-family: 'Lato', sans-serif; width: 140px;
+    }
+    .search-wrap input::placeholder { color: rgba(255,255,255,0.3); }
+
+    /* ══════════════════════════════════════════════
+       GALLERY GRIDS
+    ══════════════════════════════════════════════ */
+    .gallery-section-wrap { padding: 60px 0; }
+    .cat-heading { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+    .cat-heading-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(201,168,76,0.4), transparent); }
+    .cat-heading-line.right { background: linear-gradient(270deg, rgba(201,168,76,0.4), transparent); }
+    .cat-heading-text {
+      font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--gold-l);
+      letter-spacing: 3px; text-transform: uppercase;
+      display: flex; align-items: center; gap: 8px; white-space: nowrap;
+    }
+
+    /* MASONRY */
+    .masonry-grid { columns: 4; column-gap: 14px; margin-bottom: 60px; }
+    .masonry-item {
+      break-inside: avoid; margin-bottom: 14px; position: relative;
+      border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      cursor: pointer; transition: all 0.35s ease;
+      background: linear-gradient(135deg, var(--navy2), var(--royal));
+      min-height: 160px;
+    }
+    .masonry-item:hover { transform: translateY(-5px); border-color: rgba(201,168,76,0.4); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+    .masonry-item img { width: 100%; display: block; transition: transform 0.5s ease; }
+    .masonry-item:hover img { transform: scale(1.05); }
+    .masonry-item.tall { min-height: 280px; }
+    .masonry-item.tall img { min-height: 280px; object-fit: cover; }
+    .masonry-item.short img { max-height: 160px; object-fit: cover; }
+
+    /* UNIFORM GRID */
+    .uniform-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 60px; }
+    .uniform-item {
+      aspect-ratio: 4/3; border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07);
+      cursor: pointer; position: relative; transition: all 0.35s ease;
+      background: linear-gradient(135deg, var(--navy2), var(--royal));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .uniform-item:hover { transform: translateY(-5px); border-color: rgba(201,168,76,0.4); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+    .uniform-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .uniform-item:hover img { transform: scale(1.06); }
+
+    /* Placeholder shown when no image */
+    .img-ph {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; color: rgba(201,168,76,0.22); text-align: center; padding: 16px;
+      pointer-events: none;
+    }
+    .img-ph i { font-size: 2rem; }
+    .img-ph span {
+      font-family: 'Cinzel', serif; font-size: 0.6rem;
+      color: rgba(201,168,76,0.35); letter-spacing: 0.15em;
+      text-transform: uppercase; line-height: 1.6;
+    }
+
+    /* PHOTO HOVER OVERLAY */
+    .photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(10,15,30,0.88) 100%);
+      opacity: 0; transition: opacity 0.35s ease;
+      display: flex; flex-direction: column; justify-content: flex-end; padding: 14px;
+    }
+    .masonry-item:hover .photo-overlay,
+    .uniform-item:hover .photo-overlay { opacity: 1; }
+    .photo-caption { font-size: 0.82rem; color: #fff; font-weight: 600; margin-bottom: 4px; }
+    .photo-meta { font-size: 0.72rem; color: rgba(201,168,76,0.8); display: flex; align-items: center; gap: 6px; }
+    .photo-zoom {
+      position: absolute; top: 10px; right: 10px; width: 34px; height: 34px;
+      background: rgba(201,168,76,0.2); border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: var(--gold-l); font-size: 0.75rem; opacity: 0; transition: opacity 0.3s; backdrop-filter: blur(4px);
+    }
+    .masonry-item:hover .photo-zoom,
+    .uniform-item:hover .photo-zoom { opacity: 1; }
+
+    .no-results { text-align: center; padding: 80px 24px; display: none; }
+    .no-results i { font-size: 3rem; color: rgba(201,168,76,0.3); margin-bottom: 16px; display: block; }
+    .no-results p { color: rgba(255,255,255,0.4); }
+
+    /* ══════════════════════════════════════════════
+       VIDEO SECTION
+    ══════════════════════════════════════════════ */
+    .video-section-wrap { padding: 60px 0 100px; border-top: 1px solid rgba(201,168,76,0.12); background: rgba(0,0,0,0.15); }
+    .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .video-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; transition: all 0.35s ease; }
+    .video-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+    .video-thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; cursor: pointer; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--navy2), var(--royal)); }
+    .video-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .video-card:hover .video-thumb img { transform: scale(1.04); }
+    .video-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 56px; height: 56px; background: linear-gradient(135deg, rgba(201,168,76,0.9), rgba(230,199,106,0.9)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #0d1b3e; font-size: 1.1rem; padding-left: 4px; box-shadow: 0 8px 30px rgba(201,168,76,0.5); transition: all 0.3s; z-index: 2; }
+    .video-card:hover .video-play-btn { transform: translate(-50%, -50%) scale(1.12); }
+    .video-duration { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.75); color: #fff; font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; z-index: 2; }
+    .video-info { padding: 18px 20px; }
+    .video-tag { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 2px; color: #4ecca3; margin-bottom: 6px; display: block; }
+    .video-info h4 { font-family: 'Cinzel', serif; font-size: 0.95rem; color: #fff; margin-bottom: 6px; line-height: 1.4; }
+    .video-info p { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+    .video-info-row { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+    .video-date { font-size: 0.75rem; color: rgba(201,168,76,0.7); display: flex; align-items: center; gap: 5px; }
+    .video-watch-btn { display: inline-flex; align-items: center; gap: 6px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25); color: var(--gold-l); padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; font-family: 'Lato', sans-serif; cursor: pointer; transition: all 0.3s; text-decoration: none; }
+    .video-watch-btn:hover { background: rgba(201,168,76,0.2); }
+
+    /* LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(5,8,20,0.96); z-index: 8000; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
+    .lightbox.open { display: flex; }
+    .lb-inner { position: relative; max-width: 920px; width: 92%; display: flex; flex-direction: column; align-items: center; }
+    .lb-img-wrap { position: relative; width: 100%; border-radius: 16px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(201,168,76,0.15); }
+    .lb-img-wrap img { width: 100%; max-height: 75vh; object-fit: contain; display: block; background: #07101f; }
+    .lb-caption { margin-top: 16px; text-align: center; }
+    .lb-caption h4 { font-family: 'Cinzel', serif; color: var(--gold-l); font-size: 0.95rem; margin-bottom: 4px; }
+    .lb-caption p { color: rgba(255,255,255,0.5); font-size: 0.8rem; }
+    .lb-counter { position: absolute; top: -40px; left: 0; font-size: 0.78rem; color: rgba(255,255,255,0.4); font-family: 'Cinzel', serif; letter-spacing: 1px; }
+    .lb-close { position: absolute; top: -44px; right: 0; width: 38px; height: 38px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.35); border-radius: 50%; color: var(--gold-l); font-size: 0.9rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; }
+    .lb-close:hover { background: rgba(201,168,76,0.3); transform: rotate(90deg); }
+    .lb-arrow { position: fixed; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 50%; color: var(--gold-l); font-size: 1rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(8px); z-index: 8001; }
+    .lb-arrow:hover { background: rgba(201,168,76,0.25); transform: translateY(-50%) scale(1.1); }
+    .lb-arrow.prev { left: 20px; }
+    .lb-arrow.next { right: 20px; }
+    .lb-actions { display: flex; gap: 10px; margin-top: 14px; }
+    .lb-btn { display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); padding: 7px 18px; border-radius: 8px; font-size: 0.78rem; cursor: pointer; transition: all 0.3s; font-family: 'Lato', sans-serif; text-decoration: none; }
+    .lb-btn:hover { background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.35); color: var(--gold-l); }
+
+    /* BACK TO TOP */
+    .back-top { position: fixed; bottom: 28px; right: 28px; width: 46px; height: 46px; background: linear-gradient(135deg, var(--gold), var(--gold-l)); border-radius: 50%; color: #0d1b3e; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; z-index: 500; opacity: 0; pointer-events: none; transition: all 0.3s; box-shadow: 0 6px 20px rgba(201,168,76,0.4); }
+    .back-top.visible { opacity: 1; pointer-events: all; }
+    .back-top:hover { transform: translateY(-4px); }
+
+    /* RESPONSIVE */
+    @media(max-width:1024px) { .masonry-grid{columns:3;} .uniform-grid{grid-template-columns:repeat(3,1fr);} .video-grid{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:768px) { .masonry-grid{columns:2;} .uniform-grid{grid-template-columns:repeat(2,1fr);} .video-grid{grid-template-columns:1fr;} .filter-btn{padding:7px 14px;font-size:0.76rem;} .search-wrap{display:none;} .lb-arrow{display:none;} }
+    @media(max-width:480px) { .masonry-grid{columns:1;} .uniform-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+
+  <canvas id="starsCanvas"></canvas>
+
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Star Light International School" class="nav-logo-img" />
+        <div>
+          <span class="nav-logo-name">Star Light</span>
+          <span class="nav-logo-sub">International School</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#academics">Academics</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="gallery.html" class="active-link">Gallery</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="results.html">Results</a></li>
+        <li><a href="teachers.html">Staff</a></li>
+        <li><a href="career.html">Careers</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="admissions.html" class="btn-portal"><i class="fas fa-user-graduate"></i> Apply Now</a>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#academics">Academics</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="gallery.html">Photo Gallery</a></li>
+        <li><a href="admissions.html">Admissions</a></li>
+        <li><a href="teachers.html">Meet Our Staff</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="results.html">Results &amp; Achievements</a></li>
+        <li><a href="career.html">Careers</a></li>
+        <li><a href="portal.html">Parent Portal</a></li>
+        <li><a href="calendar.html">School Calendar</a></li>
+        <li><a href="newsletter.html">Newsletter</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="gallery-hero" id="ghSlider">
+
+    <div class="gh-slide active">
+      <span class="gh-slide-label"><i class="fas fa-trophy"></i> Prize Giving</span>
+    </div>
+    <div class="gh-slide">
+      <span class="gh-slide-label"><i class="fas fa-running"></i> Sports Day</span>
+    </div>
+    <div class="gh-slide">
+      <span class="gh-slide-label"><i class="fas fa-drum"></i> Cultural Day</span>
+    </div>
+    <div class="gh-slide">
+      <span class="gh-slide-label"><i class="fas fa-briefcase"></i> Career Day</span>
+    </div>
+    <div class="gh-slide">
+      <span class="gh-slide-label"><i class="fas fa-book-open"></i> Classroom Life</span>
+    </div>
+    <div class="gh-slide">
+      <span class="gh-slide-label"><i class="fas fa-school"></i> School Campus</span>
+    </div>
+
+    <div class="gallery-hero-content">
+      <div class="gallery-hero-eyebrow"><i class="fas fa-images"></i> Visual Stories</div>
+      <h1>School <span>Gallery</span></h1>
+      <p>Relive the moments that make Star Light shine — from prize givings to sports days, cultural celebrations and classroom memories.</p>
+      <div class="gallery-stats-row">
+        <div class="gstat"><span class="gstat-num">30+</span><span class="gstat-label">Photos</span></div>
+        <div class="gstat"><span class="gstat-num">6</span><span class="gstat-label">Categories</span></div>
+        <div class="gstat"><span class="gstat-num">5+</span><span class="gstat-label">Videos</span></div>
+        <div class="gstat"><span class="gstat-num">2026</span><span class="gstat-label">Latest Term</span></div>
+      </div>
+    </div>
+
+    <div class="gh-counter">
+      <span class="gh-cur" id="ghCur">1</span> / <span id="ghTotal">6</span>
+    </div>
+
+    <button class="gh-arrow gh-prev" id="ghPrev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
+    <button class="gh-arrow gh-next" id="ghNext" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
+
+    <div class="gh-dots">
+      <button class="gh-dot active" data-index="0"></button>
+      <button class="gh-dot" data-index="1"></button>
+      <button class="gh-dot" data-index="2"></button>
+      <button class="gh-dot" data-index="3"></button>
+      <button class="gh-dot" data-index="4"></button>
+      <button class="gh-dot" data-index="5"></button>
+    </div>
+
+    <div class="gh-progress" id="ghProgress"></div>
+  </div>
+
+  <!-- ══ FILTER BAR ══ -->
+  <div class="filter-bar-wrap">
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterGallery('all',this)"><i class="fas fa-th"></i> All Photos</button>
+      <button class="filter-btn" onclick="filterGallery('prize',this)"><i class="fas fa-trophy"></i> Prize Giving</button>
+      <button class="filter-btn" onclick="filterGallery('sports',this)"><i class="fas fa-futbol"></i> Sports Day</button>
+      <button class="filter-btn" onclick="filterGallery('cultural',this)"><i class="fas fa-masks-theater"></i> Cultural Day</button>
+      <button class="filter-btn" onclick="filterGallery('career',this)"><i class="fas fa-briefcase"></i> Career Day</button>
+      <button class="filter-btn" onclick="filterGallery('classroom',this)"><i class="fas fa-chalkboard-teacher"></i> Classroom</button>
+      <button class="filter-btn" onclick="filterGallery('events',this)"><i class="fas fa-star"></i> School Events</button>
+      <div class="search-wrap">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search photos..." oninput="searchGallery(this.value)" />
+      </div>
+    </div>
+  </div>
+
+  <div class="gallery-section-wrap">
+    <div class="container">
+
+      <!-- PRIZE GIVING -->
+      <div class="cat-section" data-category="prize">
+        <div class="cat-heading">
+          <div class="cat-heading-line"></div>
+          <div class="cat-heading-text"><i class="fas fa-trophy"></i> Prize Giving Ceremony</div>
+          <div class="cat-heading-line right"></div>
+        </div>
+        <div class="masonry-grid">
+
+          <div class="masonry-item tall gallery-item" data-category="prize" data-caption="Best Academic Student Award" data-event="Prize Giving 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/prize_giving1.jpg" alt="Best Academic Student Award" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/prize_giving1.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Best Academic Student Award</div><div class="photo-meta"><i class="fas fa-calendar"></i> Prize Giving 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="masonry-item gallery-item" data-category="prize" data-caption="Head Teacher Presenting Awards" data-event="Prize Giving 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/prize_giving2.jpg" alt="Head Teacher Presenting Awards" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/prize_giving2.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Head Teacher Presenting Awards</div><div class="photo-meta"><i class="fas fa-calendar"></i> Prize Giving 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="masonry-item short gallery-item" data-category="prize" data-caption="Outstanding Performance — JHS 3" data-event="Prize Giving 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/prize_giving3.jpg" alt="Outstanding Performance JHS 3" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/prize_giving3.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Outstanding Performance — JHS 3</div><div class="photo-meta"><i class="fas fa-calendar"></i> Prize Giving 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="masonry-item gallery-item" data-category="prize" data-caption="Cultural Excellence Award" data-event="Prize Giving 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/prize_giving4.jpg" alt="Cultural Excellence Award" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/prize_giving4.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Cultural Excellence Award</div><div class="photo-meta"><i class="fas fa-calendar"></i> Prize Giving 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SPORTS DAY -->
+      <div class="cat-section" data-category="sports">
+        <div class="cat-heading">
+          <div class="cat-heading-line"></div>
+          <div class="cat-heading-text"><i class="fas fa-futbol"></i> Inter-House Sports Day</div>
+          <div class="cat-heading-line right"></div>
+        </div>
+        <div class="uniform-grid">
+
+          <div class="uniform-item gallery-item" data-category="sports" data-caption="100m Sprint Finals" data-event="Sports Day 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/sports_day1.jpg" alt="100m Sprint Finals" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/sports_day1.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">100m Sprint Finals</div><div class="photo-meta"><i class="fas fa-calendar"></i> Sports Day 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="uniform-item gallery-item" data-category="sports" data-caption="House Teams Line Up" data-event="Sports Day 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/sports_day2.jpg" alt="House Teams Line Up" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/sports_day2.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">House Teams Line Up</div><div class="photo-meta"><i class="fas fa-calendar"></i> Sports Day 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="uniform-item gallery-item" data-category="sports" data-caption="Long Jump Competition" data-event="Sports Day 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/sports_day3.jpg" alt="Long Jump Competition" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/sports_day3.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Long Jump Competition</div><div class="photo-meta"><i class="fas fa-calendar"></i> Sports Day 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="uniform-item gallery-item" data-category="sports" data-caption="Trophy Presentation" data-event="Sports Day 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/sports_day4.jpg" alt="Trophy Presentation" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/sports_day4.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Trophy Presentation</div><div class="photo-meta"><i class="fas fa-calendar"></i> Sports Day 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CULTURAL DAY -->
+      <div class="cat-section" data-category="cultural">
+        <div class="cat-heading">
+          <div class="cat-heading-line"></div>
+          <div class="cat-heading-text"><i class="fas fa-masks-theater"></i> Cultural Day</div>
+          <div class="cat-heading-line right"></div>
+        </div>
+        <div class="masonry-grid">
+
+          <div class="masonry-item tall gallery-item" data-category="cultural" data-caption="Traditional Dance Performance" data-event="Cultural Day 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/cultural_day1.jpg" alt="Traditional Dance Performance" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/cultural_day1.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Traditional Dance Performance</div><div class="photo-meta"><i class="fas fa-calendar"></i> Cultural Day 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="masonry-item gallery-item" data-category="cultural" data-caption="Traditional Attire Display" data-event="Cultural Day 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/cultural_day2.jpg" alt="Traditional Attire Display" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/cultural_day2.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Traditional Attire Display</div><div class="photo-meta"><i class="fas fa-calendar"></i> Cultural Day 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="masonry-item gallery-item" data-category="cultural" data-caption="Drama &amp; Theatre Arts" data-event="Cultural Day 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/cultural_day3.jpg" alt="Drama and Theatre Arts" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/cultural_day3.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Drama &amp; Theatre Arts</div><div class="photo-meta"><i class="fas fa-calendar"></i> Cultural Day 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="masonry-item short gallery-item" data-category="cultural" data-caption="Food &amp; Craft Exhibition" data-event="Cultural Day 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/cultural_day4.jpg" alt="Food and Craft Exhibition" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/cultural_day4.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Food &amp; Craft Exhibition</div><div class="photo-meta"><i class="fas fa-calendar"></i> Cultural Day 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CAREER DAY -->
+      <div class="cat-section" data-category="career">
+        <div class="cat-heading">
+          <div class="cat-heading-line"></div>
+          <div class="cat-heading-text"><i class="fas fa-briefcase"></i> Career Day</div>
+          <div class="cat-heading-line right"></div>
+        </div>
+        <div class="uniform-grid">
+
+          <div class="uniform-item gallery-item" data-category="career" data-caption="Career Day Presentations" data-event="Career Day 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/career_day1.jpg" alt="Career Day Presentations" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/career_day1.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Career Day Presentations</div><div class="photo-meta"><i class="fas fa-calendar"></i> Career Day 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="uniform-item gallery-item" data-category="career" data-caption="Professional Guest Speakers" data-event="Career Day 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/career_day2.jpg" alt="Professional Guest Speakers" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/career_day2.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Professional Guest Speakers</div><div class="photo-meta"><i class="fas fa-calendar"></i> Career Day 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="uniform-item gallery-item" data-category="career" data-caption="Students Career Showcase" data-event="Career Day 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/career_day3.jpg" alt="Students Career Showcase" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/career_day3.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Students Career Showcase</div><div class="photo-meta"><i class="fas fa-calendar"></i> Career Day 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="uniform-item gallery-item" data-category="career" data-caption="Group Photo — Career Day" data-event="Career Day 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/career_day4.jpg" alt="Group Photo Career Day" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/career_day4.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Group Photo — Career Day</div><div class="photo-meta"><i class="fas fa-calendar"></i> Career Day 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CLASSROOM -->
+      <div class="cat-section" data-category="classroom">
+        <div class="cat-heading">
+          <div class="cat-heading-line"></div>
+          <div class="cat-heading-text"><i class="fas fa-chalkboard-teacher"></i> Classroom Moments</div>
+          <div class="cat-heading-line right"></div>
+        </div>
+        <div class="masonry-grid">
+
+          <div class="masonry-item gallery-item" data-category="classroom" data-caption="ICT Lab Session" data-event="Term 1 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/classroom1.jpg" alt="ICT Lab Session" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/classroom1.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">ICT Lab Session</div><div class="photo-meta"><i class="fas fa-calendar"></i> Term 1 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="masonry-item tall gallery-item" data-category="classroom" data-caption="Science Experiment — Primary 6" data-event="Term 2 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/classroom2.jpg" alt="Science Experiment Primary 6" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/classroom2.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Science Experiment — Primary 6</div><div class="photo-meta"><i class="fas fa-calendar"></i> Term 2 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="masonry-item short gallery-item" data-category="classroom" data-caption="Reading Hour — KG 2" data-event="Term 1 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/classroom3.jpg" alt="Reading Hour KG 2" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/classroom3.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Reading Hour — KG 2</div><div class="photo-meta"><i class="fas fa-calendar"></i> Term 1 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="masonry-item gallery-item" data-category="classroom" data-caption="Mathematics Class — JHS 2" data-event="Term 2 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/classroom4.jpg" alt="Mathematics Class JHS 2" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/classroom4.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Mathematics Class — JHS 2</div><div class="photo-meta"><i class="fas fa-calendar"></i> Term 2 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SCHOOL EVENTS -->
+      <div class="cat-section" data-category="events">
+        <div class="cat-heading">
+          <div class="cat-heading-line"></div>
+          <div class="cat-heading-text"><i class="fas fa-star"></i> School Events</div>
+          <div class="cat-heading-line right"></div>
+        </div>
+        <div class="uniform-grid">
+
+          <div class="uniform-item gallery-item" data-category="events" data-caption="Independence Day Assembly" data-event="March 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/school_event1.jpg" alt="Independence Day Assembly" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/school_event1.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Independence Day Assembly</div><div class="photo-meta"><i class="fas fa-calendar"></i> March 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="uniform-item gallery-item" data-category="events" data-caption="End of Term Thanksgiving" data-event="Term 1 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/school_event2.jpg" alt="End of Term Thanksgiving" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/school_event2.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">End of Term Thanksgiving</div><div class="photo-meta"><i class="fas fa-calendar"></i> Term 1 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="uniform-item gallery-item" data-category="events" data-caption="New Students Welcome Day" data-event="Sept 2025" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/school_event3.jpg" alt="New Students Welcome Day" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/school_event3.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">New Students Welcome Day</div><div class="photo-meta"><i class="fas fa-calendar"></i> Sept 2025</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+          <div class="uniform-item gallery-item" data-category="events" data-caption="Speech and Prize-Giving Day" data-event="April 2026" onclick="openLightbox(this)">
+            <!-- ADD PHOTO: <img src="images/school_event4.jpg" alt="Speech and Prize-Giving Day" /> -->
+            <div class="img-ph"><i class="fas fa-image"></i><span>Add: images/school_event4.jpg</span></div>
+            <div class="photo-overlay"><div class="photo-caption">Speech and Prize-Giving Day</div><div class="photo-meta"><i class="fas fa-calendar"></i> April 2026</div></div>
+            <div class="photo-zoom"><i class="fas fa-expand"></i></div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="no-results" id="noResults">
+        <i class="fas fa-images"></i>
+        <p>No photos found for this category.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ VIDEOS ══ -->
+  <div class="video-section-wrap">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-video" style="margin-right:6px;"></i>Watch &amp; Replay</span>
+        <h2 class="section-title">School <span class="accent">Videos</span></h2>
+        <div class="section-line"></div>
+        <p style="color:rgba(255,255,255,0.5);margin-top:16px;font-size:0.9rem;">Relive the energy and joy of our school events through video highlights.</p>
+      </div>
+      <div class="video-grid">
+
+        <div class="video-card">
+          <div class="video-thumb">
+            <!-- ADD THUMBNAIL: <img src="images/video_thumb1.jpg" alt="Sports Day Video" /> -->
+            <div class="video-play-btn"><i class="fas fa-play"></i></div>
+            <span class="video-duration">Coming Soon</span>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Sports Day</span>
+            <h4>Inter-House Sports Day 2026 Highlights</h4>
+            <p>Relive the excitement of our annual inter-house competition.</p>
+            <div class="video-info-row">
+              <span class="video-date"><i class="fas fa-calendar"></i> March 2026</span>
+              <a href="https://youtube.com/@slibs_media" target="_blank" class="video-watch-btn"><i class="fab fa-youtube"></i> Watch on YouTube</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumb">
+            <!-- ADD THUMBNAIL: <img src="images/video_thumb2.jpg" alt="Cultural Day Video" /> -->
+            <div class="video-play-btn"><i class="fas fa-play"></i></div>
+            <span class="video-duration">Coming Soon</span>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Cultural Day</span>
+            <h4>Cultural Day 2026 — Dance &amp; Drama</h4>
+            <p>Students showcase Ghana's rich heritage through dance and drama.</p>
+            <div class="video-info-row">
+              <span class="video-date"><i class="fas fa-calendar"></i> April 2026</span>
+              <a href="https://youtube.com/@slibs_media" target="_blank" class="video-watch-btn"><i class="fab fa-youtube"></i> Watch on YouTube</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumb">
+            <!-- ADD THUMBNAIL: <img src="images/video_thumb3.jpg" alt="Prize Giving Video" /> -->
+            <div class="video-play-btn"><i class="fas fa-play"></i></div>
+            <span class="video-duration">Coming Soon</span>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Prize Giving</span>
+            <h4>Annual Prize Giving Ceremony 2026</h4>
+            <p>Full recording celebrating academic excellence and achievement.</p>
+            <div class="video-info-row">
+              <span class="video-date"><i class="fas fa-calendar"></i> April 2026</span>
+              <a href="https://youtube.com/@slibs_media" target="_blank" class="video-watch-btn"><i class="fab fa-youtube"></i> Watch on YouTube</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumb">
+            <!-- ADD THUMBNAIL: <img src="images/video_thumb4.jpg" alt="Career Day Video" /> -->
+            <div class="video-play-btn"><i class="fas fa-play"></i></div>
+            <span class="video-duration">Coming Soon</span>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">Career Day</span>
+            <h4>Career Day 2026 — Student Presentations</h4>
+            <p>Students confidently present their dream careers and future ambitions.</p>
+            <div class="video-info-row">
+              <span class="video-date"><i class="fas fa-calendar"></i> March 2026</span>
+              <a href="https://youtube.com/@slibs_media" target="_blank" class="video-watch-btn"><i class="fab fa-youtube"></i> Watch on YouTube</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumb">
+            <!-- ADD THUMBNAIL: <img src="images/video_thumb5.jpg" alt="School Anthem Video" /> -->
+            <div class="video-play-btn"><i class="fas fa-play"></i></div>
+            <span class="video-duration">Coming Soon</span>
+          </div>
+          <div class="video-info">
+            <span class="video-tag">School Anthem</span>
+            <h4>Star Light School Anthem — Full Choir</h4>
+            <p>Our students perform the Star Light school anthem — Excellence Without Limits!</p>
+            <div class="video-info-row">
+              <span class="video-date"><i class="fas fa-calendar"></i> Jan 2026</span>
+              <a href="https://youtube.com/@slibs_media" target="_blank" class="video-watch-btn"><i class="fab fa-youtube"></i> Watch on YouTube</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="video-card" style="background:linear-gradient(135deg,rgba(201,168,76,0.06),rgba(13,21,37,0.95));border-color:rgba(201,168,76,0.2);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 28px;text-align:center;">
+          <i class="fab fa-youtube" style="font-size:3rem;color:#e06b6b;margin-bottom:16px;"></i>
+          <h4 style="font-family:'Cinzel',serif;color:#fff;margin-bottom:10px;">More on YouTube</h4>
+          <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:24px;line-height:1.6;">Subscribe to our YouTube channel for full event recordings and more.</p>
+          <a href="https://youtube.com/@slibs_media" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#c9a84c,#e6c76a);color:#0d1b3e;padding:12px 28px;border-radius:10px;font-weight:700;font-size:0.88rem;text-decoration:none;">
+            <i class="fab fa-youtube"></i> Visit Our Channel
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="logo.png" alt="Star Light International School" />
+            <div>
+              <span class="footer-logo-name">Star Light</span>
+              <span class="footer-logo-sub">International School</span>
+            </div>
+          </div>
+          <p>Dedicated to excellence without limits — nurturing the next generation of Ghanaian leaders.</p>
+          <p><i class="fas fa-map-marker-alt" style="color:var(--gold);margin-right:6px;"></i>Kasoa Nyanyano Fetteh Road, Ghana</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Us</a></li>
+            <li><a href="index.html#academics">Programs</a></li>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="admissions.html">Admissions</a></li>
+            <li><a href="teachers.html">Meet Our Staff</a></li>
+            <li><a href="career.html">Careers</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="gallery.html">Photo Gallery</a></li>
+            <li><a href="calendar.html">School Calendar</a></li>
+            <li><a href="portal.html">Parent Portal</a></li>
+            <li><a href="newsletter.html">Newsletter</a></li>
+            <li><a href="blog.html">School Blog</a></li>
+            <li><a href="results.html">Results &amp; Achievements</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Star Light International School. All rights reserved.</p>
+        <p class="footer-motto">"Excellence Without Limits"</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══ LIGHTBOX ══ -->
+  <div class="lightbox" id="lightbox" onclick="closeLightboxOnBg(event)">
+    <button class="lb-arrow prev" onclick="lbNavigate(-1)"><i class="fas fa-chevron-left"></i></button>
+    <button class="lb-arrow next" onclick="lbNavigate(1)"><i class="fas fa-chevron-right"></i></button>
+    <div class="lb-inner">
+      <span class="lb-counter" id="lbCounter">1 / 24</span>
+      <div class="lb-close" onclick="closeLightbox()"><i class="fas fa-times"></i></div>
+      <div class="lb-img-wrap"><img id="lbImage" src="" alt="" /></div>
+      <div class="lb-caption">
+        <h4 id="lbCaption"></h4>
+        <p id="lbEvent"></p>
+      </div>
+      <div class="lb-actions">
+        <a id="lbDownload" href="#" download class="lb-btn"><i class="fas fa-download"></i> Download</a>
+        <button class="lb-btn" onclick="closeLightbox()"><i class="fas fa-times"></i> Close</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <i class="fas fa-chevron-up"></i>
+  </div>
+  <script src="script.js"></script>
+  <script>
+
+    /* ════════════════════════════════════════════════════════════════
+       HERO SLIDER ENGINE
+       ────────────────────────────────────────────────────────────────
+       Auto-advances every 6 seconds.
+       Pauses on hover. Supports touch swipe on mobile.
+
+       TO CHANGE SPEED: edit  var DURATION = 6000;
+       (6000 = 6 sec, 8000 = 8 sec, 5000 = 5 sec)
+    ════════════════════════════════════════════════════════════════ */
+    (function () {
+      var slider   = document.getElementById('ghSlider');
+      var slides   = document.querySelectorAll('.gh-slide');
+      var dots     = document.querySelectorAll('.gh-dot');
+      var prevBtn  = document.getElementById('ghPrev');
+      var nextBtn  = document.getElementById('ghNext');
+      var progress = document.getElementById('ghProgress');
+      var curNum   = document.getElementById('ghCur');
+      var totalNum = document.getElementById('ghTotal');
+      var DURATION = 6000;
+      var current  = 0;
+      var timer;
+
+      if (!slider || slides.length === 0) return;
+
+      if (totalNum) totalNum.textContent = slides.length;
+
+      function goTo(idx) {
+        slides[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (idx + slides.length) % slides.length;
+        slides[current].classList.add('active');
+        dots[current].classList.add('active');
+        if (curNum) curNum.textContent = current + 1;
+        startProgress();
+      }
+
+      function next() { goTo(current + 1); }
+      function prev() { goTo(current - 1); }
+
+      function startProgress() {
+        clearTimeout(timer);
+        if (progress) {
+          progress.style.transition = 'none';
+          progress.style.width = '0%';
+          void progress.offsetWidth;
+          progress.style.transition = 'width ' + DURATION + 'ms linear';
+          progress.style.width = '100%';
+        }
+        timer = setTimeout(next, DURATION);
+      }
+
+      if (nextBtn) nextBtn.addEventListener('click', next);
+      if (prevBtn) prevBtn.addEventListener('click', prev);
+
+      dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+          goTo(parseInt(dot.getAttribute('data-index'), 10));
+        });
+      });
+
+      slider.addEventListener('mouseenter', function () { clearTimeout(timer); });
+      slider.addEventListener('mouseleave', startProgress);
+
+      var tx = 0;
+      slider.addEventListener('touchstart', function (e) {
+        tx = e.touches[0].clientX;
+      }, { passive: true });
+      slider.addEventListener('touchend', function (e) {
+        var diff = tx - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+      });
+
+      startProgress();
+    })();
+
+    /* ════════════════════════════════════════════════════════════════
+       GALLERY FILTER
+    ════════════════════════════════════════════════════════════════ */
+    function filterGallery(cat, btn) {
+      document.querySelectorAll('.filter-btn').forEach(function (b) {
+        b.classList.remove('active');
+      });
+      btn.classList.add('active');
+
+      var sections = document.querySelectorAll('.cat-section');
+      if (cat === 'all') {
+        sections.forEach(function (s) { s.style.display = ''; });
+        document.getElementById('noResults').style.display = 'none';
+      } else {
+        var found = false;
+        sections.forEach(function (s) {
+          if (s.dataset.category === cat) { s.style.display = ''; found = true; }
+          else { s.style.display = 'none'; }
+        });
+        document.getElementById('noResults').style.display = found ? 'none' : 'block';
+      }
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       GALLERY SEARCH
+    ════════════════════════════════════════════════════════════════ */
+    function searchGallery(query) {
+      var q = query.toLowerCase().trim();
+      if (!q) { document.querySelector('.filter-btn').click(); return; }
+      document.querySelectorAll('.cat-section').forEach(function (s) { s.style.display = ''; });
+      document.querySelectorAll('.gallery-item').forEach(function (item) {
+        var text = [item.dataset.caption, item.dataset.event, item.dataset.category].join(' ').toLowerCase();
+        item.style.display = text.includes(q) ? '' : 'none';
+      });
+    }
+
+    /* ════════════════════════════════════════════════════════════════
+       LIGHTBOX
+    ════════════════════════════════════════════════════════════════ */
+    var lbItems = [], lbCurrent = 0;
+
+    function openLightbox(el) {
+      lbItems   = Array.from(document.querySelectorAll('.gallery-item'));
+      lbCurrent = lbItems.indexOf(el);
+      showLbItem(lbCurrent);
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function showLbItem(idx) {
+      lbCurrent = (idx + lbItems.length) % lbItems.length;
+      var el  = lbItems[lbCurrent];
+      var img = el.querySelector('img');
+      var lbImg = document.getElementById('lbImage');
+
+      if (img && img.src && !img.src.endsWith('#')) {
+        lbImg.src = img.src;
+        lbImg.style.display = '';
+      } else {
+        lbImg.src = '';
+        lbImg.style.display = 'none';
+      }
+
+      document.getElementById('lbCaption').textContent = el.dataset.caption || '';
+      document.getElementById('lbEvent').textContent   = el.dataset.event   || '';
+      document.getElementById('lbCounter').textContent = (lbCurrent + 1) + ' / ' + lbItems.length;
+      var dl = document.getElementById('lbDownload');
+      if (dl) dl.href = (img && img.src) ? img.src : '#';
+    }
+
+    function lbNavigate(dir) { showLbItem(lbCurrent + dir); }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function closeLightboxOnBg(e) {
+      if (e.target === document.getElementById('lightbox')) closeLightbox();
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'ArrowLeft')  lbNavigate(-1);
+      if (e.key === 'ArrowRight') lbNavigate(1);
+      if (e.key === 'Escape')     closeLightbox();
+    });
+
+    /* ════════════════════════════════════════════════════════════════
+       BACK TO TOP
+    ════════════════════════════════════════════════════════════════ */
+    window.addEventListener('scroll', function () {
+      var btn = document.getElementById('backTop');
+      if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+    });
+
+  </script>
+</body>
+</html>
+  

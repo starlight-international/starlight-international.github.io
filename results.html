@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results & Achievements — Star Light International School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lato:ital,wght@0,300;0,400;0,700;1,300&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0a0f1e; color: #f4f1ea; font-family: 'Lato', sans-serif; overflow-x: hidden; }
+    :root {
+      --navy:#0a0f1e; --navy2:#0d1525; --card:#0f1a2e;
+      --gold:#c9a84c; --gold-l:#e6c76a; --white:#f4f1ea;
+      --text:#c8c2b4; --muted:#7a7565;
+      --green:#4ecca3; --red:#e06b6b; --blue:#88aaff;
+      --orange:#ff9f43; --purple:#cc88ff;
+    }
+    .ra-container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .ra-tag { display: inline-block; font-family: 'Cinzel', serif; font-size: 0.68rem; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+    .ra-title { font-family: 'Cinzel', serif; font-size: clamp(1.4rem,3vw,2rem); font-weight: 700; color: var(--white); margin-bottom: 12px; line-height: 1.2; }
+    .ra-title span { color: var(--gold-l); }
+    .ra-line { width: 60px; height: 2px; background: linear-gradient(90deg,var(--gold),transparent); margin-bottom: 40px; }
+    .section-pad { padding: 72px 0; }
+    .alt-bg { background: linear-gradient(180deg,rgba(13,21,37,0.6),rgba(10,15,30,0.9)); }
+
+    /* ══ HERO WITH SLIDER ══ */
+    .ra-hero { position: relative; min-height: 560px; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 120px 20px 70px; }
+    .ra-hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.15) 0%, transparent 70%), linear-gradient(180deg,#0d1525 0%,#0a0f1e 100%); }
+    .ra-hero-grid { position: absolute; inset: 0; background-image: repeating-linear-gradient(90deg,rgba(201,168,76,0.03) 0px,rgba(201,168,76,0.03) 1px,transparent 1px,transparent 80px), repeating-linear-gradient(0deg,rgba(201,168,76,0.03) 0px,rgba(201,168,76,0.03) 1px,transparent 1px,transparent 80px); }
+    .hero-star { position: absolute; color: rgba(201,168,76,0.12); animation: float 4s ease-in-out infinite; }
+    .hero-star:nth-child(1){top:15%;left:8%;font-size:2rem;animation-delay:0s;}
+    .hero-star:nth-child(2){top:25%;right:10%;font-size:1.5rem;animation-delay:0.8s;}
+    .hero-star:nth-child(3){top:60%;left:5%;font-size:1rem;animation-delay:1.6s;}
+    .hero-star:nth-child(4){bottom:20%;right:6%;font-size:1.8rem;animation-delay:2.4s;}
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-12px);} }
+    
+    /* HERO SLIDER */
+    .hero-slider { position: relative; width: 100%; max-width: 1000px; z-index: 1; }
+    .hero-slides { position: relative; width: 100%; overflow: hidden; border-radius: 20px; }
+    .hero-slide { display: none; text-align: center; padding: 40px 30px; background: rgba(15,26,46,0.85); backdrop-filter: blur(10px); border: 1px solid rgba(201,168,76,0.2); border-radius: 20px; }
+    .hero-slide.active { display: block; animation: slideIn 0.6s ease; }
+    @keyframes slideIn { from{opacity:0;transform:translateX(30px);} to{opacity:1;transform:translateX(0);} }
+    .hero-slide-img { width: 100%; max-width: 500px; height: 280px; object-fit: cover; border-radius: 12px; margin: 0 auto 24px; border: 2px solid rgba(201,168,76,0.3); }
+    .hero-slide-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 30px; padding: 6px 22px; font-family: 'Cinzel', serif; font-size: 0.72rem; color: var(--gold-l); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; }
+    .hero-slide-title { font-family: 'Cinzel', serif; font-size: clamp(1.8rem,4vw,3rem); font-weight: 900; color: var(--white); line-height: 1.2; margin-bottom: 12px; }
+    .hero-slide-title span { color: var(--gold-l); }
+    .hero-slide-desc { font-family: 'Amiri', serif; font-style: italic; font-size: 1rem; color: var(--text); line-height: 1.7; max-width: 600px; margin: 0 auto; }
+    .hero-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 100%; display: flex; justify-content: space-between; padding: 0 10px; z-index: 10; pointer-events: none; }
+    .hero-nav-btn { pointer-events: all; background: rgba(201,168,76,0.15); backdrop-filter: blur(8px); border: 1px solid rgba(201,168,76,0.3); color: var(--gold-l); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; font-size: 1.1rem; }
+    .hero-nav-btn:hover { background: rgba(201,168,76,0.25); transform: scale(1.1); }
+    .hero-dots { display: flex; gap: 10px; justify-content: center; margin-top: 24px; }
+    .hero-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(201,168,76,0.3); cursor: pointer; transition: all 0.3s; }
+    .hero-dot.active { background: var(--gold-l); width: 28px; border-radius: 5px; }
+    .hero-stats { display: flex; gap: 0; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2); border-radius: 16px; overflow: hidden; margin-top: 32px; flex-wrap: wrap; }
+    .hero-stat { flex: 1; min-width: 120px; padding: 18px 20px; text-align: center; border-right: 1px solid rgba(255,255,255,0.07); }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-val { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 900; color: var(--gold-l); line-height: 1; }
+    .hero-stat-label { font-size: 0.7rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ══ SCHOOL STATS CHARTS ══ */
+    .stats-grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; margin-bottom: 40px; }
+    .stat-card { background: var(--card); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 22px; transition: all 0.3s; }
+    .stat-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.25); box-shadow: 0 12px 36px rgba(0,0,0,0.3); }
+    .sc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .sc-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .sci-gold   { background: rgba(201,168,76,0.12); color: var(--gold-l); border: 1px solid rgba(201,168,76,0.2); }
+    .sci-green  { background: rgba(78,204,163,0.12); color: var(--green); border: 1px solid rgba(78,204,163,0.2); }
+    .sci-blue   { background: rgba(136,170,255,0.12); color: var(--blue); border: 1px solid rgba(136,170,255,0.2); }
+    .sci-orange { background: rgba(255,159,67,0.12); color: var(--orange); border: 1px solid rgba(255,159,67,0.2); }
+    .sc-trend { font-size: 0.7rem; padding: 3px 8px; border-radius: 10px; }
+    .tr-up   { background: rgba(78,204,163,0.12); color: var(--green); }
+    .tr-same { background: rgba(201,168,76,0.12); color: var(--gold-l); }
+    .sc-val   { font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 900; color: var(--white); margin-bottom: 3px; }
+    .sc-label { font-size: 0.76rem; color: var(--muted); }
+    .sc-sub   { font-size: 0.72rem; color: var(--text); margin-top: 8px; }
+    .prog-bar { background: rgba(255,255,255,0.06); border-radius: 4px; height: 6px; margin-top: 10px; overflow: hidden; }
+    .prog-fill { height: 100%; border-radius: 4px; }
+    .pf-gold   { background: linear-gradient(90deg,var(--gold),var(--gold-l)); }
+    .pf-green  { background: linear-gradient(90deg,var(--green),rgba(78,204,163,0.6)); }
+    .pf-blue   { background: linear-gradient(90deg,var(--blue),rgba(136,170,255,0.6)); }
+    .pf-orange { background: linear-gradient(90deg,var(--orange),rgba(255,159,67,0.6)); }
+
+    /* BECE BAR CHART */
+    .bece-chart { display: flex; align-items: flex-end; gap: 10px; height: 180px; padding: 0 10px; }
+    .bar-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; }
+    .bar-val { font-family: 'Cinzel', serif; font-size: 0.76rem; color: var(--white); }
+    .bar { width: 100%; border-radius: 6px 6px 0 0; transition: height 1s ease; position: relative; min-height: 4px; }
+    .bar-gold   { background: linear-gradient(180deg,var(--gold-l),var(--gold)); }
+    .bar-green  { background: linear-gradient(180deg,var(--green),rgba(78,204,163,0.5)); }
+    .bar-year { font-size: 0.68rem; color: var(--muted); font-family: 'Cinzel', serif; }
+
+    /* ══ BECE RESULTS ══ */
+    .bece-table-wrap { background: var(--card); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; overflow: hidden; margin-bottom: 28px; }
+    .bece-table { width: 100%; border-collapse: collapse; }
+    .bece-table thead { background: rgba(201,168,76,0.08); border-bottom: 1px solid rgba(201,168,76,0.2); }
+    .bece-table th { padding: 14px 18px; text-align: left; font-family: 'Cinzel', serif; font-size: 0.68rem; color: var(--gold-l); letter-spacing: 1.5px; text-transform: uppercase; }
+    .bece-table td { padding: 13px 18px; font-size: 0.84rem; color: var(--text); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .bece-table tr:last-child td { border-bottom: none; }
+    .bece-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .rate-bar { display: flex; align-items: center; gap: 10px; }
+    .rate-bar-bg { flex: 1; background: rgba(255,255,255,0.06); border-radius: 4px; height: 8px; overflow: hidden; }
+    .rate-bar-fill { height: 100%; border-radius: 4px; }
+    .subject-perf { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .subj-perf-card { background: var(--card); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 16px; }
+    .subj-perf-name { font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--white); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .subj-perf-name i { color: var(--gold); font-size: 0.76rem; }
+    .subj-rate { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 4px; }
+    .subj-tag-sm { font-size: 0.66rem; color: var(--muted); }
+
+    /* ══ TERM RESULTS ══ */
+    .term-tabs { display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+    .term-tab { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 9px 18px; font-family: 'Cinzel', serif; font-size: 0.74rem; color: var(--muted); cursor: pointer; transition: 0.3s; letter-spacing: 0.5px; }
+    .term-tab:hover { color: var(--text); }
+    .term-tab.active { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.3); color: var(--gold-l); }
+    .term-panel { display: none; }
+    .term-panel.active { display: block; }
+    .class-results-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .class-card { background: var(--card); border: 1px solid rgba(255,255,255,0.07); border-radius: 14px; overflow: hidden; transition: all 0.3s; }
+    .class-card:hover { border-color: rgba(201,168,76,0.25); transform: translateY(-3px); }
+    .class-card-header { padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; }
+    .class-name { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--white); }
+    .class-avg { font-family: 'Cinzel', serif; font-size: 0.82rem; }
+    .class-card-body { padding: 14px 18px; }
+    .class-stat-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.8rem; }
+    .class-stat-row:last-child { border-bottom: none; }
+    .class-stat-row .label { color: var(--muted); }
+    .class-stat-row .value { color: var(--white); font-family: 'Cinzel', serif; font-size: 0.78rem; }
+    .top-student-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.05); }
+    .ts-avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg,var(--gold),var(--gold-l)); display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 0.62rem; color: #0a0f1e; font-weight: 700; flex-shrink: 0; }
+    .ts-info { font-size: 0.74rem; }
+    .ts-name { color: var(--white); display: block; }
+    .ts-score { color: var(--gold-l); font-family: 'Cinzel', serif; font-size: 0.68rem; }
+
+    /* ══ HALL OF FAME ══ */
+    .hof-year-tabs { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+    .hof-tab { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 9px 18px; font-family: 'Cinzel', serif; font-size: 0.74rem; color: var(--muted); cursor: pointer; transition: 0.3s; }
+    .hof-tab:hover { color: var(--text); }
+    .hof-tab.active { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.3); color: var(--gold-l); }
+    .hof-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; }
+    .hof-card { background: var(--card); border: 1px solid rgba(255,255,255,0.07); border-radius: 18px; overflow: hidden; transition: all 0.4s; text-align: center; }
+    .hof-card:hover { transform: translateY(-6px); border-color: rgba(201,168,76,0.3); box-shadow: 0 16px 44px rgba(0,0,0,0.4); }
+    .hof-card.gold-border { border-color: rgba(201,168,76,0.4); box-shadow: 0 0 0 1px rgba(201,168,76,0.15); }
+    .hof-photo { height: 180px; overflow: hidden; position: relative; background: linear-gradient(135deg,rgba(201,168,76,0.1),rgba(10,15,30,0.95)); display: flex; align-items: center; justify-content: center; }
+    .hof-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform 0.5s; }
+    .hof-card:hover .hof-photo img { transform: scale(1.06); }
+    .hof-photo-placeholder { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .hof-photo-placeholder i { font-size: 3rem; color: rgba(201,168,76,0.2); }
+    .hof-photo-placeholder span { font-size: 0.62rem; color: var(--muted); }
+    .hof-rank { position: absolute; top: 10px; left: 10px; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 0.76rem; font-weight: 700; }
+    .rank-1 { background: linear-gradient(135deg,#ffd700,#f5c518); color: #0a0f1e; box-shadow: 0 0 12px rgba(255,215,0,0.4); }
+    .rank-2 { background: linear-gradient(135deg,#c0c0c0,#a8a8a8); color: #0a0f1e; }
+    .rank-3 { background: linear-gradient(135deg,#cd7f32,#b8621a); color: white; }
+    .rank-n { background: rgba(201,168,76,0.12); color: var(--gold-l); border: 1px solid rgba(201,168,76,0.2); }
+    .hof-body { padding: 16px 16px 18px; }
+    .hof-name { font-family: 'Cinzel', serif; font-size: 0.92rem; color: var(--white); margin-bottom: 3px; }
+    .hof-class { font-size: 0.74rem; color: var(--gold-l); margin-bottom: 8px; font-style: italic; }
+    .hof-score { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--white); margin-bottom: 4px; }
+    .hof-grade { display: inline-block; padding: 3px 10px; border-radius: 8px; font-family: 'Cinzel', serif; font-size: 0.72rem; background: rgba(201,168,76,0.1); color: var(--gold-l); border: 1px solid rgba(201,168,76,0.2); margin-bottom: 8px; }
+    .hof-award { font-size: 0.72rem; color: var(--muted); display: flex; align-items: center; justify-content: center; gap: 5px; }
+    .hof-award i { color: var(--gold); font-size: 0.65rem; }
+
+    /* ══ STUDENT SPOTLIGHTS ══ */
+    .spotlights-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .spotlight-card { background: var(--card); border: 1px solid rgba(255,255,255,0.07); border-radius: 18px; overflow: hidden; transition: all 0.4s; }
+    .spotlight-card:hover { transform: translateY(-5px); border-color: rgba(201,168,76,0.3); box-shadow: 0 16px 44px rgba(0,0,0,0.4); }
+    .spotlight-top { padding: 24px 24px 0; display: flex; align-items: flex-start; gap: 16px; }
+    .spotlight-photo { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--gold); overflow: hidden; flex-shrink: 0; background: rgba(201,168,76,0.08); display: flex; align-items: center; justify-content: center; }
+    .spotlight-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .spotlight-photo i { font-size: 2rem; color: rgba(201,168,76,0.25); }
+    .spotlight-info { flex: 1; }
+    .spotlight-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.62rem; font-family: 'Cinzel', serif; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 10px; margin-bottom: 6px; }
+    .sb-term     { background: rgba(201,168,76,0.12); color: var(--gold-l); border: 1px solid rgba(201,168,76,0.2); }
+    .sb-improved { background: rgba(78,204,163,0.12); color: var(--green); border: 1px solid rgba(78,204,163,0.2); }
+    .sb-sports   { background: rgba(255,159,67,0.12); color: var(--orange); border: 1px solid rgba(255,159,67,0.2); }
+    .sb-academic { background: rgba(136,170,255,0.12); color: var(--blue); border: 1px solid rgba(136,170,255,0.2); }
+    .sb-leader   { background: rgba(204,136,255,0.12); color: var(--purple); border: 1px solid rgba(204,136,255,0.2); }
+    .spotlight-name { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--white); margin-bottom: 2px; }
+    .spotlight-class { font-size: 0.76rem; color: var(--muted); }
+    .spotlight-body { padding: 16px 24px 22px; }
+    .spotlight-quote { font-family: 'Amiri', serif; font-style: italic; font-size: 0.9rem; color: var(--text); line-height: 1.7; padding: 12px 16px; background: rgba(255,255,255,0.03); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; margin-bottom: 14px; }
+    .spotlight-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+    .spotlight-stat { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 10px; text-align: center; }
+    .ss-val   { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--white); }
+    .ss-label { font-size: 0.62rem; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* ══ SPORTS & TROPHIES ══ */
+    .trophies-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+    .trophy-card { background: var(--card); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; overflow: hidden; transition: all 0.4s; }
+    .trophy-card:hover { transform: translateY(-5px); border-color: rgba(255,159,67,0.3); box-shadow: 0 16px 44px rgba(0,0,0,0.4); }
+    .trophy-img { height: 180px; overflow: hidden; position: relative; background: linear-gradient(135deg,rgba(255,159,67,0.08),rgba(10,15,30,0.95)); display: flex; align-items: center; justify-content: center; }
+    .trophy-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .trophy-card:hover .trophy-img img { transform: scale(1.06); }
+    .trophy-img-placeholder { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .trophy-img-placeholder i { font-size: 3rem; color: rgba(255,159,67,0.2); }
+    .trophy-img-placeholder span { font-size: 0.66rem; color: var(--muted); }
+    .trophy-year-badge { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,159,67,0.3); border-radius: 8px; padding: 4px 10px; font-family: 'Cinzel', serif; font-size: 0.68rem; color: var(--orange); }
+    .trophy-body { padding: 18px 20px; }
+    .trophy-type { font-size: 0.64rem; font-family: 'Cinzel', serif; letter-spacing: 1px; text-transform: uppercase; color: var(--orange); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .trophy-name { font-family: 'Cinzel', serif; font-size: 0.96rem; color: var(--white); margin-bottom: 6px; line-height: 1.35; }
+    .trophy-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.55; margin-bottom: 10px; }
+    .trophy-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .trophy-meta span { font-size: 0.72rem; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+    .trophy-meta span i { color: var(--gold); font-size: 0.66rem; }
+    .trophy-place { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 8px; font-family: 'Cinzel', serif; font-size: 0.68rem; margin-top: 8px; }
+    .tp-gold   { background: rgba(255,215,0,0.1); color: #ffd700; border: 1px solid rgba(255,215,0,0.2); }
+    .tp-silver { background: rgba(192,192,192,0.1); color: #c0c0c0; border: 1px solid rgba(192,192,192,0.2); }
+    .tp-bronze { background: rgba(205,127,50,0.1); color: #cd7f32; border: 1px solid rgba(205,127,50,0.2); }
+
+    /* ══ AWARDS PHOTO GALLERY ══ */
+    .gallery-section { padding: 72px 0; }
+    .gallery-filter { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; }
+    .gf-btn { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 7px 16px; font-size: 0.76rem; color: var(--muted); cursor: pointer; transition: 0.3s; font-family: 'Cinzel', serif; }
+    .gf-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
+    .gf-btn.active { background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.3); color: var(--gold-l); }
+    .photo-gallery-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .gallery-photo { border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; position: relative; background: rgba(255,255,255,0.03); border: 1px dashed rgba(201,168,76,0.15); display: flex; align-items: center; justify-content: center; transition: all 0.4s; }
+    .gallery-photo:hover { border-color: rgba(201,168,76,0.4); transform: scale(1.02); }
+    .gallery-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .gallery-photo:hover img { transform: scale(1.08); }
+    .gallery-photo-placeholder { display: flex; flex-direction: column; align-items: center; gap: 7px; color: rgba(201,168,76,0.18); text-align: center; padding: 12px; }
+    .gallery-photo-placeholder i { font-size: 1.8rem; }
+    .gallery-photo-placeholder p { font-size: 0.6rem; color: var(--muted); line-height: 1.5; }
+    .gallery-photo-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; opacity: 0; transition: opacity 0.3s; }
+    .gallery-photo:hover .gallery-photo-overlay { opacity: 1; }
+    .gallery-photo-overlay i { font-size: 1.4rem; color: var(--gold-l); }
+    .gallery-photo-overlay span { font-size: 0.68rem; color: var(--white); font-family: 'Cinzel', serif; letter-spacing: 0.5px; text-align: center; padding: 0 10px; }
+
+    /* IMAGE LIGHTBOX */
+    .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 88vw; max-height: 82vh; border-radius: 8px; object-fit: contain; }
+    .lb-close { position: fixed; top: 20px; right: 24px; background: rgba(255,255,255,0.1); border: none; color: white; font-size: 1.4rem; cursor: pointer; border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; transition: background 0.3s; }
+    .lb-close:hover { background: rgba(224,107,107,0.3); }
+    .lb-caption { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.75); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 8px 22px; font-size: 0.82rem; color: var(--white); max-width: 500px; text-align: center; }
+
+    /* ══ CTA BANNER ══ */
+    .cta-banner { background: linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.04)); border: 1px solid rgba(201,168,76,0.2); border-radius: 20px; padding: 48px; text-align: center; margin: 40px 0; }
+    .cta-banner h3 { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--white); margin-bottom: 12px; }
+    .cta-banner h3 span { color: var(--gold-l); }
+    .cta-banner p { font-family: 'Amiri', serif; font-style: italic; font-size: 1rem; color: var(--text); margin-bottom: 24px; line-height: 1.7; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg,var(--gold),var(--gold-l)); color: #0a0f1e; font-family: 'Cinzel', serif; font-size: 0.82rem; font-weight: 700; padding: 13px 26px; border-radius: 8px; text-decoration: none; transition: 0.3s; box-shadow: 0 6px 20px rgba(201,168,76,0.3); }
+    .cta-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(201,168,76,0.45); }
+    .cta-btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(201,168,76,0.3); color: var(--gold-l); font-family: 'Cinzel', serif; font-size: 0.82rem; padding: 13px 26px; border-radius: 8px; text-decoration: none; transition: 0.3s; }
+    .cta-btn-outline:hover { background: rgba(201,168,76,0.08); transform: translateY(-3px); }
+
+    /* ══ FOOTER ══ */
+    .ra-footer { background: rgba(13,21,37,0.95); border-top: 1px solid rgba(255,255,255,0.05); padding: 44px 0 24px; }
+    .ra-footer-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 24px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .ra-footer-logo { display: flex; align-items: center; gap: 12px; }
+    .ra-footer-logo img { height: 46px; border-radius: 6px; }
+    .ra-footer-name { font-family: 'Cinzel', serif; font-size: 0.96rem; color: var(--gold-l); display: block; }
+    .ra-footer-sub  { font-size: 0.7rem; color: var(--muted); display: block; margin-top: 2px; }
+    .ra-footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .ra-footer-links a { font-size: 0.76rem; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+    .ra-footer-links a:hover { color: var(--gold-l); }
+    .ra-footer-copy { text-align: center; font-size: 0.74rem; color: var(--muted); }
+
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-20px);}to{opacity:1;transform:translateY(0);} }
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.6s ease,transform 0.6s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* RESPONSIVE */
+    @media(max-width:1100px){ .hof-grid{grid-template-columns:repeat(3,1fr);} .photo-gallery-grid{grid-template-columns:repeat(3,1fr);} }
+    @media(max-width:900px) { .stats-grid-4{grid-template-columns:repeat(2,1fr);} .class-results-grid{grid-template-columns:repeat(2,1fr);} .trophies-grid{grid-template-columns:repeat(2,1fr);} .spotlights-grid{grid-template-columns:repeat(2,1fr);} .subject-perf{grid-template-columns:repeat(2,1fr);} }
+    @media(max-width:640px) { .hof-grid{grid-template-columns:repeat(2,1fr);} .photo-gallery-grid{grid-template-columns:repeat(2,1fr);} .stats-grid-4{grid-template-columns:1fr 1fr;} .class-results-grid{grid-template-columns:1fr;} .trophies-grid{grid-template-columns:1fr;} .spotlights-grid{grid-template-columns:1fr;} .hero-stats{flex-direction:column;} .hero-stat{border-right:none;border-bottom:1px solid rgba(255,255,255,0.07);} .hero-stat:last-child{border-bottom:none;} }
+  </style>
+</head>
+<body>
+
+  <canvas id="starsCanvas"></canvas>
+  <div id="preloader">
+    <div class="preloader-inner">
+      <img src="logo.png" alt="Star Light Logo" class="preloader-logo-img" />
+      <div class="preloader-bar"><div class="preloader-fill"></div></div>
+      <p class="preloader-text">Loading Results & Achievements...</p>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="logo.png" alt="Star Light International School" class="nav-logo-img" />
+        <div><span class="nav-logo-name">Star Light</span><span class="nav-logo-sub">International School</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#academics">Academics</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="gallery.html"><i class="fas fa-images" style="font-size:0.75rem;margin-right:4px;"></i>Gallery</a></li>
+        <li><a href="blog.html"><i class="fas fa-blog" style="font-size:0.75rem;margin-right:4px;"></i>Blog</a></li>
+        <li><a href="results.html" class="active-link"><i class="fas fa-trophy" style="font-size:0.75rem;margin-right:4px;"></i>Results</a></li>
+        <li><a href="teachers.html"><i class="fas fa-chalkboard-teacher" style="font-size:0.75rem;margin-right:4px;"></i>Staff</a></li>
+        <li><a href="career.html"><i class="fas fa-briefcase" style="font-size:0.75rem;margin-right:4px;"></i>Careers</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="index.html#admissions" class="btn-portal"><i class="fas fa-user-graduate"></i> Apply Now</a>
+        <button class="hamburger" id="hamburger" aria-label="Open Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#academics">Academics</a></li>
+        <li><a href="index.html#events">Events</a></li>
+        <li><a href="gallery.html"><i class="fas fa-images" style="margin-right:6px;"></i>Photo Gallery</a></li>
+        <li><a href="index.html#admissions">Admissions</a></li>
+        <li><a href="teachers.html"><i class="fas fa-chalkboard-teacher" style="margin-right:6px;"></i>Meet Our Staff</a></li>
+        <li><a href="blog.html"><i class="fas fa-blog" style="margin-right:6px;"></i>Blog</a></li>
+        <li><a href="results.html"><i class="fas fa-trophy" style="margin-right:6px;"></i>Results &amp; Achievements</a></li>
+        <li><a href="career.html"><i class="fas fa-briefcase" style="margin-right:6px;"></i>Careers</a></li>
+        <li><a href="portal.html"><i class="fas fa-user-shield" style="margin-right:6px;"></i>Parent Portal</a></li>
+        <li><a href="calendar.html"><i class="fas fa-calendar-alt" style="margin-right:6px;"></i>School Calendar</a></li>
+        <li><a href="newsletter.html"><i class="fas fa-envelope-open-text" style="margin-right:6px;"></i>Newsletter</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ══ HERO WITH SLIDER ══ -->
+  <section class="ra-hero">
+    <div class="ra-hero-bg"></div>
+    <div class="ra-hero-grid"></div>
+    <i class="fas fa-star hero-star"></i>
+    <i class="fas fa-trophy hero-star"></i>
+    <i class="fas fa-medal hero-star"></i>
+    <i class="fas fa-award hero-star"></i>
+    
+    <div class="hero-slider">
+      <div class="hero-slides">
+        <!-- Slide 1: Achievement Highlights -->
+        <div class="hero-slide active">
+          <img src="images/achievements/hero-slide-1.jpg" alt="Academic Excellence" class="hero-slide-img" />
+          <div class="hero-slide-badge"><i class="fas fa-trophy"></i> Star Light International School <i class="fas fa-trophy"></i></div>
+          <h1 class="hero-slide-title">Results &amp; <span>Achievements</span></h1>
+          <p class="hero-slide-desc">Celebrating the academic excellence, sporting glory and outstanding achievements of our students across every year and every class.</p>
+        </div>
+        
+        <!-- Slide 2: Student Success Stories -->
+        <div class="hero-slide">
+          <img src="images/achievements/hero-slide-2.jpg" alt="Student Success" class="hero-slide-img" />
+          <div class="hero-slide-badge"><i class="fas fa-star"></i> Excellence Without Limits <i class="fas fa-star"></i></div>
+          <h1 class="hero-slide-title">Student <span>Success Stories</span></h1>
+          <p class="hero-slide-desc">From BECE distinctions to sports championships, our students continue to break barriers and set new standards of excellence.</p>
+        </div>
+        
+        <!-- Slide 3: Trophy Showcase -->
+        <div class="hero-slide">
+          <img src="images/achievements/hero-slide-3.jpg" alt="Trophy Showcase" class="hero-slide-img" />
+          <div class="hero-slide-badge"><i class="fas fa-medal"></i> Champions in Every Field <i class="fas fa-medal"></i></div>
+          <h1 class="hero-slide-title">Trophy <span>Showcase</span></h1>
+          <p class="hero-slide-desc">18+ trophies and counting — from regional mathematics olympiads to district football championships, Star Light shines bright.</p>
+        </div>
+      </div>
+      
+      <!-- Navigation -->
+      <div class="hero-nav">
+        <button class="hero-nav-btn" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="hero-nav-btn" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      
+      <!-- Dots -->
+      <div class="hero-dots">
+        <span class="hero-dot active" onclick="currentSlide(1)"></span>
+        <span class="hero-dot" onclick="currentSlide(2)"></span>
+        <span class="hero-dot" onclick="currentSlide(3)"></span>
+      </div>
+      
+      <!-- Stats -->
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-val">94%</div><div class="hero-stat-label">BECE Pass Rate</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">18+</div><div class="hero-stat-label">Trophies Won</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">340+</div><div class="hero-stat-label">Graduates</div></div>
+        <div class="hero-stat"><div class="hero-stat-val">100%</div><div class="hero-stat-label">Student Pride</div></div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- SCHOOL STATS & CHARTS -->
+    <section class="section-pad">
+      <div class="ra-container">
+        <div style="margin-bottom:36px;">
+          <p class="ra-tag"><i class="fas fa-chart-line" style="margin-right:8px;"></i>School Performance</p>
+          <h2 class="ra-title">Our <span>Stats</span></h2>
+          <div class="ra-line"></div>
+        </div>
+        <div class="stats-grid-4">
+          <div class="stat-card reveal">
+            <div class="sc-top"><div class="sc-icon sci-gold"><i class="fas fa-graduation-cap"></i></div><span class="sc-trend tr-up"><i class="fas fa-arrow-up"></i> +2%</span></div>
+            <div class="sc-val">94%</div><div class="sc-label">BECE Pass Rate 2025</div>
+            <div class="sc-sub">17 out of 18 candidates passed</div>
+            <div class="prog-bar"><div class="prog-fill pf-gold" style="width:94%"></div></div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="sc-top"><div class="sc-icon sci-green"><i class="fas fa-calendar-check"></i></div><span class="sc-trend tr-up"><i class="fas fa-arrow-up"></i> Good</span></div>
+            <div class="sc-val">89%</div><div class="sc-label">School Attendance Rate</div>
+            <div class="sc-sub">Term 2, 2025/2026</div>
+            <div class="prog-bar"><div class="prog-fill pf-green" style="width:89%"></div></div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="sc-top"><div class="sc-icon sci-blue"><i class="fas fa-users"></i></div><span class="sc-trend tr-same">Stable</span></div>
+            <div class="sc-val">340+</div><div class="sc-label">Total Graduates</div>
+            <div class="sc-sub">Since school's founding</div>
+            <div class="prog-bar"><div class="prog-fill pf-blue" style="width:75%"></div></div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="sc-top"><div class="sc-icon sci-orange"><i class="fas fa-trophy"></i></div><span class="sc-trend tr-up"><i class="fas fa-arrow-up"></i> Growing</span></div>
+            <div class="sc-val">18+</div><div class="sc-label">Trophies & Awards</div>
+            <div class="sc-sub">Competitions won since 2018</div>
+            <div class="prog-bar"><div class="prog-fill pf-orange" style="width:70%"></div></div>
+          </div>
+        </div>
+        <!-- BECE PASS RATE CHART -->
+        <div style="background:var(--card);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:28px;margin-bottom:20px;" class="reveal">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+            <div>
+              <h4 style="font-family:'Cinzel',serif;font-size:0.9rem;color:var(--white);margin-bottom:3px;"><i class="fas fa-chart-bar" style="color:var(--gold);margin-right:8px;"></i>BECE Pass Rate — Year by Year</h4>
+              <p style="font-size:0.76rem;color:var(--muted);">Percentage of students who passed BECE each year</p>
+            </div>
+            <div style="display:flex;gap:14px;">
+              <div style="display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--text);"><div style="width:12px;height:12px;border-radius:3px;background:var(--gold);"></div> Pass Rate</div>
+              <div style="display:flex;align-items:center;gap:6px;font-size:0.72rem;color:var(--text);"><div style="width:12px;height:12px;border-radius:3px;background:var(--green);"></div> Distinctions</div>
+            </div>
+          </div>
+          <div class="bece-chart" id="beceChart"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BECE RESULTS HISTORY -->
+    <section class="section-pad alt-bg">
+      <div class="ra-container">
+        <div style="margin-bottom:36px;">
+          <p class="ra-tag"><i class="fas fa-graduation-cap" style="margin-right:8px;"></i>BECE Performance</p>
+          <h2 class="ra-title">BECE Results <span>History</span></h2>
+          <div class="ra-line"></div>
+        </div>
+        <div class="bece-table-wrap reveal">
+          <table class="bece-table">
+            <thead>
+              <tr><th>Year</th><th>Candidates</th><th>Passed</th><th>Pass Rate</th><th>Distinctions</th><th>Best Student</th><th>Aggregate</th></tr>
+            </thead>
+            <tbody id="beceTableBody">
+              <!-- BECE results will be dynamically inserted here -->
+            </tbody>
+          </table>
+        </div>
+        <!-- SUBJECT PERFORMANCE -->
+        <div style="margin-top:36px;">
+          <h4 style="font-family:'Cinzel',serif;font-size:0.88rem;color:var(--white);margin-bottom:18px;"><i class="fas fa-book-open" style="color:var(--gold);margin-right:8px;"></i>Subject Pass Rates — BECE 2025</h4>
+          <div class="subject-perf" id="subjectPerf">
+            <!-- Subject performance cards will be dynamically inserted here -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TERM ACADEMIC RESULTS -->
+    <section class="section-pad">
+      <div class="ra-container">
+        <div style="margin-bottom:28px;">
+          <p class="ra-tag"><i class="fas fa-chart-bar" style="margin-right:8px;"></i>Academic Performance</p>
+          <h2 class="ra-title">Term <span>Results</span></h2>
+          <div class="ra-line" style="margin-bottom:0;"></div>
+        </div>
+        <div class="term-tabs" id="termTabs">
+          <!-- Term tabs will be dynamically inserted here -->
+        </div>
+        <div id="termPanels">
+          <!-- Term panels will be dynamically inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- HALL OF FAME -->
+    <section class="section-pad alt-bg">
+      <div class="ra-container">
+        <div style="margin-bottom:28px;">
+          <p class="ra-tag"><i class="fas fa-star" style="margin-right:8px;"></i>Academic Excellence</p>
+          <h2 class="ra-title">Hall of <span>Fame</span></h2>
+          <div class="ra-line" style="margin-bottom:0;"></div>
+        </div>
+        <div class="hof-year-tabs">
+          <button class="hof-tab active" data-hof="2025">2025 BECE</button>
+          <button class="hof-tab" data-hof="2024">2024 BECE</button>
+          <button class="hof-tab" data-hof="2023">2023 BECE</button>
+          <button class="hof-tab" data-hof="alltime">All-Time Best</button>
+        </div>
+        <div id="hofGrid" class="hof-grid"></div>
+      </div>
+    </section>
+
+    <!-- STUDENT SPOTLIGHTS -->
+    <section class="section-pad">
+      <div class="ra-container">
+        <div style="margin-bottom:36px;">
+          <p class="ra-tag"><i class="fas fa-star" style="margin-right:8px;"></i>This Term</p>
+          <h2 class="ra-title">Student <span>Spotlights</span></h2>
+          <div class="ra-line"></div>
+        </div>
+        <div class="spotlights-grid" id="spotlightsGrid">
+          <!-- Student spotlights will be dynamically inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SPORTS & TROPHIES -->
+    <section class="section-pad alt-bg">
+      <div class="ra-container">
+        <div style="margin-bottom:36px;">
+          <p class="ra-tag"><i class="fas fa-trophy" style="margin-right:8px;"></i>Competitions & Sports</p>
+          <h2 class="ra-title">Trophies &amp; <span>Awards</span></h2>
+          <div class="ra-line"></div>
+        </div>
+        <div class="trophies-grid" id="trophiesGrid">
+          <!-- Trophies will be dynamically inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- AWARDS PHOTO GALLERY -->
+    <section class="gallery-section">
+      <div class="ra-container">
+        <div style="margin-bottom:28px;">
+          <p class="ra-tag"><i class="fas fa-images" style="margin-right:8px;"></i>Award Ceremonies & Events</p>
+          <h2 class="ra-title">Photo <span>Gallery</span></h2>
+          <div class="ra-line" style="margin-bottom:0;"></div>
+        </div>
+        <div class="gallery-filter">
+          <button class="gf-btn active" data-gcat="all">All Photos</button>
+          <button class="gf-btn" data-gcat="ceremony">Prize Giving</button>
+          <button class="gf-btn" data-gcat="sports">Sports</button>
+          <button class="gf-btn" data-gcat="academic">Academic</button>
+          <button class="gf-btn" data-gcat="cultural">Cultural</button>
+        </div>
+        <div class="photo-gallery-grid" id="photoGallery"></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="ra-container" style="padding-bottom:60px;">
+      <div class="cta-banner reveal">
+        <h3>Be Part of the <span>Star Light Legacy</span></h3>
+        <p>Our achievements are built by every student, every teacher and every parent who believes in excellence without limits. Join the Star Light family and write your own chapter.</p>
+        <div class="cta-btns">
+          <a href="index.html#admissions" class="cta-btn-primary"><i class="fas fa-user-graduate"></i> Apply for Admission</a>
+          <a href="teachers.html" class="cta-btn-outline"><i class="fas fa-users"></i> Meet Our Staff</a>
+          <a href="blog.html" class="cta-btn-outline"><i class="fas fa-newspaper"></i> Read Our Blog</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lb-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+    <img id="lbImg" src="" alt="" />
+    <div class="lb-caption" id="lbCaption"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="ra-footer">
+    <div class="ra-container">
+      <div class="ra-footer-top">
+        <div class="ra-footer-logo">
+          <img src="logo.png" alt="Star Light International School" />
+          <div><span class="ra-footer-name">Star Light International School</span><span class="ra-footer-sub">Kasoa Nyanyano Fetteh Road, Ghana</span></div>
+        </div>
+        <div class="ra-footer-links">
+          <a href="index.html">Home</a>
+          <a href="index.html#about">About</a>
+          <a href="index.html#admissions">Admissions</a>
+          <a href="newsletter.html">Newsletter</a>
+          <a href="calendar.html">Calendar</a>
+          <a href="portal.html">Portal</a>
+          <a href="blog.html">Blog</a>
+          <a href="teachers.html">Our Staff</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+      </div>
+      <div class="ra-footer-copy">
+        <p>&copy; 2026 Star Light International School. All rights reserved.</p>
+        <p style="margin-top:4px;font-style:italic;color:rgba(122,117,101,0.6);">"Excellence Without Limits"</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    /* ══════════════════════════════════════════════════════════════════════════
+     📝 EDITABLE DATA SECTION
+     
+     To update results, simply edit the data in this section.
+     All data is organized in clearly labeled arrays.
+     
+     🔹 Scroll down to find:
+     1. HERO SLIDER DATA
+     2. BECE CHART DATA
+     3. BECE RESULTS TABLE DATA
+     4. SUBJECT PERFORMANCE DATA
+     5. TERM RESULTS DATA
+     6. HALL OF FAME DATA
+     7. STUDENT SPOTLIGHTS DATA
+     8. TROPHIES DATA
+     9. GALLERY PHOTOS DATA
+  ══════════════════════════════════════════════════════════════════════════ */
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     1️⃣ HERO SLIDER DATA
+     Edit the slideIndex to change starting slide (0 = first slide)
+  ══════════════════════════════════════════════════════════════════════════ */
+  let slideIndex = 0;
+  let slideTimer;
+
+  function showSlide(n) {
+    const slides = document.querySelectorAll('.hero-slide');
+    const dots = document.querySelectorAll('.hero-dot');
+    
+    if (n >= slides.length) { slideIndex = 0; }
+    if (n < 0) { slideIndex = slides.length - 1; }
+    
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    
+    slides[slideIndex].classList.add('active');
+    dots[slideIndex].classList.add('active');
+  }
+
+  function changeSlide(n) {
+    clearInterval(slideTimer);
+    slideIndex += n;
+    showSlide(slideIndex);
+    slideTimer = setInterval(() => { slideIndex++; showSlide(slideIndex); }, 5000);
+  }
+
+  function currentSlide(n) {
+    clearInterval(slideTimer);
+    slideIndex = n - 1;
+    showSlide(slideIndex);
+    slideTimer = setInterval(() => { slideIndex++; showSlide(slideIndex); }, 5000);
+  }
+
+  // Auto-play slider every 5 seconds
+  slideTimer = setInterval(() => { slideIndex++; showSlide(slideIndex); }, 5000);
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     2️⃣ BECE CHART DATA
+     Add or edit years and their pass rates / distinction percentages
+  ══════════════════════════════════════════════════════════════════════════ */
+  const BECE_CHART_DATA = [
+    {year:'2021', pass:90, dist:20},
+    {year:'2022', pass:92, dist:25},
+    {year:'2023', pass:86, dist:21},
+    {year:'2024', pass:93, dist:27},
+    {year:'2025', pass:94, dist:35},
+  ];
+
+  function renderBeceChart() {
+    const chart = document.getElementById('beceChart');
+    const max = 100;
+    chart.innerHTML = BECE_CHART_DATA.map(d => `
+      <div class="bar-wrap">
+        <div class="bar-val">${d.pass}%</div>
+        <div class="bar bar-gold" style="height:${(d.pass/max)*160}px;" title="Pass: ${d.pass}%"></div>
+        <div class="bar-year">${d.year}</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-val" style="color:var(--green);font-size:0.66rem;">${d.dist}%</div>
+        <div class="bar bar-green" style="height:${(d.dist/max)*160}px;" title="Distinctions: ${d.dist}%"></div>
+        <div class="bar-year" style="color:rgba(78,204,163,0.5);">&nbsp;</div>
+      </div>`).join('');
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     3️⃣ BECE RESULTS TABLE DATA
+     Edit this array to update BECE results history table
+  ══════════════════════════════════════════════════════════════════════════ */
+  const BECE_RESULTS_TABLE = [
+    {year:'2025', candidates:18, passed:17, passRate:94, distinctions:6, bestStudent:'Shemimah Abbey', aggregate:'6'},
+    {year:'2024', candidates:15, passed:14, passRate:93, distinctions:4, bestStudent:'Saeed Mohammed', aggregate:'8'},
+    {year:'2023', candidates:14, passed:12, passRate:86, distinctions:3, bestStudent:'Fatima Al-Hassan', aggregate:'10'},
+    {year:'2022', candidates:12, passed:11, passRate:92, distinctions:3, bestStudent:'Emmanuel Darko', aggregate:'9'},
+    {year:'2021', candidates:10, passed:9, passRate:90, distinctions:2, bestStudent:'Grace Mensah', aggregate:'11'},
+  ];
+
+  function renderBeceTable() {
+    const tbody = document.getElementById('beceTableBody');
+    tbody.innerHTML = BECE_RESULTS_TABLE.map(row => {
+      const rateColor = row.passRate >= 90 ? 'green' : 'gold-l';
+      const aggColor = parseInt(row.aggregate) <= 10 ? 'green' : 'gold-l';
+      return `
+        <tr>
+          <td style="font-family:'Cinzel',serif;color:var(--gold-l);">${row.year}</td>
+          <td>${row.candidates}</td>
+          <td>${row.passed}</td>
+          <td>
+            <div class="rate-bar">
+              <div class="rate-bar-bg"><div class="rate-bar-fill pf-${rateColor === 'green' ? 'green' : 'gold'}" style="width:${row.passRate}%"></div></div>
+              <span style="font-family:'Cinzel',serif;font-size:0.8rem;color:var(--${rateColor});">${row.passRate}%</span>
+            </div>
+          </td>
+          <td style="color:var(--gold-l);font-family:'Cinzel',serif;">${row.distinctions}</td>
+          <td>${row.bestStudent}</td>
+          <td style="color:var(--${aggColor});font-family:'Cinzel',serif;">${row.aggregate}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     4️⃣ SUBJECT PERFORMANCE DATA (BECE 2025)
+     Edit this array to update subject pass rates
+  ══════════════════════════════════════════════════════════════════════════ */
+  const SUBJECT_PERFORMANCE = [
+    {subject:'English Language', icon:'book-open', passRate:96, passed:16, total:17},
+    {subject:'Mathematics', icon:'calculator', passRate:94, passed:16, total:17},
+    {subject:'Integrated Science', icon:'flask', passRate:94, passed:16, total:17},
+    {subject:'Social Studies', icon:'globe-africa', passRate:100, passed:17, total:17},
+    {subject:'R.M.E', icon:'mosque', passRate:100, passed:17, total:17},
+    {subject:'French', icon:'language', passRate:82, passed:14, total:17},
+  ];
+
+  function renderSubjectPerformance() {
+    const container = document.getElementById('subjectPerf');
+    container.innerHTML = SUBJECT_PERFORMANCE.map(subj => {
+      const color = subj.passRate >= 95 ? 'gold-l' : subj.passRate >= 85 ? 'green' : 'orange';
+      const barColor = subj.passRate >= 95 ? 'gold' : subj.passRate >= 85 ? 'green' : 'orange';
+      return `
+        <div class="subj-perf-card reveal">
+          <div class="subj-perf-name"><i class="fas fa-${subj.icon}"></i>${subj.subject}</div>
+          <div class="subj-rate" style="color:var(--${color});">${subj.passRate}%</div>
+          <div class="prog-bar"><div class="prog-fill pf-${barColor}" style="width:${subj.passRate}%"></div></div>
+          <div class="subj-tag-sm">${subj.passed}/${subj.total} passed</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     5️⃣ TERM RESULTS DATA
+     Edit this object to update term results
+     Each term can have multiple classes with their results
+  ══════════════════════════════════════════════════════════════════════════ */
+  const TERM_RESULTS = {
+    't2mid': {
+      label: 'Mid-Term 2 (Mar 2026)',
+      classes: [
+        {name:'KG 1 & KG 2', students:24, avg:88, highest:98, attendance:95, topStudent:'Ama Owusu', topInitials:'AO', topScore:98, topPosition:1},
+        {name:'Basic 1 — 3', students:68, avg:81, highest:95, attendance:91, topStudent:'Kofi Asante', topInitials:'KA', topScore:95, topPosition:1},
+        {name:'Basic 4 — 6', students:72, avg:76, highest:93, attendance:88, topStudent:'Yaw Mensah Jr.', topInitials:'YM', topScore:93, topPosition:1},
+        {name:'JHS 1', students:38, avg:74, highest:91, attendance:90, topStudent:'Abena Boateng', topInitials:'AB', topScore:91, topPosition:1},
+        {name:'JHS 2', students:35, avg:78, highest:94, attendance:92, topStudent:'Amina Mensah', topInitials:'AM', topScore:94, topPosition:1},
+        {name:'JHS 3', students:18, avg:82, highest:97, attendance:97, topStudent:'Kwame Osei', topInitials:'KO', topScore:97, topPosition:1},
+      ]
+    },
+    't1end': {
+      label: 'End of Term 1 (Dec 2025)',
+      classes: [] // Empty - will show placeholder
+    },
+    't1mid': {
+      label: 'Mid-Term 1 (Oct 2025)',
+      classes: [] // Empty - will show placeholder
+    }
+  };
+
+  function renderTermResults() {
+    const tabsContainer = document.getElementById('termTabs');
+    const panelsContainer = document.getElementById('termPanels');
+    
+    // Render tabs
+    const tabs = Object.keys(TERM_RESULTS).map((termId, index) => {
+      const term = TERM_RESULTS[termId];
+      const activeClass = index === 0 ? 'active' : '';
+      return `<button class="term-tab ${activeClass}" data-term="${termId}">${term.label}</button>`;
+    }).join('');
+    tabsContainer.innerHTML = tabs;
+    
+    // Render panels
+    const panels = Object.keys(TERM_RESULTS).map((termId, index) => {
+      const term = TERM_RESULTS[termId];
+      const activeClass = index === 0 ? 'active' : '';
+      
+      if (term.classes.length === 0) {
+        // Empty placeholder
+        return `
+          <div class="term-panel ${activeClass}" id="tp-${termId}">
+            <div style="background:rgba(201,168,76,0.05);border:1px dashed rgba(201,168,76,0.2);border-radius:12px;padding:40px;text-align:center;">
+              <i class="fas fa-folder-open" style="font-size:2rem;color:rgba(201,168,76,0.2);margin-bottom:12px;display:block;"></i>
+              <h4 style="font-family:'Cinzel',serif;color:var(--muted);margin-bottom:8px;">${term.label} Results</h4>
+              <p style="font-size:0.82rem;color:rgba(122,117,101,0.7);">Update this section with ${term.label.toLowerCase()} results.</p>
+            </div>
+          </div>
+        `;
+      }
+      
+      // Render class cards
+      const classCards = term.classes.map(cls => {
+        const avgColor = cls.avg >= 80 ? 'green' : 'gold-l';
+        return `
+          <div class="class-card reveal">
+            <div class="class-card-header">
+              <span class="class-name">${cls.name}</span>
+              <span class="class-avg" style="color:var(--${avgColor});">Avg: ${cls.avg}%</span>
+            </div>
+            <div class="class-card-body">
+              <div class="class-stat-row"><span class="label">Students</span><span class="value">${cls.students}</span></div>
+              <div class="class-stat-row"><span class="label">Highest Score</span><span class="value">${cls.highest}%</span></div>
+              <div class="class-stat-row"><span class="label">Attendance</span><span class="value">${cls.attendance}%</span></div>
+              <div class="top-student-row">
+                <div class="ts-avatar">${cls.topInitials}</div>
+                <div class="ts-info">
+                  <span class="ts-name">${cls.topStudent}</span>
+                  <span class="ts-score">${cls.topScore}% — ${cls.topPosition}${cls.topPosition === 1 ? 'st' : cls.topPosition === 2 ? 'nd' : cls.topPosition === 3 ? 'rd' : 'th'} Position</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      return `
+        <div class="term-panel ${activeClass}" id="tp-${termId}">
+          <div class="class-results-grid">${classCards}</div>
+        </div>
+      `;
+    }).join('');
+    panelsContainer.innerHTML = panels;
+    
+    // Add tab click events
+    document.querySelectorAll('.term-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.term-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        document.querySelectorAll('.term-panel').forEach(p => p.classList.remove('active'));
+        document.getElementById('tp-' + tab.dataset.term).classList.add('active');
+      });
+    });
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     6️⃣ HALL OF FAME DATA
+     Edit this object to update Hall of Fame students
+     Photo paths should point to images/achievement/ folder
+  ══════════════════════════════════════════════════════════════════════════ */
+  const HALL_OF_FAME = {
+    '2025': [
+      {rank:1, name:'Shemimah Abbey', cls:'JHS 3', score:'94%', agg:'6', grade:'A+', award:'Best Student — BECE 2025', photo:'images/achievement/shemimah-abbey.jpg'},
+      {rank:2, name:'Safuratu Abdul Rahman', cls:'JHS 3', score:'91%', agg:'8', grade:'A', award:'Best in Mathematics', photo:'images/achievement/safuratu-abdul-rahman.jpg'},
+      {rank:3, name:'Adwoa Mensah', cls:'JHS 3', score:'89%', agg:'9', grade:'A', award:'Head Girl & Best in English', photo:'images/achievement/adwoa-mensah.jpg'},
+      {rank:4, name:'Kwame Asante Jr.', cls:'JHS 3', score:'87%', agg:'11', grade:'A', award:'Best in Science', photo:'images/achievement/kwame-asante.jpg'},
+    ],
+    '2024': [
+      {rank:1, name:'Saeed Mohammed', cls:'JHS 3', score:'92%', agg:'8', grade:'A+', award:'Best Student — BECE 2024', photo:'images/achievement/saeed-mohammed.jpg'},
+      {rank:2, name:'Rahidatu Sadat', cls:'JHS 3', score:'89%', agg:'10', grade:'A', award:'Best in RME & Social Studies', photo:'images/achievement/rahidatu-sadat.jpg'},
+      {rank:3, name:'Yaw Frimpong', cls:'JHS 3', score:'87%', agg:'11', grade:'A', award:'Best in Mathematics', photo:'images/achievement/yaw-frimpong.jpg'},
+      {rank:4, name:'Efua Asare', cls:'JHS 3', score:'85%', agg:'12', grade:'A', award:'Most Improved Student', photo:'images/achievement/efua-asare.jpg'},
+    ],
+    '2023': [
+      {rank:1, name:'Fatima Al-Hassan', cls:'JHS 3', score:'90%', agg:'10', grade:'A+', award:'Best Student — BECE 2023', photo:'images/achievement/fatima-al-hassan.jpg'},
+      {rank:2, name:'Kofi Mensah', cls:'JHS 3', score:'88%', agg:'11', grade:'A', award:'Best in English Language', photo:'images/achievement/kofi-mensah.jpg'},
+      {rank:3, name:'Akosua Darko', cls:'JHS 3', score:'85%', agg:'12', grade:'A', award:'Best in French & Arabic', photo:'images/achievement/akosua-darko.jpg'},
+      {rank:4, name:'Nana Agyei', cls:'JHS 3', score:'83%', agg:'14', grade:'B+', award:'Best in Physical Education', photo:'images/achievement/nana-agyei.jpg'},
+    ],
+    'alltime': [
+      {rank:1, name:'Shemimah Abbey', cls:'Class of 2025', score:'94%', agg:'6', grade:'A+', award:'Highest Aggregate — All Time (Agg. 6)', photo:'images/achievement/shemimah-abbey.jpg'},
+      {rank:2, name:'Saeed Mohammed', cls:'Class of 2024', score:'92%', agg:'8', grade:'A+', award:'Most Distinctions — All Time', photo:'images/achievement/saeed-mohammed.jpg'},
+      {rank:3, name:'Fatima Al-Hassan', cls:'Class of 2023', score:'90%', agg:'10', grade:'A+', award:'First Female Top Student', photo:'images/achievement/fatima-al-hassan.jpg'},
+      {rank:4, name:'Emmanuel Darko', cls:'Class of 2022', score:'89%', agg:'9', grade:'A', award:'Best All-Round Student 2022', photo:'images/achievement/emmanuel-darko.jpg'},
+    ]
+  };
+
+  const RANK_CLASS = {1:'rank-1', 2:'rank-2', 3:'rank-3'};
+
+  function renderHallOfFame(year) {
+    const data = HALL_OF_FAME[year] || [];
+    const grid = document.getElementById('hofGrid');
+    grid.innerHTML = data.map(s => `
+      <div class="hof-card ${s.rank === 1 ? 'gold-border' : ''} reveal">
+        <div class="hof-photo">
+          ${s.photo
+            ? `<img src="${s.photo}" alt="${s.name}" />`
+            : `<div class="hof-photo-placeholder"><i class="fas fa-user-circle"></i><span>Add photo</span></div>`}
+          <div class="hof-rank ${RANK_CLASS[s.rank] || 'rank-n'}">${s.rank === 1 ? '👑' : s.rank}</div>
+        </div>
+        <div class="hof-body">
+          <div class="hof-name">${s.name}</div>
+          <div class="hof-class">${s.cls}</div>
+          <div class="hof-score">${s.score}</div>
+          <div class="hof-grade">Aggregate ${s.agg} · Grade ${s.grade}</div>
+          <div class="hof-award"><i class="fas fa-trophy"></i> ${s.award}</div>
+        </div>
+      </div>
+    `).join('');
+    setTimeout(() => { document.querySelectorAll('.hof-card.reveal').forEach(el => el.classList.add('visible')); }, 100);
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     7️⃣ STUDENT SPOTLIGHTS DATA
+     Edit this array to update student spotlight cards
+     Photo paths should point to images/achievements/ folder
+  ══════════════════════════════════════════════════════════════════════════ */
+  const STUDENT_SPOTLIGHTS = [
+    {
+      photo:'images/achievements/kwame-osei.jpg',
+      badge:{type:'sb-term', icon:'star', text:'Student of the Term'},
+      name:'Kwame Osei',
+      class:'JHS 3 — Term 2, 2026',
+      quote:'"Hard work, consistency and faith in God — that is my formula. I am grateful to my teachers and parents for everything."',
+      stats:[
+        {val:'97%', label:'Average', color:'gold-l'},
+        {val:'1st', label:'Position', color:'green'},
+        {val:'100%', label:'Attend.', color:'blue'}
+      ]
+    },
+    {
+      photo:'images/achievements/esi-ankrah.jpg',
+      badge:{type:'sb-improved', icon:'arrow-up', text:'Most Improved'},
+      name:'Esi Ankrah',
+      class:'Basic 6 — Term 2, 2026',
+      quote:'"I was struggling last term but my teacher never gave up on me. This term I proved to myself that I can do it!"',
+      stats:[
+        {val:'+18%', label:'Improvement', color:'green'},
+        {val:'4th', label:'Position', color:'gold-l'},
+        {val:'94%', label:'Attend.', color:'blue'}
+      ]
+    },
+    {
+      photo:'images/achievements/nana-ama-darko.jpg',
+      badge:{type:'sb-sports', icon:'running', text:'Sports Champion'},
+      name:'Nana Ama Darko',
+      class:'JHS 1 — Term 2, 2026',
+      quote:'"Running is my passion. Winning the 100m and 200m for Blue House on Sports Day was the proudest moment of my life so far!"',
+      stats:[
+        {val:'2', label:'Gold Medals', color:'orange'},
+        {val:'79%', label:'Average', color:'gold-l'},
+        {val:'96%', label:'Attend.', color:'blue'}
+      ]
+    },
+    {
+      photo:'images/achievements/ibrahim-al-faisal.jpg',
+      badge:{type:'sb-academic', icon:'trophy', text:'Competition Winner'},
+      name:'Ibrahim Al-Faisal',
+      class:'JHS 3 — Term 2, 2026',
+      quote:'"Winning the Regional Maths Olympiad for Star Light is an honour I will carry forever. Mathematics is my future."',
+      stats:[
+        {val:'1st', label:'Region', color:'gold-l'},
+        {val:'95%', label:'Maths', color:'green'},
+        {val:'99%', label:'Attend.', color:'blue'}
+      ]
+    },
+    {
+      photo:'images/achievements/adwoa-mensah.jpg',
+      badge:{type:'sb-leader', icon:'users', text:'School Prefect'},
+      name:'Adwoa Mensah',
+      class:'JHS 3 — Head Girl, 2026',
+      quote:'"Being Head Girl is about serving, not leading. I am proud to represent every student at Star Light and to be their voice."',
+      stats:[
+        {val:'Head', label:'Girl', color:'purple'},
+        {val:'88%', label:'Average', color:'gold-l'},
+        {val:'100%', label:'Attend.', color:'blue'}
+      ]
+    },
+    {
+      photo:'images/achievements/grace-owusu.jpg',
+      badge:{type:'sb-academic', icon:'book', text:'Best in English'},
+      name:'Grace Owusu',
+      class:'Basic 5 — Term 2, 2026',
+      quote:'"Books took me on adventures before I could travel anywhere. Reading changed my world and writing is my superpower!"',
+      stats:[
+        {val:'98%', label:'English', color:'blue'},
+        {val:'2nd', label:'Position', color:'gold-l'},
+        {val:'92%', label:'Attend.', color:'green'}
+      ]
+    }
+  ];
+
+  function renderSpotlights() {
+    const container = document.getElementById('spotlightsGrid');
+    container.innerHTML = STUDENT_SPOTLIGHTS.map(s => `
+      <div class="spotlight-card reveal">
+        <div class="spotlight-top">
+          <div class="spotlight-photo">
+            ${s.photo
+              ? `<img src="${s.photo}" alt="${s.name}" />`
+              : `<i class="fas fa-user-circle"></i>`}
+          </div>
+          <div class="spotlight-info">
+            <span class="spotlight-badge ${s.badge.type}"><i class="fas fa-${s.badge.icon}"></i> ${s.badge.text}</span>
+            <div class="spotlight-name">${s.name}</div>
+            <div class="spotlight-class">${s.class}</div>
+          </div>
+        </div>
+        <div class="spotlight-body">
+          <div class="spotlight-quote">${s.quote}</div>
+          <div class="spotlight-stats">
+            ${s.stats.map(stat => `
+              <div class="spotlight-stat">
+                <div class="ss-val" style="color:var(--${stat.color});">${stat.val}</div>
+                <div class="ss-label">${stat.label}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     8️⃣ TROPHIES DATA
+     Edit this array to update trophy cards
+     Photo paths should point to images/achievements/ folder
+  ══════════════════════════════════════════════════════════════════════════ */
+  const TROPHIES = [
+    {
+      photo:'images/achievements/maths-trophy.jpg',
+      year:'2026',
+      type:{icon:'calculator', text:'Mathematics'},
+      name:'Regional Mathematics Olympiad — Central Region',
+      desc:'Ibrahim Al-Faisal represented Star Light and placed first among 40+ students from 15 schools across the Central Region.',
+      place:{type:'tp-gold', icon:'medal', text:'1st Place — Gold'},
+      meta:[
+        {icon:'calendar', text:'March 2026'},
+        {icon:'map-marker-alt', text:'Central Region'}
+      ]
+    },
+    {
+      photo:'images/achievements/football-trophy.jpg',
+      year:'2025',
+      type:{icon:'futbol', text:'Football'},
+      name:'District Inter-School Football League — Kasoa Zone',
+      desc:'Star Light\'s football team reached the final of the Kasoa Zone inter-school league, finishing as runners-up after an incredible season.',
+      place:{type:'tp-silver', icon:'medal', text:'2nd Place — Silver'},
+      meta:[
+        {icon:'calendar', text:'November 2025'},
+        {icon:'map-marker-alt', text:'Kasoa District'}
+      ]
+    },
+    {
+      photo:'images/achievements/quiz-trophy.jpg',
+      year:'2025',
+      type:{icon:'brain', text:'Academic Quiz'},
+      name:'District General Knowledge Quiz Competition',
+      desc:'Our JHS 3 quiz team won the district general knowledge competition, defeating 12 other schools in a nail-biting final round.',
+      place:{type:'tp-gold', icon:'medal', text:'1st Place — Gold'},
+      meta:[
+        {icon:'calendar', text:'September 2025'},
+        {icon:'map-marker-alt', text:'Kasoa District'}
+      ]
+    },
+    {
+      photo:'images/achievements/athletics-trophy.jpg',
+      year:'2025',
+      type:{icon:'running', text:'Athletics'},
+      name:'Inter-School Athletics Championships — 100m & 200m',
+      desc:'Two gold medals in the 100m and 200m sprints at the district inter-school athletics championships by our JHS 1 student.',
+      place:{type:'tp-gold', icon:'medal', text:'2× Gold — 100m & 200m'},
+      meta:[
+        {icon:'calendar', text:'October 2025'},
+        {icon:'map-marker-alt', text:'District Stadium'}
+      ]
+    },
+    {
+      photo:'images/achievements/writing-award.jpg',
+      year:'2025',
+      type:{icon:'pen-alt', text:'Creative Writing'},
+      name:'Regional Youth Writing Competition',
+      desc:'Three Star Light students placed in the top 10 of the Regional Youth Writing Competition — the most of any school from the Kasoa area.',
+      place:{type:'tp-bronze', icon:'medal', text:'3 Students — Top 10'},
+      meta:[
+        {icon:'calendar', text:'May 2025'},
+        {icon:'map-marker-alt', text:'Regional Level'}
+      ]
+    },
+    {
+      photo:'images/achievements/cultural-award.jpg',
+      year:'2024',
+      type:{icon:'drum', text:'Cultural'},
+      name:'District Cultural & Dance Festival',
+      desc:'Star Light\'s dance and cultural group won first prize at the district-wide cultural festival, impressing judges with an authentic Fante dance performance.',
+      place:{type:'tp-gold', icon:'medal', text:'1st Place — Best Performance'},
+      meta:[
+        {icon:'calendar', text:'December 2024'},
+        {icon:'map-marker-alt', text:'Kasoa District'}
+      ]
+    }
+  ];
+
+  function renderTrophies() {
+    const container = document.getElementById('trophiesGrid');
+    container.innerHTML = TROPHIES.map(t => `
+      <div class="trophy-card reveal">
+        <div class="trophy-img">
+          ${t.photo
+            ? `<img src="${t.photo}" alt="${t.name}" />`
+            : `<div class="trophy-img-placeholder"><i class="fas fa-trophy"></i><span>Add photo</span></div>`}
+          <div class="trophy-year-badge">${t.year}</div>
+        </div>
+        <div class="trophy-body">
+          <div class="trophy-type"><i class="fas fa-${t.type.icon}"></i> ${t.type.text}</div>
+          <div class="trophy-name">${t.name}</div>
+          <div class="trophy-desc">${t.desc}</div>
+          <div class="trophy-place ${t.place.type}"><i class="fas fa-${t.place.icon}"></i> ${t.place.text}</div>
+          <div class="trophy-meta" style="margin-top:8px;">
+            ${t.meta.map(m => `<span><i class="fas fa-${m.icon}"></i> ${m.text}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     9️⃣ GALLERY PHOTOS DATA
+     Edit this array to update photo gallery
+     Photo paths should point to images/achievements/ folder
+  ══════════════════════════════════════════════════════════════════════════ */
+  const GALLERY_PHOTOS = [
+    {src:'images/achievements/prize-giving-1.jpg', caption:'Prize Giving Day — Term 1 2025. Best academic students receive awards.', cat:'ceremony'},
+    {src:'images/achievements/maths-olympiad-1.jpg', caption:'The Regional Maths Olympiad first place trophy — March 2026.', cat:'academic'},
+    {src:'images/achievements/sports-day-1.jpg', caption:'Inter-House Sports Day 2026 — 100m final race.', cat:'sports'},
+    {src:'images/achievements/cultural-day-1.jpg', caption:'Cultural Day 2026 — Traditional dance performance.', cat:'cultural'},
+    {src:'images/achievements/quiz-winners-1.jpg', caption:'District Quiz Competition winners — 2025.', cat:'academic'},
+    {src:'images/achievements/football-trophy-1.jpg', caption:'Football team runners-up trophy presentation — November 2025.', cat:'sports'},
+    {src:'images/achievements/graduation-1.jpg', caption:'JHS 3 Graduation Ceremony — July 2025.', cat:'ceremony'},
+    {src:'images/achievements/cultural-festival-1.jpg', caption:'Cultural festival first place trophy — December 2024.', cat:'cultural'},
+    {src:'images/achievements/prize-giving-2.jpg', caption:'Prize Giving Day — Student of the Year presentation.', cat:'ceremony'},
+    {src:'images/achievements/athletics-medals-1.jpg', caption:'Athletics gold medals — 100m & 200m sprint champions.', cat:'sports'},
+    {src:'images/achievements/bece-topstudents-1.jpg', caption:'BECE top students — Class of 2025.', cat:'academic'},
+    {src:'images/achievements/cultural-day-2.jpg', caption:'Cultural Day — Kente display and traditional costume parade.', cat:'cultural'},
+  ];
+
+  function renderGallery(cat) {
+    const filtered = cat === 'all' ? GALLERY_PHOTOS : GALLERY_PHOTOS.filter(p => p.cat === cat);
+    const container = document.getElementById('photoGallery');
+    container.innerHTML = filtered.map((p, i) => `
+      <div class="gallery-photo" onclick="openLightbox('${p.src}','${p.caption.replace(/'/g, "\\'")}')">
+        ${p.src
+          ? `<img src="${p.src}" alt="${p.caption}" />
+             <div class="gallery-photo-overlay"><i class="fas fa-expand-alt"></i><span>${p.caption}</span></div>`
+          : `<div class="gallery-photo-placeholder">
+               <i class="fas fa-image"></i>
+               <p>Photo ${i + 1}<br><small>${p.caption}</small></p>
+             </div>`}
+      </div>
+    `).join('');
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     🎬 INITIALIZE ALL SECTIONS
+     This runs when the page loads
+  ══════════════════════════════════════════════════════════════════════════ */
+  document.addEventListener('DOMContentLoaded', () => {
+    renderBeceChart();
+    renderBeceTable();
+    renderSubjectPerformance();
+    renderTermResults();
+    renderHallOfFame('2025');
+    renderSpotlights();
+    renderTrophies();
+    renderGallery('all');
+  });
+
+  /* ══ HALL OF FAME TAB SWITCHING ══ */
+  document.querySelectorAll('.hof-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.hof-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      renderHallOfFame(tab.dataset.hof);
+    });
+  });
+
+  /* ══ GALLERY FILTER SWITCHING ══ */
+  document.querySelectorAll('.gf-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.gf-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderGallery(btn.dataset.gcat);
+    });
+  });
+
+  /* ══ LIGHTBOX ══ */
+  function openLightbox(src, caption) {
+    if (!src) return;
+    document.getElementById('lbImg').src = src;
+    document.getElementById('lbCaption').textContent = caption;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  /* ══ SCROLL REVEAL ══ */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, {threshold: 0.1});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
